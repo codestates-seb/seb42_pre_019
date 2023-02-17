@@ -9,10 +9,9 @@ export default function Home() {
     height: 85vh;
     width: 96vw; */
   `;
-
   return (
     <Homecss>
-      <div>Home</div>
+      <div className="homeheader">Top Questions</div>
     </Homecss>
   );
 }
