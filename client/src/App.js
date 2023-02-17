@@ -7,7 +7,7 @@ import AskQuestion from './pages/AskQuestion';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import QuestionDetail from './pages/QuestionDetail';
-import Questions from './pages/QuestionsPage';
+import Questions from './pages/Questions';
 import SignUp from './pages/SignUp';
 import Tags from './pages/Tags';
 import Users from './pages/Users';
@@ -17,6 +17,8 @@ const Center = styled.div`
   display: flex;
   flex-direction: row;
 `;
+
+//TODO: header 삼항연산자로
 
 export default function App() {
   return (
