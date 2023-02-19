@@ -103,13 +103,15 @@ export default function Header() {
       background-color: hsl(210, 8%, 90%);
       color: hsl(210, 8%, 25%);
     }
+    button {
+      all: unset;
+    }
   `;
 
   return (
     <Header1>
       <FirstBox />
       <Headercss>
-        <i className="fa-solid fa-bars"></i>
         <img src="logo-stackoverflow.png" alt="logo" />
         <div className="minitap">About</div>
         <div className="minitap">Products</div>

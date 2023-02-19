@@ -1,8 +1,10 @@
+import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import styled from 'styled-components';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import Menubar from './components/Menubar';
+// import Menubar from './components/Menubar';
 import AskQuestion from './pages/AskQuestion';
 import Home from './pages/Home';
 import Login from './pages/Login';
@@ -13,9 +15,24 @@ import Tags from './pages/Tags';
 import Users from './pages/Users';
 
 // const userid = 0;
-const Center = styled.div`
+const Container = styled.div`
+  max-width: 1264px;
+  width: 100%;
   display: flex;
-  flex-direction: row;
+  justify-content: center;
+  margin: 0 auto;
+`;
+const Content = styled.div`
+  display: flex;
+  justify-content: start;
+  max-width: 1100px;
+  width: calc(100% - 164px);
+  background-color: antiquewhite;
+`;
+const Sidebar = styled.div`
+  position: relative;
+  box-sizing: border-box;
+  width: 164px;
 `;
 
 //TODO: header 삼항연산자로
@@ -24,20 +41,28 @@ export default function App() {
   return (
     <BrowserRouter>
       <Header />
-      <Center>
-        <Menubar />
-        <Routes>
-          <Route exact path="/" element={<Home />}></Route>
-          <Route path="/questions" element={<Questions />}></Route>
-          <Route path="/login" element={<Login />}></Route>
+      <Container>
+        <Sidebar>
+          <Menubar />
+        </Sidebar>
 
-          <Route path="/askquestion" element={<AskQuestion />}></Route>
-          <Route path="/questiondetail" element={<QuestionDetail />}></Route>
-          <Route path="/tags" element={<Tags />}></Route>
-          <Route path="/signup" element={<SignUp />}></Route>
-          <Route path="/users" element={<Users />}></Route>
-        </Routes>
-      </Center>
+        <Content>
+          <Routes>
+            <Route path="/login" element={<Login />}></Route>
+            <Route path="/signup" element={<SignUp />}></Route>
+
+            <Route exact path="/" element={<Home />}></Route>
+
+            <Route path="/questions" element={<Questions />}></Route>
+            <Route path="/askquestion" element={<AskQuestion />}></Route>
+            <Route path="/questiondetail" element={<QuestionDetail />}></Route>
+
+            <Route path="/tags" element={<Tags />}></Route>
+            <Route path="/users" element={<Users />}></Route>
+          </Routes>
+        </Content>
+      </Container>
+
       <Footer />
     </BrowserRouter>
   );
