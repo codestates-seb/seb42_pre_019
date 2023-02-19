@@ -17,7 +17,11 @@ export default function Footer() {
       box-sizing: border-box;
       border: solid 1px red;
       padding: 32px 12px 12px 12px;
+<<<<<<< HEAD
       height: 150px;
+=======
+      height: 200px;
+>>>>>>> 54a75ee71d0cde93e38fdbba64b9161377bebfc0
     }
   `;
   return (
