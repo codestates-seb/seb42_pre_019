@@ -4,65 +4,65 @@ import styled from 'styled-components';
 export default function Menubar() {
   const Menubarcss = styled.div`
     position: sticky;
-    display: block;
     width: auto;
+
+    top: 50px;
     flex-direction: column;
     align-items: flex-start;
-    height: 300px;
+    margin-left: 8px;
+    margin-bottom: 10px;
     left: 0px;
-    padding-top: 10px;
-    background-color: white;
-    box-sizing: border-box;
-    box-shadow: 0 1px 2px hsla(0, 0%, 0%, 0.05), 0 1px 4px hsla(0, 0%, 0%, 0.05),
-      0 2px 8px hsla(0, 0%, 0%, 0.05);
-    z-index: 999;
+    padding-top: 24px;
     color: hsl(210, 8%, 25%);
+    list-style: none;
     ol {
       list-style: none;
-      padding-inline-start: 20px;
+      padding-left: 20px;
+      margin: 0px;
     }
     li {
       height: 26px;
       width: 152px;
+      /* padding-inline-start: 20px; */
+      padding: 4px 4px 4px 0px;
     }
-    div {
-      display: flex;
-      flex-direction: column;
-      /* align-items: center; */
-      margin: 20px;
-    }
-    div > * {
-      padding: 4px 4px 4px 30px;
+    img {
+      object-fit: cover;
+      width: 100%;
+      padding-left: 4px;
     }
   `;
 
   return (
     <Menubarcss>
+      <li>
+        <Link to="/">Home</Link>
+      </li>
+
+      <li>PUBLIC</li>
       <ol>
         <li>
-          <Link to="/">HOME</Link>
+          <Link to="/questions">Questions</Link>
         </li>
-        <li>PUBLIC</li>
         <li>
-          <ol>
-            <li>
-              <Link to="/questions">Questions</Link>
-            </li>
-            <li>
-              <Link to="/tags">Tags</Link>
-            </li>
+          <Link to="/tags">Tags</Link>
+        </li>
 
-            <li>
-              <Link to="/users">Users</Link>
-            </li>
-          </ol>
-          <li>COLLECTIVES</li>
-          <ol>
-            <li>Explore Collectives</li>
-          </ol>
-          <li>TEAMS</li>
+        <li>
+          <Link to="/users">Users</Link>
         </li>
       </ol>
+
+      <li>COLLECTIVES</li>
+      <ol>
+        <li>Explore Collectives</li>
+      </ol>
+
+      <li>TEAMS</li>
+
+      <li>
+        <img src="menubar-img.png" alt="img" />
+      </li>
     </Menubarcss>
   );
 }
