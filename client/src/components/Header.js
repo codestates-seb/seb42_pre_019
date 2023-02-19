@@ -1,19 +1,23 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import '../App.css';
 
 export default function Header() {
   const Header1 = styled.div`
+    position: fixed !important;
+    display: flex;
+    top: 0;
+    min-width: auto;
     box-shadow: 0 1px 2px hsla(0, 0%, 0%, 0.05), 0 1px 4px hsla(0, 0%, 0%, 0.05),
       0 2px 8px hsla(0, 0%, 0%, 0.05);
     width: 100%;
-    z-index: var(--zi-navigation-fixed);
-    background-color: white;
-    vertical-align: baseline;
-    height: 55px;
+    z-index: 5050;
+    background-color: hsl(210, 8%, 97.5%);
+    height: 50px;
+    box-sizing: border-box;
+    border-top: 3px solid hsl(27, 90%, 55%);
   `;
-  const FirstBox = styled.div`
-    border: solid 0.13em hsl(27, 90%, 55%);
-  `;
+
   const Headercss = styled.div`
     display: flex;
     flex-direction: row;
@@ -23,7 +27,7 @@ export default function Header() {
     margin: 0 auto;
     width: 100%;
     max-width: 1200px;
-    height: 50px;
+    height: 47px;
 
     .fa-bars {
       display: flex;
@@ -38,8 +42,8 @@ export default function Header() {
       display: flex;
       align-items: center;
       padding: 0 8px;
-      width: 150px;
-      height: 30px;
+      width: 148px;
+      height: 28px;
     }
 
     input {
@@ -52,6 +56,11 @@ export default function Header() {
       border-radius: 3px;
       padding-left: 32px;
     }
+    input::placeholder {
+      color: hsl(210, 8%, 60%);
+      font-family: 'system-ui', 'Segoe UI', 'Helvetica Neue', Arial, 'Noto Sans',
+        sans-serif;
+    }
     form {
       display: flex;
       flex-direction: row;
@@ -61,27 +70,12 @@ export default function Header() {
     form > i {
       position: absolute;
       top: 50%;
-      margin-top: -7px;
-      margin-left: 8px;
+      margin-top: -8px;
+      margin-left: 0.5em;
       color: hsl(210, 8%, 55%);
+      font-size: 1rem;
     }
-    .btn {
-      position: relative;
-      align-items: center;
-      background-color: hsl(205, 46%, 92%);
-      border: 1px solid hsl(205, 47%, 42%);
-      border-color: hsl(205, 41%, 63%);
-      border-radius: 3px;
-      color: hsl(205, 47%, 42%);
-      padding: 0.8em;
-      padding-top: 9px;
-      padding-bottom: 9px;
-      line-height: 13px;
-      font-size: 13px;
-      margin-top: 1px;
-      text-decoration: none;
-      cursor: pointer;
-    }
+
     .signup {
       background-color: hsl(206, 100%, 52%);
       color: white;
@@ -91,7 +85,6 @@ export default function Header() {
     .minitap {
       display: flex;
       position: relative;
-      font-size: 0.8em;
       text-decoration: none;
       color: hsl(210, 8%, 35%);
       padding: 6px 12px;
@@ -110,9 +103,11 @@ export default function Header() {
 
   return (
     <Header1>
-      <FirstBox />
+      {/* <FirstBox /> */}
       <Headercss>
-        <img src="logo-stackoverflow.png" alt="logo" />
+        <Link to="/">
+          <img src="logo-stackoverflow.png" alt="logo" />
+        </Link>
         <div className="minitap">About</div>
         <div className="minitap">Products</div>
         <div className="minitap">For Teams</div>

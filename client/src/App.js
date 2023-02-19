@@ -15,13 +15,25 @@ import Tags from './pages/Tags';
 import Users from './pages/Users';
 import UserDetail from './pages/UserDetail';
 
+// import { useState } from 'react';
+
 // const userid = 0;
-const Container = styled.div`
-  max-width: 1264px;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  margin: 0 auto;
+
+// const Container2 = styled.div`
+//   position: relative;
+//   max-width: 1264px;
+//   width: 100%;
+//   display: flex;
+//   justify-content: center;
+//   margin: 0 auto;
+//   margin-top: 0;
+//   background-color: white;
+// `;
+const Sidebar = styled.div`
+  position: relative;
+  box-sizing: border-box;
+  width: 164px;
+  height: calc(100vh - 200px);
 `;
 const Content = styled.div`
   display: flex;
@@ -30,28 +42,28 @@ const Content = styled.div`
   width: calc(100% - 164px);
   background-color: antiquewhite;
 `;
-const Sidebar = styled.div`
-  position: relative;
-  box-sizing: border-box;
-  width: 164px;
-`;
 
 //TODO: header 삼항연산자로
 
 export default function App() {
+  // const [isLogin, setIsLogin] = useState(false);
+  // const yesLogin = () => {
+  //   setIsLogin(!isLogin);
+  // };
+
   return (
     <BrowserRouter>
       <Header />
-      <Container>
+      <Routes>
+        <Route path="/login" element={<Login />}></Route>
+        <Route path="/signup" element={<SignUp />}></Route>
+      </Routes>
+      <div className="container">
         <Sidebar>
           <Menubar />
         </Sidebar>
-
         <Content>
           <Routes>
-            <Route path="/login" element={<Login />}></Route>
-            <Route path="/signup" element={<SignUp />}></Route>
-
             <Route exact path="/" element={<Home />}></Route>
 
             <Route path="/questions" element={<Questions />}></Route>
@@ -63,8 +75,7 @@ export default function App() {
             <Route path="/userdetail" element={<UserDetail />}></Route>
           </Routes>
         </Content>
-      </Container>
-
+      </div>
       <Footer />
     </BrowserRouter>
   );
