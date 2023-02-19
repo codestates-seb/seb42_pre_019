@@ -13,6 +13,7 @@ import Questions from './pages/Questions';
 import SignUp from './pages/SignUp';
 import Tags from './pages/Tags';
 import Users from './pages/Users';
+import UserDetail from './pages/UserDetail';
 
 // const userid = 0;
 const Container = styled.div`
@@ -59,6 +60,7 @@ export default function App() {
 
             <Route path="/tags" element={<Tags />}></Route>
             <Route path="/users" element={<Users />}></Route>
+            <Route path="/userdetail" element={<UserDetail />}></Route>
           </Routes>
         </Content>
       </Container>
