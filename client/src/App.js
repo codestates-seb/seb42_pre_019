@@ -10,12 +10,12 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import QuestionDetail from './pages/QuestionDetail';
 import Questions from './pages/Questions';
-import SignUp from './pages/SignUp';
+// import SignUp from './pages/SignUp';
 import Tags from './pages/Tags';
 import Users from './pages/Users';
 import UserDetail from './pages/UserDetail';
 
-// import { useState } from 'react';
+import { useState } from 'react';
 
 // const userid = 0;
 
@@ -41,42 +41,54 @@ const Content = styled.div`
   max-width: 1100px;
   width: calc(100% - 164px);
   background-color: antiquewhite;
+  height: 1500px;
 `;
 
 //TODO: header 삼항연산자로
 
 export default function App() {
-  // const [isLogin, setIsLogin] = useState(false);
-  // const yesLogin = () => {
-  //   setIsLogin(!isLogin);
-  // };
+  const [isLogin, setIsLogin] = useState(false);
+  const yesLogin = () => {
+    setIsLogin(!isLogin);
+  };
 
   return (
     <BrowserRouter>
-      <Header />
+      <Header yesLogin={yesLogin} />
       <Routes>
         <Route path="/login" element={<Login />}></Route>
-        <Route path="/signup" element={<SignUp />}></Route>
+        {/* <Route path="/signup" element={<SignUp />}></Route> */}
       </Routes>
-      <div className="container">
-        <Sidebar>
-          <Menubar />
-        </Sidebar>
-        <Content>
-          <Routes>
-            <Route exact path="/" element={<Home />}></Route>
+      {isLogin === true ? (
+        <Routes>
+          <Route path="/login" element={<Login />}></Route>
+        </Routes>
+      ) : (
+        <>
+          <div className="container">
+            <Sidebar>
+              <Menubar />
+            </Sidebar>
+            <Content>
+              <Routes>
+                <Route exact path="/" element={<Home />}></Route>
 
-            <Route path="/questions" element={<Questions />}></Route>
-            <Route path="/askquestion" element={<AskQuestion />}></Route>
-            <Route path="/questiondetail" element={<QuestionDetail />}></Route>
+                <Route path="/questions" element={<Questions />}></Route>
+                <Route path="/askquestion" element={<AskQuestion />}></Route>
+                <Route
+                  path="/questiondetail"
+                  element={<QuestionDetail />}
+                ></Route>
 
-            <Route path="/tags" element={<Tags />}></Route>
-            <Route path="/users" element={<Users />}></Route>
-            <Route path="/userdetail" element={<UserDetail />}></Route>
-          </Routes>
-        </Content>
-      </div>
-      <Footer />
+                <Route path="/tags" element={<Tags />}></Route>
+                <Route path="/users" element={<Users />}></Route>
+                <Route path="/userdetail" element={<UserDetail />}></Route>
+              </Routes>
+            </Content>
+          </div>
+          <Footer />
+        </>
+      )}
     </BrowserRouter>
   );
 }

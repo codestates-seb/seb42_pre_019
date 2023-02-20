@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import '../App.css';
 
-export default function Header() {
+export default function Header(yesLogin) {
   const Header1 = styled.div`
     position: fixed !important;
     display: flex;
@@ -75,12 +75,17 @@ export default function Header() {
       color: hsl(210, 8%, 55%);
       font-size: 1rem;
     }
-
+    .login {
+      padding-top: 9px;
+      padding-bottom: 9px;
+    }
     .signup {
       background-color: hsl(206, 100%, 52%);
       color: white;
       margin: 4px;
       font-weight: 400;
+      padding-top: 9px;
+      padding-bottom: 9px;
     }
     .minitap {
       display: flex;
@@ -116,7 +121,7 @@ export default function Header() {
           <i className="fa-solid fa-magnifying-glass"></i>
         </form>
 
-        <Link to="/login" className="login btn">
+        <Link to="/login" className="login btn" onClick={yesLogin}>
           Log in
         </Link>
         <Link to="/signup" className="signup btn">
