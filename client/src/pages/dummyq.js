@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const Q1div = styled.div`
+const Qdiv = styled.div`
   display: flex;
   flex-direction: column;
   .vav {
@@ -22,10 +22,13 @@ const Q1div = styled.div`
     font-size: 19px;
   }
 `;
+const Quser = styled.a`
+  color: hsl(0deg 100% 39%);
+`;
 
 function Dummyq() {
   return (
-    <Q1div>
+    <Qdiv>
       <div className="vav">
         <div className="count">
           344<span>votes</span>
@@ -43,8 +46,11 @@ function Dummyq() {
         <button className="tag">reputation</button>
         <button className="tag">voting-fraud</button>
         <button className="tag">psa</button>
+        <Quser />
+        <div className="userrepu">4831</div>
+        <div className="writetime"></div>
       </div>
-    </Q1div>
+    </Qdiv>
   );
 }
 
