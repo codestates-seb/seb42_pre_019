@@ -1,12 +1,25 @@
 //한 명의 유저 상세 페이지 ->https://stackoverflow.com/users/15590153/kjh
-// import { Link } from 'react-router-dom';
-// import { styled } from 'styled-components';
+
+/* eslint-disable */
 
 import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCakeCandles } from '@fortawesome/free-solid-svg-icons';
+import { faClock } from '@fortawesome/free-regular-svg-icons';
+import { faCalendarDays } from '@fortawesome/free-regular-svg-icons';
+
+import { useState } from 'react';
 
 export default function UserDetail() {
   const imgUrl = 'stackoverflowSampleProfile.png';
   const displayName = 'kjh';
+  const dummyData = [
+    { id: 0, title: 'Answers', description: ['Answers List'] },
+    { id: 1, title: 'Questions', description: ['Questions List'] },
+    { id: 2, title: 'Tags', description: ['Tags List'] },
+  ];
+  const [focusIndex, setFocusIndex] = useState(0);
+
   const Page = styled.div`
     padding: 24px;
   `;
@@ -27,7 +40,7 @@ export default function UserDetail() {
       margin: auto;
       margin-left: 20px;
       .displayName {
-        font-size: 30px;
+        font-size: 37px;
         margin: 4px 4px 12px;
       }
     }
@@ -59,28 +72,50 @@ export default function UserDetail() {
       color: hsl(210, 8%, 25%);
     }
   `;
-  const VerticalMenu = styled.div`
+  const VerticalMenu = styled.span`
     > ul {
       display: flex;
       list-style: none;
       padding-left: 0px;
       flex-direction: column;
+      margin: 0px 0px 48px 0px;
     }
-    .manu2 {
-      width: 50px;
-      height: 30px;
+    .menu2 {
+      /* width: 50px; */
+      /* height: 30px; */
       margin: 5px;
       display: flex;
       position: relative;
       font-size: 0.9em;
       text-decoration: none;
-      color: hsl(210, 8%, 35%);
-      padding: 7px 12px;
+      color: black;
+      padding: 6px 48px 6px 12px;
       border: none;
       border-radius: 1000px;
       cursor: pointer;
     }
+    .menu2:hover {
+      background-color: hsl(210, 8%, 90%);
+      color: black;
+    }
+    .focus {
+      background-color: red;
+    }
   `;
+  const MainContent = styled.div`
+    display: flex, bl;
+    flex-direction: row;
+    max-width: 1100px;
+    > div {
+      margin: 12px 0px;
+      flex-grow: 1;
+    }
+    .miniTitle {
+      font-size: 20px;
+      font-weight: bold;
+    }
+  `;
+
   return (
     <>
       <Page>
@@ -89,9 +124,18 @@ export default function UserDetail() {
           <span>
             <div className="displayName">{displayName}</div>
             <div>
-              <span>member for 1 year,10 months </span>
-              <span>Last seem this week </span>
-              <span>Visited 9days, 1 consecutive</span>
+              <span>
+                <FontAwesomeIcon icon={faCakeCandles} /> member for 1 year,10
+                months{' '}
+              </span>
+              <span>
+                <FontAwesomeIcon icon={faClock} />
+                Last seem this week{' '}
+              </span>
+              <span>
+                <FontAwesomeIcon icon={faCalendarDays} /> Visited 9days, 1
+                consecutive
+              </span>
             </div>
           </span>
         </Breifprofile>
@@ -99,18 +143,40 @@ export default function UserDetail() {
           <ul>
             <li className="menu">Profile</li>
             <li className="menu">Activity</li>
-            <li className="menu">Saves</li>
-            <li className="menu">Setting</li>
+            {/* <li className="menu">Saves</li>
+            <li className="menu">Setting</li> */}
           </ul>
         </CrossMenu>
-        <VerticalMenu>
-          <ul>
-            <li className="menu2">Summary</li>
-            <li className="menu2">Answers</li>
-            <li className="menu2">Questions</li>
-            <li className="menu2">Tags</li>
-          </ul>
-        </VerticalMenu>
+        <MainContent>
+          {' '}
+          <VerticalMenu>
+            <ul>
+              {/* <li className="menu2">Summary</li> */}
+              {dummyData.map((item) => (
+                <li
+                  key={item.id}
+                  className="menu2"
+                  {...(focusIndex === item.id ? 'focus' : null)}
+                  onClick={() => setFocusIndex(item.id)}
+                >
+                  {item.title}
+                </li>
+              ))}
+            </ul>
+          </VerticalMenu>
+          <div>
+            {dummyData
+              .filter((item) => focusIndex === item.id)
+              .map((item) => (
+                <div>
+                  <span className="miniTitle">
+                    {item.description.length} {item.title}
+                  </span>
+                  <div>{item.description}</div>
+                </div>
+              ))}
+          </div>
+        </MainContent>
       </Page>
       <div></div>
     </>
