@@ -1,0 +1,8 @@
+
+# 서버 포트 정보
+sever :
+  port : 8080
+
+#  DB 접속정보
+spring:
+  database
