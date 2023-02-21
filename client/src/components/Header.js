@@ -2,8 +2,8 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import '../App.css';
 
-export default function Header(yesLogin) {
-  const Header1 = styled.div`
+export default function Header() {
+  const Header1 = styled.header`
     position: fixed !important;
     display: flex;
     top: 0;
@@ -108,7 +108,6 @@ export default function Header(yesLogin) {
 
   return (
     <Header1>
-      {/* <FirstBox /> */}
       <Headercss>
         <Link to="/">
           <img src="logo-stackoverflow.png" alt="logo" />
@@ -121,7 +120,7 @@ export default function Header(yesLogin) {
           <i className="fa-solid fa-magnifying-glass"></i>
         </form>
 
-        <Link to="/login" className="login btn" onClick={yesLogin}>
+        <Link to="/login" className="login btn">
           Log in
         </Link>
         <Link to="/signup" className="signup btn">

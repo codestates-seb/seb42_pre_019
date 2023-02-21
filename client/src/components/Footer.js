@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export default function Footer() {
-  const Footercss = styled.div`
+  const Footercss = styled.footer`
     display: flex;
     width: 100%;
     margin: 0 auto;

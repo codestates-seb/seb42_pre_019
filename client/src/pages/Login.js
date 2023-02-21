@@ -7,8 +7,7 @@ export default function Login() {
     background-color: hsl(210, 8%, 95%);
     position: absolute;
     width: 100%;
-    height: 100vh;
-    /* height: calc(100% - 50px); */
+    height: calc(100vh - 50px);
     display: flex;
     justify-content: center;
     z-index: 999;
@@ -108,6 +107,7 @@ export default function Login() {
         font-size: 1em;
         font-weight: 500;
         padding: 1em;
+        margin-bottom: 0px;
       }
       span {
         padding: 0px 0px 10px 0px;
@@ -115,6 +115,7 @@ export default function Login() {
         font-weight: bolder;
       }
       .errormessage {
+        display: none;
         margin-top: 4px;
         color: red;
         font-size: 0.9em;
@@ -124,6 +125,30 @@ export default function Login() {
         margin-top: 4px;
         color: red;
         font-size: 0.9em;
+      }
+    }
+    .help {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 24px 0px;
+      padding: 16px;
+      text-decoration: none;
+      color: #232629;
+      a {
+        color: hsl(206, 100%, 40%);
+        text-decoration: none;
+        /* margin-left: 2px; */
+      }
+      a:visited {
+        text-decoration: none;
+      }
+      a:hover {
+        color: hsl(206, 100%, 52%);
+        text-decoration: none;
+      }
+      .mt12 {
+        margin-top: 12px;
       }
     }
   `;
@@ -151,7 +176,7 @@ export default function Login() {
           <form>
             <div className="email">
               <span>Email</span>
-              <input></input>
+              <input placeholder="email"></input>
               <p className="errormessage">
                 The email is not a valid email address.
               </p>
@@ -161,10 +186,19 @@ export default function Login() {
             </div>
             <div className="password">
               <span>Password</span>
-              <input></input>
+              <input placeholder="password"></input>
             </div>
             <div className="log btn">Log in</div>
           </form>
+        </div>
+        <div className="help">
+          <div>
+            Don’t have an account? <a href="/signup"> Sign up</a>
+          </div>
+          <div className="mt12">
+            Are you an employer?
+            <a href="/login"> Sign up on Talent </a>
+          </div>
         </div>
       </div>
     </Logincss>

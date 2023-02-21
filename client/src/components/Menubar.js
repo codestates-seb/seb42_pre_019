@@ -2,10 +2,9 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export default function Menubar() {
-  const Menubarcss = styled.div`
+  const Nav = styled.nav`
     position: sticky;
     width: auto;
-
     top: 50px;
     flex-direction: column;
     align-items: flex-start;
@@ -34,7 +33,7 @@ export default function Menubar() {
   `;
 
   return (
-    <Menubarcss>
+    <Nav>
       <li>
         <Link to="/">Home</Link>
       </li>
@@ -63,6 +62,6 @@ export default function Menubar() {
       <li>
         <img src="menubar-img.png" alt="img" />
       </li>
-    </Menubarcss>
+    </Nav>
   );
 }
