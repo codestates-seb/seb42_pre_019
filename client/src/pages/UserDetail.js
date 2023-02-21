@@ -58,7 +58,8 @@ export default function UserDetail() {
     .menu {
       display: flex;
       position: relative;
-      font-size: 0.9em;
+      font-size: 13px;
+      font-weight: bold;
       text-decoration: none;
       color: hsl(210, 8%, 35%);
       padding: 7px 12px;
@@ -72,7 +73,11 @@ export default function UserDetail() {
       color: hsl(210, 8%, 25%);
     }
   `;
-  const VerticalMenu = styled.span`
+  const Sidebar = styled.span`
+    /* position: fixed; */
+    /* margin-top: 0; */
+    /* position: sticky;
+    top: 10px; */
     > ul {
       display: flex;
       list-style: none;
@@ -81,11 +86,9 @@ export default function UserDetail() {
       margin: 0px 0px 48px 0px;
     }
     .menu2 {
-      /* width: 50px; */
-      /* height: 30px; */
       margin: 5px;
       display: flex;
-      position: relative;
+      /* position: relative; */
       font-size: 0.9em;
       text-decoration: none;
       color: black;
@@ -99,7 +102,7 @@ export default function UserDetail() {
       color: black;
     }
     .focus {
-      background-color: red;
+      background-color: #e5e5e5;
     }
   `;
   const MainContent = styled.div`
@@ -107,6 +110,7 @@ export default function UserDetail() {
     flex-direction: row;
     max-width: 1100px;
     > div {
+      padding-left: 30px;
       margin: 12px 0px;
       flex-grow: 1;
     }
@@ -149,21 +153,22 @@ export default function UserDetail() {
         </CrossMenu>
         <MainContent>
           {' '}
-          <VerticalMenu>
+          <Sidebar>
             <ul>
               {/* <li className="menu2">Summary</li> */}
               {dummyData.map((item) => (
                 <li
                   key={item.id}
-                  className="menu2"
-                  {...(focusIndex === item.id ? 'focus' : null)}
+                  className={item.id === focusIndex ? 'menu2 focus' : 'menu2'}
+                  // className="menu2"
+                  // style={item.id===focusIndex?{ background-color: 'blue'}:{background-color: 'red'}}
                   onClick={() => setFocusIndex(item.id)}
                 >
                   {item.title}
                 </li>
               ))}
             </ul>
-          </VerticalMenu>
+          </Sidebar>
           <div>
             {dummyData
               .filter((item) => focusIndex === item.id)
