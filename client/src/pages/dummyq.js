@@ -58,7 +58,7 @@ function Dummyq() {
         <div className="bottominfo">
           <span className="lefttag">
             <button className="tag">discussion</button>
-            <button className="tag">reputation</button>
+            <button className="tag">reputation.</button>
             <button className="tag">voting-fraud</button>
             <button className="tag">psa</button>
           </span>
