@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import '../App.css';
-
+import { useState } from 'react';
+/* eslint-disable */
 export default function Login() {
   const Logincss = styled.div`
     /* background-color: red; */
@@ -115,7 +116,7 @@ export default function Login() {
         font-weight: bolder;
       }
       .errormessage {
-        display: none;
+        /* display: none; */
         margin-top: 4px;
         color: red;
         font-size: 0.9em;
@@ -152,6 +153,39 @@ export default function Login() {
       }
     }
   `;
+
+  const [loginInfo, setLoginInfo] = useState({
+    userEmail: '',
+    password: '',
+  });
+  const handleLoginInputValue = (key) => (e) => {
+    //로그인  정보 실시간 핸들링
+    setLoginInfo({ ...loginInfo, [key]: e.target.value });
+  };
+  const [loginErrorMessage, setLoginErrorMessage] = useState('');
+
+  const loginRequestHandler = () => {
+    const { userEmail, password } = loginInfo;
+    if (userEmail.length === 0 || password.length === 0) {
+      setLoginErrorMessage('Please fill the empty form');
+      console.log(loginErrorMessage);
+      return;
+    } else {
+      setLoginErrorMessage('');
+    }
+    return axios
+      .post('https://localhost:4000/login', { loginInfo })
+      .then((res) => {
+        setUserInfo(res.data); //!응답오면 유저인포 담아주고
+        // setIsLogin(true); //!로그인 여부 true로 변환
+        console.log(res.data);
+      })
+      .catch((err) => {
+        // if (err.response.status === 401) {
+        //   setErrorMessage("로그인에 실패했습니다.");
+        // }
+      });
+  };
   return (
     <Logincss>
       <div className="loginItemBox">
@@ -176,7 +210,11 @@ export default function Login() {
           <form>
             <div className="email">
               <span>Email</span>
-              <input placeholder="email"></input>
+              <input
+                placeholder="email"
+                type="text"
+                onChange={() => handleLoginInputValue('userEmail')}
+              ></input>
               <p className="errormessage">
                 The email is not a valid email address.
               </p>
@@ -186,9 +224,20 @@ export default function Login() {
             </div>
             <div className="password">
               <span>Password</span>
-              <input placeholder="password"></input>
+              <input
+                placeholder="password"
+                type="password"
+                onChange={() => handleLoginInputValue('password')}
+              ></input>
             </div>
-            <div className="log btn">Log in</div>
+            {loginErrorMessage === '' ? (
+              <p className="errormessage">Please fill the empty form</p>
+            ) : (
+              ''
+            )}
+            <div className="log btn" onClick={() => loginRequestHandler()}>
+              Log in
+            </div>
           </form>
         </div>
         <div className="help">

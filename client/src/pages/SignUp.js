@@ -1,6 +1,9 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 import '../App.css';
+// import axios from 'axios';
 
+/* eslint-disable */
 export default function SignUp() {
   const SignUpcss = styled.section`
     /* background-color: red; */
@@ -132,7 +135,7 @@ export default function SignUp() {
         font-weight: bolder;
       }
       .errormessage {
-        display: none;
+        /* display: none; */
         margin-top: 4px;
         color: red;
         font-size: 0.9em;
@@ -174,6 +177,33 @@ export default function SignUp() {
       }
     }
   `;
+
+  //TODO: State space
+
+  const [signupInfo, setSignupInfo] = useState({
+    displayName: '',
+    userEmail: '',
+    password: '',
+  });
+  const [signupErrorMessage, setSignupErrorMessage] = useState('');
+
+  //TODO: handler space
+
+  const handleSignupInputValue = (key) => (e) => {
+    e.preventDefault();
+    setSignupInfo({ ...signupInfo, [key]: e.target.value });
+  };
+  const signupRequestHandler = () => {
+    const { displayName, userEmail, password } = signupInfo;
+    if (!displayName || !userEmail || !password) {
+      setSignupErrorMessage('Please fill the empty form');
+      return;
+    } else {
+      setSignupErrorMessage('');
+      return;
+    }
+  };
+
   return (
     <SignUpcss>
       <div className="signupTextBox">
@@ -222,35 +252,61 @@ export default function SignUp() {
           <form>
             <div className="display name">
               <span>display name</span>
-              <input placeholder="email"></input>
-              <p className="errormessage">
+              <input
+                placeholder="email"
+                type="text"
+                onChange={() => handleSignupInputValue('displayName')}
+              ></input>
+              {/* <p className="errormessage">
                 The email is not a valid email address.
               </p>
               <p className="errormessage2">
                 The email or password is incorrect.
-              </p>
+              </p> */}
             </div>
             <div className="email">
               <span>Email</span>
-              <input placeholder="email"></input>
-              <p className="errormessage">
+              <input
+                placeholder="email"
+                type="text"
+                onChange={() => handleSignupInputValue('userEmail')}
+              ></input>
+              {/* <p className="errormessage">
                 The email is not a valid email address.
-              </p>
-              <p className="errormessage2">
-                The email or password is incorrect.
-              </p>
+              </p> */}
             </div>
             <div className="password">
               <span>Password</span>
-              <input placeholder="password"></input>
+              <input
+                placeholder="password"
+                type="current-password"
+                onChange={() => handleSignupInputValue('password')}
+              ></input>
+              {/* <p className="errormessage2">
+                The email or password is incorrect.
+              </p> */}
+
+              {signupErrorMessage === '' ? (
+                ''
+              ) : (
+                <p className="errormessage">Please fill the empty form</p>
+              )}
             </div>
-            <div className="log btn">Sign up</div>
+
+            <div
+              className="log btn"
+              type="submit"
+              onClick={() => signupRequestHandler()}
+            >
+              Sign up
+            </div>
           </form>
           <div className="text">
             By clicking “Sign up”, you agree to our terms of service, privacy
             policy and cookie policy
           </div>
         </div>
+
         <div className="help">
           <div>
             Don’t have an account? <a href="/signup"> Sign up</a>
