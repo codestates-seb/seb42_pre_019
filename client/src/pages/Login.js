@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import '../App.css';
 import { useState } from 'react';
+import axios from 'axios';
 /* eslint-disable */
 export default function Login() {
   const Logincss = styled.div`
@@ -159,25 +160,26 @@ export default function Login() {
     password: '',
   });
   const handleLoginInputValue = (key) => (e) => {
-    //로그인  정보 실시간 핸들링
     setLoginInfo({ ...loginInfo, [key]: e.target.value });
+    console.log(loginInfo);
   };
+
   const [loginErrorMessage, setLoginErrorMessage] = useState('');
 
   const loginRequestHandler = () => {
     const { userEmail, password } = loginInfo;
-    if (userEmail.length === 0 || password.length === 0) {
-      setLoginErrorMessage('Please fill the empty form');
-      console.log(loginErrorMessage);
-      return;
-    } else {
-      setLoginErrorMessage('');
-    }
+    // if (userEmail.length === 0 || password.length === 0) {
+    //   setLoginErrorMessage('Please fill the empty form');
+    //   console.log(loginErrorMessage);
+    //   return;
+    // } else {
+    //   setLoginErrorMessage('');
+    // }
     return axios
-      .post('https://localhost:4000/login', { loginInfo })
+      .post('https://localhost:4000/login', { loginInfo }) //!에러코드 전부 주석처리하면 서버에 요청은 감
       .then((res) => {
-        setUserInfo(res.data); //!응답오면 유저인포 담아주고
-        // setIsLogin(true); //!로그인 여부 true로 변환
+        //setUserInfo(res.data); //!응답오면 유저인포 담아주고 ->아직 선언 X
+        // setIsLogin(true); //!로그인 여부 true로 변환 ->아직 선언 X
         console.log(res.data);
       })
       .catch((err) => {
@@ -207,13 +209,16 @@ export default function Login() {
           </div>
         </div>
         <div id="formContainer">
-          <form>
+          <form onSubmit={(e) => e.preventDefault()}>
             <div className="email">
               <span>Email</span>
               <input
                 placeholder="email"
                 type="text"
+                // value={e.target.value}
                 onChange={() => handleLoginInputValue('userEmail')}
+                //!onChange를 ()=> 형식으로 하면 handelLogin.. 함수가 실행이 안됨 대신 input form이 이어지고 계속 써짐
+                //!반면 onChange를 ()=>없이쓰면 handle... 함수는 실행 되는데 한글자 이상 입력 불가
               ></input>
               <p className="errormessage">
                 The email is not a valid email address.
