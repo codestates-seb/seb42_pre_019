@@ -256,8 +256,14 @@ export default function SignUp() {
                 type="text"
                 onChange={(e) => setDisplayName(e.target.value)}
               ></input>
-              {/* <p className="errormessage">  The email is not a valid email address.</p>
-              <p className="errormessage2"> The email or password is incorrect.  </p> */}
+              <p className="errormessage">
+                {' '}
+                The email is not a valid email address.
+              </p>
+              <p className="errormessage2">
+                {' '}
+                The email or password is incorrect.{' '}
+              </p>
             </div>
             <div className="email">
               <span>Email</span>
