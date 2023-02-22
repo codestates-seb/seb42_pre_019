@@ -3,20 +3,21 @@ import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import styled from 'styled-components';
 
+const AskQuestioncss = styled.div`
+  padding: 25px;
+  width: 60%;
+  h1 {
+    font-size: 20px;
+  }
+  .inputcss {
+    width: 80%;
+  }
+  .ck-editor__editable {
+    min-height: 400px;
+  }
+`;
+
 export default function AskQuestion() {
-  const AskQuestioncss = styled.div`
-    padding: 25px;
-    width: 60%;
-    h1 {
-      font-size: 20px;
-    }
-    .inputcss {
-      width: 80%;
-    }
-    .ck-editor__editable {
-      min-height: 400px;
-    }
-  `;
   return (
     <AskQuestioncss>
       <h1>Ask a public question</h1>

@@ -1,37 +1,37 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-export default function Menubar() {
-  const Nav = styled.nav`
-    position: sticky;
-    width: auto;
-    top: 50px;
-    flex-direction: column;
-    align-items: flex-start;
-    margin-left: 8px;
-    margin-bottom: 10px;
-    left: 0px;
-    padding-top: 24px;
-    color: hsl(210, 8%, 25%);
+const Nav = styled.nav`
+  position: sticky;
+  width: auto;
+  top: 50px;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 8px;
+  margin-bottom: 10px;
+  left: 0px;
+  padding-top: 24px;
+  color: hsl(210, 8%, 25%);
+  list-style: none;
+  ol {
     list-style: none;
-    ol {
-      list-style: none;
-      padding-left: 20px;
-      margin: 0px;
-    }
-    li {
-      height: 26px;
-      width: 152px;
-      /* padding-inline-start: 20px; */
-      padding: 4px 4px 4px 0px;
-    }
-    img {
-      object-fit: cover;
-      width: 100%;
-      padding-left: 4px;
-    }
-  `;
+    padding-left: 20px;
+    margin: 0px;
+  }
+  li {
+    height: 26px;
+    width: 152px;
+    /* padding-inline-start: 20px; */
+    padding: 4px 4px 4px 0px;
+  }
+  img {
+    object-fit: cover;
+    width: 100%;
+    padding-left: 4px;
+  }
+`;
 
+export default function Menubar() {
   return (
     <Nav>
       <li>

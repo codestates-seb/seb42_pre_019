@@ -10,6 +10,106 @@ import { faCalendarDays } from '@fortawesome/free-regular-svg-icons';
 
 import { useState } from 'react';
 
+const Page = styled.div`
+  padding: 24px;
+`;
+
+const Breifprofile = styled.div`
+  display: flex;
+  flex-direction: row;
+
+  > img {
+    width: 128px;
+    height: 128px;
+    border-radius: 5px;
+  }
+  > span {
+    /* margin-top: 50px;
+       */
+    justify-content: center;
+    margin: auto;
+    margin-left: 20px;
+    .displayName {
+      font-size: 37px;
+      margin: 4px 4px 12px;
+    }
+  }
+  /* > span:nth-child(1) {
+      font-size: 30px;
+    } */
+`;
+const CrossMenu = styled.div`
+  > ul {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    padding-left: 0px;
+  }
+  .menu {
+    display: flex;
+    position: relative;
+    font-size: 13px;
+    font-weight: bold;
+    text-decoration: none;
+    color: hsl(210, 8%, 35%);
+    padding: 7px 12px;
+    border: none;
+    border-radius: 1000px;
+    margin-right: 5px;
+    cursor: pointer;
+  }
+  .menu:hover {
+    background-color: hsl(210, 8%, 90%);
+    color: hsl(210, 8%, 25%);
+  }
+`;
+const Sidebar = styled.span`
+  /* position: fixed; */
+  /* margin-top: 0; */
+  /* position: sticky;
+    top: 10px; */
+  > ul {
+    display: flex;
+    list-style: none;
+    padding-left: 0px;
+    flex-direction: column;
+    margin: 0px 0px 48px 0px;
+  }
+  .menu2 {
+    margin: 5px;
+    display: flex;
+    /* position: relative; */
+    font-size: 0.9em;
+    text-decoration: none;
+    color: black;
+    padding: 6px 48px 6px 12px;
+    border: none;
+    border-radius: 1000px;
+    cursor: pointer;
+  }
+  .menu2:hover {
+    background-color: hsl(210, 8%, 90%);
+    color: black;
+  }
+  .focus {
+    background-color: #e5e5e5;
+  }
+`;
+const MainContent = styled.div`
+  display: flex, bl;
+  flex-direction: row;
+  max-width: 1100px;
+  > div {
+    padding-left: 30px;
+    margin: 12px 0px;
+    flex-grow: 1;
+  }
+  .miniTitle {
+    font-size: 20px;
+    font-weight: bold;
+  }
+`;
+
 export default function UserDetail() {
   const imgUrl = 'stackoverflowSampleProfile.png';
   const displayName = 'kjh';
@@ -19,106 +119,6 @@ export default function UserDetail() {
     { id: 2, title: 'Tags', description: ['Tags List'] },
   ];
   const [focusIndex, setFocusIndex] = useState(0);
-
-  const Page = styled.div`
-    padding: 24px;
-  `;
-
-  const Breifprofile = styled.div`
-    display: flex;
-    flex-direction: row;
-
-    > img {
-      width: 128px;
-      height: 128px;
-      border-radius: 5px;
-    }
-    > span {
-      /* margin-top: 50px;
-       */
-      justify-content: center;
-      margin: auto;
-      margin-left: 20px;
-      .displayName {
-        font-size: 37px;
-        margin: 4px 4px 12px;
-      }
-    }
-    /* > span:nth-child(1) {
-      font-size: 30px;
-    } */
-  `;
-  const CrossMenu = styled.div`
-    > ul {
-      display: flex;
-      flex-direction: row;
-      list-style: none;
-      padding-left: 0px;
-    }
-    .menu {
-      display: flex;
-      position: relative;
-      font-size: 13px;
-      font-weight: bold;
-      text-decoration: none;
-      color: hsl(210, 8%, 35%);
-      padding: 7px 12px;
-      border: none;
-      border-radius: 1000px;
-      margin-right: 5px;
-      cursor: pointer;
-    }
-    .menu:hover {
-      background-color: hsl(210, 8%, 90%);
-      color: hsl(210, 8%, 25%);
-    }
-  `;
-  const Sidebar = styled.span`
-    /* position: fixed; */
-    /* margin-top: 0; */
-    /* position: sticky;
-    top: 10px; */
-    > ul {
-      display: flex;
-      list-style: none;
-      padding-left: 0px;
-      flex-direction: column;
-      margin: 0px 0px 48px 0px;
-    }
-    .menu2 {
-      margin: 5px;
-      display: flex;
-      /* position: relative; */
-      font-size: 0.9em;
-      text-decoration: none;
-      color: black;
-      padding: 6px 48px 6px 12px;
-      border: none;
-      border-radius: 1000px;
-      cursor: pointer;
-    }
-    .menu2:hover {
-      background-color: hsl(210, 8%, 90%);
-      color: black;
-    }
-    .focus {
-      background-color: #e5e5e5;
-    }
-  `;
-  const MainContent = styled.div`
-    display: flex, bl;
-    flex-direction: row;
-    max-width: 1100px;
-    > div {
-      padding-left: 30px;
-      margin: 12px 0px;
-      flex-grow: 1;
-    }
-    .miniTitle {
-      font-size: 20px;
-      font-weight: bold;
-    }
-  `;
 
   return (
     <>

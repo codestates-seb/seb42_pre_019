@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useState } from 'react';
 import styled from 'styled-components';
 import '../App.css';
@@ -199,8 +200,26 @@ export default function SignUp() {
     if (!displayName || !userEmail || !password) {
       return setSignupErrorMessage('Please fill the empty form');
     } else {
-      return setSignupErrorMessage('');
+      setDisplayName('');
+      setUserEmail('');
+      setPassword('');
+      setSignupErrorMessage('');
     }
+    return axios
+      .post('https://localhost:4000/signup', data, {
+        'Access-Control-Allow-Origin': '*',
+        'Content-Type': 'application/json',
+      }) //!에러코드 전부 주석처리하면 서버에 요청은 감
+      .then((res) => {
+        //setUserInfo(res.data); //!응답오면 유저인포 담아주고 ->아직 선언 X
+        // setIsLogin(true); //!로그인 여부 true로 변환 ->아직 선언 X
+        console.log(res.data);
+      })
+      .catch((err) => {
+        // if (err.response.status === 401) {
+        //   setErrorMessage("로그인에 실패했습니다.");
+        // }
+      });
   };
 
   return (
@@ -254,6 +273,7 @@ export default function SignUp() {
               <input
                 placeholder="email"
                 type="text"
+                value={displayName}
                 onChange={(e) => setDisplayName(e.target.value)}
               ></input>
               <p className="errormessage">
@@ -270,6 +290,7 @@ export default function SignUp() {
               <input
                 placeholder="email"
                 type="text"
+                value={userEmail}
                 onChange={(e) => setUserEmail(e.target.value)}
               ></input>
               {/* <p className="errormessage"> The email is not a valid email address. </p> */}
@@ -279,6 +300,7 @@ export default function SignUp() {
               <input
                 placeholder="password"
                 type="current-password"
+                value={password}
                 onChange={(e) => setPassword(e.target.value)}
               ></input>
               {/* <p className="errormessage2">  The email or password is incorrect./p> */}

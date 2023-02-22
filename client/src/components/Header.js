@@ -2,22 +2,22 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import '../App.css';
 
-export default function Header() {
-  const Header1 = styled.header`
-    position: fixed !important;
-    display: flex;
-    top: 0;
-    min-width: auto;
-    box-shadow: 0 1px 2px hsla(0, 0%, 0%, 0.05), 0 1px 4px hsla(0, 0%, 0%, 0.05),
-      0 2px 8px hsla(0, 0%, 0%, 0.05);
-    width: 100%;
-    z-index: 5050;
-    background-color: hsl(210, 8%, 97.5%);
-    height: 50px;
-    box-sizing: border-box;
-    border-top: 3px solid hsl(27, 90%, 55%);
-  `;
+const Header1 = styled.header`
+  position: fixed !important;
+  display: flex;
+  top: 0;
+  min-width: auto;
+  box-shadow: 0 1px 2px hsla(0, 0%, 0%, 0.05), 0 1px 4px hsla(0, 0%, 0%, 0.05),
+    0 2px 8px hsla(0, 0%, 0%, 0.05);
+  width: 100%;
+  z-index: 5050;
+  background-color: hsl(210, 8%, 97.5%);
+  height: 50px;
+  box-sizing: border-box;
+  border-top: 3px solid hsl(27, 90%, 55%);
+`;
 
+export default function Header() {
   const Headercss = styled.div`
     display: flex;
     flex-direction: row;
