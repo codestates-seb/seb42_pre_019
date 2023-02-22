@@ -3,180 +3,190 @@ import '../App.css';
 import { useState } from 'react';
 // import axios from 'axios';
 /* eslint-disable */
-export default function Login() {
-  const Logincss = styled.div`
-    /* background-color: red; */
-    background-color: hsl(210, 8%, 95%);
-    position: absolute;
-    width: 100%;
-    height: calc(100vh - 50px);
+
+const Logincss = styled.div`
+  /* background-color: red; */
+  background-color: hsl(210, 8%, 95%);
+  position: absolute;
+  width: 100%;
+  height: calc(100vh - 50px);
+  display: flex;
+  justify-content: center;
+  z-index: 999;
+  box-sizing: border-box;
+  padding: 24px 99px 24px 99px;
+  overflow-y: hidden;
+
+  .loginItemBox {
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    z-index: 999;
-    box-sizing: border-box;
-    padding: 24px 99px 24px 99px;
-    overflow-y: hidden;
+    align-items: center;
+    box-sizing: inherit;
+    width: 278px;
+  }
+  .imgbox {
+    position: relative;
+    width: 32px;
+    height: 37px;
+    overflow: hidden;
+    margin-bottom: 24px;
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 186.6px;
+      height: 37.2px;
+    }
+  }
 
-    .loginItemBox {
+  .btn {
+    display: flex;
+    margin: 4px 0px;
+    border: 1px solid hsl(210, 8%, 85%);
+    border-radius: 5px;
+    justify-content: center;
+    box-sizing: inherit;
+    box-shadow: none;
+    img {
+      padding-right: 6px;
+      width: 18px;
+      height: 18px;
+    }
+  }
+  .goobtn {
+    background-color: white;
+    color: hsl(210, 8%, 15%);
+  }
+  .gitbtn {
+    background-color: #2f3337;
+    color: white;
+  }
+  .facebtn {
+    background-color: #385499;
+    color: white;
+    img {
+      filter: brightness(0) invert(1);
+    }
+  }
+  .openid-btn-box {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    margin-bottom: 12px;
+    width: 100%;
+
+    /* max-width: calc(97.2307692rem * 3); */
+  }
+  #formContainer {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    box-sizing: inherit;
+    box-shadow: 0 10px 24px hsla(0, 0%, 0%, 0.05),
+      0 20px 48px hsla(0, 0%, 0%, 0.05), 0 1px 4px hsla(0, 0%, 0%, 0.1);
+    border-radius: 7px;
+    padding: 24px;
+    width: 100%;
+    margin: 3px 0px;
+
+    div {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      align-items: center;
-      box-sizing: inherit;
-      width: 278px;
-    }
-    .imgbox {
-      position: relative;
-      width: 32px;
-      height: 37px;
-      overflow: hidden;
-      margin-bottom: 24px;
-      img {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 186.6px;
-        height: 37.2px;
-      }
-    }
-
-    .btn {
-      display: flex;
-      margin: 4px 0px;
-      border: 1px solid hsl(210, 8%, 85%);
-      border-radius: 5px;
-      justify-content: center;
-      box-sizing: inherit;
-      box-shadow: none;
-      img {
-        padding-right: 6px;
-        width: 18px;
-        height: 18px;
-      }
-    }
-    .goobtn {
-      background-color: white;
-      color: hsl(210, 8%, 15%);
-    }
-    .gitbtn {
-      background-color: #2f3337;
-      color: white;
-    }
-    .facebtn {
-      background-color: #385499;
-      color: white;
-      img {
-        filter: brightness(0) invert(1);
-      }
-    }
-    .openid-btn-box {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: stretch;
       margin-bottom: 12px;
-      width: 100%;
-
-      /* max-width: calc(97.2307692rem * 3); */
+      color: black;
     }
-    #formContainer {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      background-color: white;
-      box-sizing: inherit;
-      box-shadow: 0 10px 24px hsla(0, 0%, 0%, 0.05),
-        0 20px 48px hsla(0, 0%, 0%, 0.05), 0 1px 4px hsla(0, 0%, 0%, 0.1);
-      border-radius: 7px;
-      padding: 24px;
-      width: 100%;
-      margin: 3px 0px;
-
-      div {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        margin-bottom: 12px;
-        color: black;
-      }
-      .log {
-        border: 1px solid hsl(206, 100%, 52%);
-        border-radius: 3px;
-        background-color: hsl(206, 100%, 52%);
-        color: white;
-        box-shadow: inset 0 1px 0 0 hsla(0, 0%, 100%, 0.7);
-        font-size: 1em;
-        font-weight: 500;
-        padding: 1em;
-        margin-bottom: 0px;
-      }
-      span {
-        padding: 0px 0px 10px 0px;
-        font-size: 1.2em;
-        font-weight: bolder;
-      }
-      .errormessage {
-        /* display: none; */
-        margin-top: 4px;
-        color: red;
-        font-size: 0.9em;
-      }
-      .errormessage2 {
-        display: none;
-        margin-top: 4px;
-        color: red;
-        font-size: 0.9em;
-      }
+    .log {
+      border: 1px solid hsl(206, 100%, 52%);
+      border-radius: 3px;
+      background-color: hsl(206, 100%, 52%);
+      color: white;
+      box-shadow: inset 0 1px 0 0 hsla(0, 0%, 100%, 0.7);
+      font-size: 1em;
+      font-weight: 500;
+      padding: 1em;
+      margin-bottom: 0px;
     }
-    .help {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin: 24px 0px;
-      padding: 16px;
+    span {
+      padding: 0px 0px 10px 0px;
+      font-size: 1.2em;
+      font-weight: bolder;
+    }
+    .errormessage {
+      /* display: none; */
+      margin-top: 4px;
+      color: red;
+      font-size: 0.9em;
+    }
+    .errormessage2 {
+      display: none;
+      margin-top: 4px;
+      color: red;
+      font-size: 0.9em;
+    }
+  }
+  .help {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 24px 0px;
+    padding: 16px;
+    text-decoration: none;
+    color: #232629;
+    a {
+      color: hsl(206, 100%, 40%);
       text-decoration: none;
-      color: #232629;
-      a {
-        color: hsl(206, 100%, 40%);
-        text-decoration: none;
-        /* margin-left: 2px; */
-      }
-      a:visited {
-        text-decoration: none;
-      }
-      a:hover {
-        color: hsl(206, 100%, 52%);
-        text-decoration: none;
-      }
-      .mt12 {
-        margin-top: 12px;
-      }
+      /* margin-left: 2px; */
     }
-  `;
+    a:visited {
+      text-decoration: none;
+    }
+    a:hover {
+      color: hsl(206, 100%, 52%);
+      text-decoration: none;
+    }
+    .mt12 {
+      margin-top: 12px;
+    }
+  }
+`;
 
-  const [loginInfo, setLoginInfo] = useState({
-    userEmail: '',
-    password: '',
-  });
-  const handleLoginInputValue = (key) => (e) => {
-    setLoginInfo({ ...loginInfo, [key]: e.target.value });
-    console.log(loginInfo);
-  };
+export default function Login() {
+  // const [loginInfo, setLoginInfo] = useState({
+  //   userEmail: '',
+  //   password: '',
+  // });
+  const [userEmail, setUserEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  // const handleLoginInputValue = (key) => (e) => {
+  //   setLoginInfo({ ...loginInfo, [key]: e.target.value });
+  //   console.log(loginInfo);
+  // };
 
   const [loginErrorMessage, setLoginErrorMessage] = useState('');
 
-  const loginRequestHandler = () => {
-    const { userEmail, password } = loginInfo;
-    // if (userEmail.length === 0 || password.length === 0) {
-    //   setLoginErrorMessage('Please fill the empty form');
-    //   console.log(loginErrorMessage);
-    //   return;
-    // } else {
-    //   setLoginErrorMessage('');
-    // }
+  const data = {
+    userEmail: userEmail,
+    password: password,
+  };
+
+  const loginRequestHandler = (e) => {
+    console.log(data);
+    e.preventDefault();
+    if (!userEmail || !password) {
+      setLoginErrorMessage('Please fill the empty form');
+      console.log(loginErrorMessage);
+      return;
+    } else {
+      setLoginErrorMessage('');
+    }
     return axios
-      .post('https://localhost:4000/login', { loginInfo }) //!에러코드 전부 주석처리하면 서버에 요청은 감
+      .post('https://localhost:4000/login', { data }) //!에러코드 전부 주석처리하면 서버에 요청은 감
       .then((res) => {
         //setUserInfo(res.data); //!응답오면 유저인포 담아주고 ->아직 선언 X
         // setIsLogin(true); //!로그인 여부 true로 변환 ->아직 선언 X
@@ -209,14 +219,13 @@ export default function Login() {
           </div>
         </div>
         <div id="formContainer">
-          <form onSubmit={(e) => e.preventDefault()}>
+          <form onSubmit={loginRequestHandler}>
             <div className="email">
               <span>Email</span>
               <input
                 placeholder="email"
                 type="text"
-                // value={e.target.value}
-                onChange={() => handleLoginInputValue('userEmail')}
+                onChange={(e) => setUserEmail(e.target.value)}
                 //!onChange를 ()=> 형식으로 하면 handelLogin.. 함수가 실행이 안됨 대신 input form이 이어지고 계속 써짐
                 //!반면 onChange를 ()=>없이쓰면 handle... 함수는 실행 되는데 한글자 이상 입력 불가
               ></input>
@@ -231,8 +240,8 @@ export default function Login() {
               <span>Password</span>
               <input
                 placeholder="password"
-                type="password"
-                onChange={() => handleLoginInputValue('password')}
+                type="current-password"
+                onChange={(e) => setPassword(e.target.value)}
               ></input>
             </div>
             {loginErrorMessage === '' ? (
@@ -240,9 +249,10 @@ export default function Login() {
             ) : (
               ''
             )}
-            <div className="log btn" onClick={() => loginRequestHandler()}>
+
+            <button className="log btn" type="submit">
               Log in
-            </div>
+            </button>
           </form>
         </div>
         <div className="help">
