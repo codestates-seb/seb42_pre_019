@@ -251,7 +251,7 @@ export default function Login() {
             )}
 
             <button className="log btn" type="submit">
-              Log in
+              Log in in
             </button>
           </form>
         </div>
