@@ -3,9 +3,6 @@ package pre9.server.user.entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.GeneratorType;
-import org.springframework.data.domain.Auditable;
-import pre9.server.board.entity.Entity;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
@@ -15,7 +12,6 @@ import javax.persistence.Id;
 @NoArgsConstructor
 @Getter
 @Setter
-@Entity
 public class User {
 
     @Id
