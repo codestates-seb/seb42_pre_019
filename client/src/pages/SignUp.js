@@ -1,8 +1,8 @@
-import axios from 'axios';
 import { useState } from 'react';
 import styled from 'styled-components';
 import '../App.css';
-// import axios from 'axios';
+// import profile from '../../public/profileImg';
+import axios from 'axios';
 
 /* eslint-disable */
 const SignUpcss = styled.section`
@@ -21,6 +21,11 @@ const SignUpcss = styled.section`
     display: flex;
     flex-direction: column;
     justify-content: center;
+    margin-right: 48px;
+    h1 {
+      font-size: 1.6rem;
+      margin: 0 0 1em;
+    }
     > div {
       display: flex;
       align-items: center;
@@ -30,6 +35,21 @@ const SignUpcss = styled.section`
       display: flex;
       flex-direction: column;
       align-items: flex-start;
+    }
+    img {
+      filter: invert(42%) sepia(38%) saturate(4602%) hue-rotate(189deg)
+        brightness(105%) contrast(100%);
+      margin-right: 8px;
+    }
+    a {
+      color: hsl(206, 100%, 40%);
+      text-decoration: none;
+      cursor: pointer;
+    }
+    a:hover {
+      color: hsl(206, 100%, 52%);
+      text-decoration: none;
+      cursor: pointer;
     }
   }
   .loginItemBox {
@@ -108,9 +128,12 @@ const SignUpcss = styled.section`
       0 20px 48px hsla(0, 0%, 0%, 0.05), 0 1px 4px hsla(0, 0%, 0%, 0.1);
     border-radius: 7px;
     padding: 24px;
-    width: 100%;
+    /* width: 100%; */
     margin: 3px 0px;
-
+    max-width: 316px;
+    .password {
+      margin-bottom: 25px;
+    }
     div {
       display: flex;
       flex-direction: column;
@@ -125,12 +148,12 @@ const SignUpcss = styled.section`
       color: white;
       box-shadow: inset 0 1px 0 0 hsla(0, 0%, 100%, 0.7);
       font-size: 1em;
-      font-weight: 500;
-      padding: 1em;
+      padding: 1em 0;
       margin-bottom: 0px;
+      width: 100%;
     }
     span {
-      padding: 0px 0px 10px 0px;
+      padding: 0px 0px 8px 0px;
       font-size: 1.2em;
       font-weight: bolder;
     }
@@ -140,11 +163,10 @@ const SignUpcss = styled.section`
       color: red;
       font-size: 0.9em;
     }
-    .errormessage2 {
-      display: none;
-      margin-top: 4px;
-      color: red;
-      font-size: 0.9em;
+    .text {
+      margin-top: 32px;
+      color: hsl(210, 8%, 45%);
+      font-size: 12px;
     }
   }
   .help {
@@ -171,51 +193,77 @@ const SignUpcss = styled.section`
     .mt12 {
       margin-top: 12px;
     }
-    img {
-      filter: invert(42%) sepia(38%) saturate(4602%) hue-rotate(189deg)
-        brightness(105%) contrast(100%);
-    }
   }
 `;
 
 export default function SignUp() {
   //TODO: State space
   const [displayName, setDisplayName] = useState('');
+  const [nameErrorMessage, setNameErrorMessage] = useState('');
   const [userEmail, setUserEmail] = useState('');
+  const [emailErrorMessage, setEmailErrorMessage] = useState('');
   const [password, setPassword] = useState('');
+  const [passwordErrorMessage, setPasswordErrorMessage] = useState('');
 
-  const [signupErrorMessage, setSignupErrorMessage] = useState('');
+  const avataImg = `profileImg/${Math.floor(Math.random() * 10)}.png`;
 
-  const data = {
+  const dataa = {
+    userid: Math.floor(Math.random() * 5000),
     displayName: displayName,
     userEmail: userEmail,
     password: password,
+    signupAt: new Date().toLocaleDateString('en-US'),
+    profileImg: avataImg,
   };
 
-  //TODO: handler space
-
+  //빈칸 에러메세지 표기 및 axios 요청
   const signupRequestHandler = (e) => {
     console.log(displayName, userEmail, password);
     e.preventDefault();
-    if (!displayName || !userEmail || !password) {
-      return setSignupErrorMessage('Please fill the empty form');
-    } else {
-      setDisplayName('');
-      setUserEmail('');
-      setPassword('');
-      setSignupErrorMessage('');
-    }
+    // if (!displayName) {
+    //   if (!userEmail) {
+    //     setEmailErrorMessage('Please fill the email form');
+    //   }
+    //   if (!password) {
+    //     setPasswordErrorMessage('Please fill the password form');
+    //   }
+    //   return setNameErrorMessage('Please fill the Name form');
+    // } else if (!userEmail) {
+    //   if (!password) {
+    //     setPasswordErrorMessage('Please fill the password form');
+    //   }
+    //   return setEmailErrorMessage('Please fill the email form');
+    // } else if (!password) {
+    //   return setPasswordErrorMessage('Please fill the password form');
+    // } else {
+    //   setDisplayName('');
+    //   setUserEmail('');
+    //   setPassword('');
+    //   setNameErrorMessage('');
+    //   setEmailErrorMessage('');
+    //   setPasswordErrorMessage('');
+    // }
     return axios
-      .post('https://localhost:4000/signup', data, {
-        'Access-Control-Allow-Origin': '*',
-        'Content-Type': 'application/json',
-      }) //!에러코드 전부 주석처리하면 서버에 요청은 감
+      .post(
+        'http://localhost:5000/data',
+        {
+          firstName: 'Fred',
+          lastName: 'Flintstone',
+        },
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        }
+      )
       .then((res) => {
         //setUserInfo(res.data); //!응답오면 유저인포 담아주고 ->아직 선언 X
-        // setIsLogin(true); //!로그인 여부 true로 변환 ->아직 선언 X
+        //todo: toast message
+        //todo: loginPage 이동
         console.log(res.data);
       })
       .catch((err) => {
+        console.log('error');
         // if (err.response.status === 401) {
         //   setErrorMessage("로그인에 실패했습니다.");
         // }
@@ -244,7 +292,9 @@ export default function SignUp() {
         </div>
         <div className="text-1">
           <div>
-            Collaborate and share knowledge with a private group for FREE. Get
+            Collaborate and share knowledge with a private group for FREE.{' '}
+            <br />
+            Get
           </div>
           <a href="/signup">
             Stack Overflow for Teams free for up to 50 users.
@@ -276,14 +326,12 @@ export default function SignUp() {
                 value={displayName}
                 onChange={(e) => setDisplayName(e.target.value)}
               ></input>
-              <p className="errormessage">
-                {' '}
-                The email is not a valid email address.
-              </p>
-              <p className="errormessage2">
-                {' '}
-                The email or password is incorrect.{' '}
-              </p>
+              {nameErrorMessage === '' ? null : (
+                <p className="errormessage">{nameErrorMessage}</p>
+              )}
+              {/* <p className="errormessage2">
+                The email or password is incorrect.
+              </p> */}
             </div>
             <div className="email">
               <span>Email</span>
@@ -292,8 +340,10 @@ export default function SignUp() {
                 type="text"
                 value={userEmail}
                 onChange={(e) => setUserEmail(e.target.value)}
-              ></input>
-              {/* <p className="errormessage"> The email is not a valid email address. </p> */}
+              />
+              {emailErrorMessage === '' ? null : (
+                <p className="errormessage">{emailErrorMessage}</p>
+              )}
             </div>
             <div className="password">
               <span>Password</span>
@@ -302,12 +352,10 @@ export default function SignUp() {
                 type="current-password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-              ></input>
+              />
               {/* <p className="errormessage2">  The email or password is incorrect./p> */}
-              {signupErrorMessage === '' ? (
-                ''
-              ) : (
-                <p className="errormessage">Please fill the empty form</p>
+              {passwordErrorMessage === '' ? null : (
+                <p className="errormessage">{passwordErrorMessage}</p>
               )}
             </div>
             <button className="log btn" type="submit">
@@ -322,7 +370,7 @@ export default function SignUp() {
 
         <div className="help">
           <div>
-            Don’t have an account? <a href="/signup"> Sign up</a>
+            Don’t have an account? <a href="/login"> Log in</a>
           </div>
           <div className="mt12">
             Are you an employer?
