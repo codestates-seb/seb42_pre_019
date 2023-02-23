@@ -72,3 +72,10 @@ input {
   color: hsl(210, 8%, 5%);
   font-size: 13px;
 }
+h1 {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+}

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import '../App.css';
 import { useState } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 /* eslint-disable */
 
 const Logincss = styled.div`
@@ -92,7 +92,9 @@ const Logincss = styled.div`
     padding: 24px;
     width: 100%;
     margin: 3px 0px;
-
+    .password {
+      margin-bottom: 20px;
+    }
     div {
       display: flex;
       flex-direction: column;
@@ -107,9 +109,9 @@ const Logincss = styled.div`
       color: white;
       box-shadow: inset 0 1px 0 0 hsla(0, 0%, 100%, 0.7);
       font-size: 1em;
-      font-weight: 500;
-      padding: 1em;
+      padding: 1em 0;
       margin-bottom: 0px;
+      width: 100%;
     }
     span {
       padding: 0px 0px 10px 0px;
@@ -118,12 +120,6 @@ const Logincss = styled.div`
     }
     .errormessage {
       /* display: none; */
-      margin-top: 4px;
-      color: red;
-      font-size: 0.9em;
-    }
-    .errormessage2 {
-      display: none;
       margin-top: 4px;
       color: red;
       font-size: 0.9em;
@@ -156,56 +152,51 @@ const Logincss = styled.div`
 `;
 
 export default function Login() {
-  // const [loginInfo, setLoginInfo] = useState({
-  //   userEmail: '',
-  //   password: '',
-  // });
   const [userEmail, setUserEmail] = useState('');
+  const [emailErrorMessage, setEmailErrorMessage] = useState('');
   const [password, setPassword] = useState('');
+  const [passwordErrorMessage, setPasswordErrorMessage] = useState('');
 
-  // const handleLoginInputValue = (key) => (e) => {
-  //   setLoginInfo({ ...loginInfo, [key]: e.target.value });
-  //   console.log(loginInfo);
+  // const data = {
+  //   userEmail: userEmail,
+  //   password: password,
   // };
 
-  const [loginErrorMessage, setLoginErrorMessage] = useState('');
-
-  const data = {
-    userEmail: userEmail,
-    password: password,
-  };
-
   const loginRequestHandler = (e) => {
-    console.log(data);
+    console.log(userEmail, password);
     e.preventDefault();
-    if (!userEmail || !password) {
-      setLoginErrorMessage('Please fill the empty form');
-      console.log(loginErrorMessage);
-      return;
+    if (!userEmail) {
+      if (!password) {
+        setPasswordErrorMessage('Please fill the password form');
+      }
+      return setEmailErrorMessage('Please fill the Name form');
+    } else if (!password) {
+      return setPasswordErrorMessage('Please fill the password form');
     } else {
-      setLoginErrorMessage('');
       setUserEmail('');
       setPassword('');
+      setEmailErrorMessage('');
+      setPasswordErrorMessage('');
     }
-    return axios
-      .post(
-        'https://localhost:4000/login',
-        { data },
-        {
-          'Access-Control-Allow-Origin': '*',
-          'Content-Type': 'application/json',
-        }
-      ) //!에러코드 전부 주석처리하면 서버에 요청은 감
-      .then((res) => {
-        //setUserInfo(res.data); //!응답오면 유저인포 담아주고 ->아직 선언 X
-        // setIsLogin(true); //!로그인 여부 true로 변환 ->아직 선언 X
-        console.log(res.data);
-      })
-      .catch((err) => {
-        // if (err.response.status === 401) {
-        //   setErrorMessage("로그인에 실패했습니다.");
-        // }
-      });
+    // return axios
+    //   .post(
+    //     'https://localhost:4000/login',
+    //     { data },
+    //     {
+    //       'Access-Control-Allow-Origin': '*',
+    //       'Content-Type': 'application/json',
+    //     }
+    //   ) //!에러코드 전부 주석처리하면 서버에 요청은 감
+    //   .then((res) => {
+    //     //setUserInfo(res.data); //!응답오면 유저인포 담아주고 ->아직 선언 X
+    //     // setIsLogin(true); //!로그인 여부 true로 변환 ->아직 선언 X
+    //     console.log(res.data);
+    //   })
+    //   .catch((err) => {
+    //     // if (err.response.status === 401) {
+    //     //   setErrorMessage("로그인에 실패했습니다.");
+    //     // }
+    //   });
   };
   return (
     <Logincss>
@@ -239,12 +230,9 @@ export default function Login() {
                 //!onChange를 ()=> 형식으로 하면 handelLogin.. 함수가 실행이 안됨 대신 input form이 이어지고 계속 써짐
                 //!반면 onChange를 ()=>없이쓰면 handle... 함수는 실행 되는데 한글자 이상 입력 불가
               ></input>
-              <p className="errormessage">
-                The email is not a valid email address.
-              </p>
-              <p className="errormessage2">
-                The email or password is incorrect.
-              </p>
+              {emailErrorMessage === '' ? null : (
+                <p className="errormessage">{emailErrorMessage}</p>
+              )}
             </div>
             <div className="password">
               <span>Password</span>
@@ -255,14 +243,11 @@ export default function Login() {
                 onChange={(e) => setPassword(e.target.value)}
               ></input>
             </div>
-            {loginErrorMessage === '' ? (
-              <p className="errormessage">Please fill the empty form</p>
-            ) : (
-              ''
+            {passwordErrorMessage === '' ? null : (
+              <p className="errormessage">{passwordErrorMessage}</p>
             )}
-
             <button className="log btn" type="submit">
-              Log in in
+              Log in
             </button>
           </form>
         </div>
