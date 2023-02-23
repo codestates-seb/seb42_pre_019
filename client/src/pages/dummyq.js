@@ -9,30 +9,54 @@ const Qdiv = styled.div`
     display: flex;
     flex-direction: raw;
     display: flex;
-
+    margin-top: 20px;
+    margin-left: 20px;
     font-size: 25px;
-
-    .count {
-      margin-right: 10px;
-    }
-    span {
-      margin: 3px;
-      font-size: 25px;
-    }
   }
+  .middlecontent {
+    margin-left: 20px;
+  }
+  .middletitle {
+    font-size: 17px;
+    margin-top: 10px;
+  }
+  .middledetail {
+    font-size: 13px;
+    margin-top: 10px;
+  }
+  .count {
+    margin-right: 10px;
+    font-size: 13px;
+  }
+  span {
+    margin: 3px;
+    font-size: 13px;
+  }
+
   .tag {
-    margin-right: 6px;
-    font-size: 19px;
+    margin: 0px 5px 2px 0px;
+    padding: 4.8px 6px;
+    font-size: 12px;
+    border-radius: 4px;
+    background: #dde9f2;
+    color: #326892;
   }
   .bottominfo {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    margin-bottom: 25px;
+    margin-top: 10px;
   }
-  .rightrecord {
+  .bottomright {
     display: flex;
     flex-direction: row;
-    margin-top: 5px;
+    margin-top: 10px;
+    margin-right: 20px;
+  }
+  .avatar {
+    width: 16px;
+    height: 16px;
   }
 `;
 const Quser = styled.a`
@@ -53,17 +77,26 @@ function Dummyq() {
           9<span>views</span>
         </div>
       </div>
-      <div>
-        <h2>Dont be that account buying and selling reputation and bounties</h2>
+      <div className="middlecontent">
+        <div className="middletitle">
+          Dont be that account buying and selling reputation and bounties
+        </div>
+        <div className="middledetail">
+          In recent months we have found several accounts that offered bounties
+          and / or upvotes for hire. You pay them some money, they promise to
+          upvote your content or apply bounties to your questions or for you to
+          earn directly:
+        </div>
         <div className="bottominfo">
-          <span className="lefttag">
+          <span className="bottomleft">
             <button className="tag">discussion</button>
             <button className="tag">reputation</button>
             <button className="tag">voting-fraud</button>
             <button className="tag">psa</button>
           </span>
-          <span className="rightrecord">
+          <span className="bottomright">
             <Quser />
+            <img className="avatar" src="avatar.png" alt="filter.png" />
             <div className="userrepu">4831</div>
             <div className="writetime">asked 8 mins ago</div>
           </span>
