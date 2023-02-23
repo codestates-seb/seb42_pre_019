@@ -1,11 +1,12 @@
 import styled from 'styled-components';
-import { useState } from 'react';
-// import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretUp, faCaretDown } from '@fortawesome/free-solid-svg-icons';
+import axios from 'axios';
+
 /* eslint-disable */
 
-const Answer = styled.div`
+const AnswerCover = styled.div`
   display: flex;
   flex-direction: column;
   padding: 24px;
@@ -40,7 +41,28 @@ const Answer = styled.div`
   }
 `;
 
-export default function answer() {
+export default function Answer(data) {
+  const [answer2, setAnswer] = useState({});
+
+  function answerAxios(answerid) {
+    return axios
+      .get(`http://localhost5000/answer?answerId=${answerid}`, {
+        'Content-Type': 'application/json',
+      })
+      .then((res) => {
+        console.log(res.data['0']);
+        setAnswer(res.data['0']);
+      })
+      .catch((err) => {
+        console.log('Answer GET error');
+      });
+  }
+
+  useEffect(() => {
+    answerAxios(24), answerAxios(25);
+    console.log(answer2);
+  }, []);
+
   const answer = [
     //! 임시 더미데이터
     {
@@ -69,7 +91,7 @@ export default function answer() {
   const [answerScore, setAnswerScore] = useState(answer.score);
 
   return (
-    <Answer>
+    <AnswerCover>
       <h2>{answer.length} Answers</h2>
       {answer.map((el) => {
         return (
@@ -107,6 +129,6 @@ export default function answer() {
           </div>
         );
       })}
-    </Answer>
+    </AnswerCover>
   );
 }

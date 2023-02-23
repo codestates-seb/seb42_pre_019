@@ -1,8 +1,43 @@
 {
-  "data": [
+  "question": [
     {
-      "answerId": 3333,
-      "userId": 2,
+      "questionId": 1111,
+      "userID": 1,
+      "displayName": "Jihyun KIm",
+      "title": "How can I make clone site of StackOverflow?",
+      "body": "How can I make clone site of StackOverflow? How can I make clone site of StackOverflow?How can I make clone site of StackOverflow?How can I make clone site of StackOverflow?How can I make clone site of StackOverflow?How can I make clone site of StackOverflow? How can I make clone site of StackOverflow? How can I make clone site of StackOverflow  How can I make clone site of StackOverflow? How can I make clone site of StackOverflow? How can I make clone site of StackOverflow?",
+      "score": 11,
+      "answerId": [21, 22],
+      "createdAt": "2023.02.23.11:00",
+      "profileImg": "stackoverflowSampleProfile.png"
+    },
+    {
+      "questionId": 1112,
+      "userID": 2,
+      "displayName": "한현희",
+      "title": "현희님 현희님 How can I make clone site of StackOverflow?",
+      "body": "현희님 현희님 현희님How can I make clone site of StackOverflow? How can I make clone site of StackOverflow?How can I make clone site of StackOverflow?How can I make clone site of StackOverflow?How can I make clone site of StackOverflow?How can I make clone site of StackOverflow? How can I make clone site of StackOverflow? How can I make clone site of StackOverflow  How can I make clone site of StackOverflow? How can I make clone site of StackOverflow? How can I make clone site of StackOverflow?",
+      "score": 22,
+      "answerId": [3333, 4444],
+      "createdAt": "2023.02.23.11:00",
+      "profileImg": "stackoverflowSampleProfile.png"
+    },
+    {
+      "questionId": 1113,
+      "userID": 3,
+      "displayName": "신솜민",
+      "title": "솜민님 솜민님 How can I make clone site of StackOverflow?",
+      "body": "솜민님 솜민님 솜민님 How can I make clone site of StackOverflow? How can I make clone site of StackOverflow?How can I make clone site of StackOverflow?How can I make clone site of StackOverflow?How can I make clone site of StackOverflow?How can I make clone site of StackOverflow? How can I make clone site of StackOverflow? How can I make clone site of StackOverflow  How can I make clone site of StackOverflow? How can I make clone site of StackOverflow? How can I make clone site of StackOverflow?",
+      "score": 33,
+      "answerId": [3333, 4444],
+      "createdAt": "2023.02.23.11:00",
+      "profileImg": "stackoverflowSampleProfile.png"
+    }
+  ],
+  "answer": [
+    {
+      "answerId": 21,
+      "userId": 21,
       "questionId": 1111,
       "displayName": "aaaaa",
       "body": "i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...",
@@ -11,11 +46,41 @@
       "profileImg": "stackoverflowSampleProfile.png"
     },
     {
-      "answerId": 4444,
-      "userId": 3,
+      "answerId": 22,
+      "userId": 22,
       "questionId": 1111,
       "displayName": "bbbbbbbbbbbb",
       "body": "1234123413412341234123412341234123421341341234213412341234@@@@@@@@@@@@@@@@@@@@@@@@@i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know..",
+      "score": 3,
+      "createdAt": "2023.02.23.11:12",
+      "profileImg": "stackoverflowSampleProfile.png"
+    },
+    {
+      "answerId": 23,
+      "userId": 23,
+      "questionId": 1112,
+      "displayName": "현희님 ",
+      "body": "현희님 123434@@@@@@@@@@@@@@@@@@@@@@@@@i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know..",
+      "score": 3,
+      "createdAt": "2023.02.23.11:12",
+      "profileImg": "stackoverflowSampleProfile.png"
+    },
+    {
+      "answerId": 24,
+      "userId": 25,
+      "questionId": 1112,
+      "displayName": "현희님 현희님",
+      "body": "현희님 현희님 123412341234@@@@@@@@@@@@@@@@@@@@@@@@@i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know..",
+      "score": 3,
+      "createdAt": "2023.02.23.11:12",
+      "profileImg": "stackoverflowSampleProfile.png"
+    },
+    {
+      "answerId": 25,
+      "userId": 26,
+      "questionId": 1113,
+      "displayName": "솜민님님님",
+      "body": "솜민님님님 솜민님님님 1234123413412341234123412341234123421341341234213412341234@@@@@@@@@@@@@@@@@@@@@@@@@i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know..",
       "score": 3,
       "createdAt": "2023.02.23.11:12",
       "profileImg": "stackoverflowSampleProfile.png"

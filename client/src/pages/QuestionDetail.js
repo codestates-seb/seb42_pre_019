@@ -1,9 +1,11 @@
 import styled from 'styled-components';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretUp, faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import Answer from '../components/Answer';
+import axios from 'axios';
+
 // import AnswerForm from '../components/AnswerForm';
 
 /* eslint-disable */
@@ -76,20 +78,37 @@ const Question = styled.div`
 `;
 
 export default function QuestionDetail() {
-  const data = {
-    questionId: 1111,
-    userID: 1,
-    displayName: 'Jihyun KIm',
-    title: 'How can I make clone site of StackOverflow?',
-    body: 'How can I make clone site of StackOverflow? How can I make clone site of StackOverflow?How can I make clone site of StackOverflow?How can I make clone site of StackOverflow?How can I make clone site of StackOverflow?How can I make clone site of StackOverflow? How can I make clone site of StackOverflow? How can I make clone site of StackOverflow  How can I make clone site of StackOverflow? How can I make clone site of StackOverflow? How can I make clone site of StackOverflow?',
-    score: 33,
-    answerId: 3333,
-    createdAt: '2023.02.23.11:00',
-    profileImg: 'stackoverflowSampleProfile.png',
-  };
+  // const [questionData, setQuestionData] = useState('초기값');
 
-  const [questionData, setQuestionData] = useState('');
-  const [questionScore, serQuestionScore] = useState(data.score);
+  const [data, setData] = useState({});
+  function questionAxios(qusetionid) {
+    return axios
+      .get(`http://localhost:5000/question?questionId=${qusetionid}`, {
+        'Content-Type': 'application/json',
+      })
+      .then((res) => {
+        // const data2 = res.data;
+        // console.log(res.data);
+        console.log(res.data['0']); //! 얘가 우리가 원하는 객체 형태
+        // console.log(data2);
+        // console.log(`data2: ${data2}`);
+        // console.log(`data: ${questionData}`);
+        setData(res.data['0']);
+      })
+      .catch((err) => {
+        console.log('Quesion GET error');
+      });
+  }
+
+  useEffect(() => {
+    questionAxios(1113);
+    scoreSetting(data.score); //! 여기서 나오는 1111이 질문 번호 -> 이 번호에따라 주소값 달라짐 ->https://stackoverflow/question/1111
+  }, []);
+
+  const [questionScore, setQuestionScore] = useState(data.score);
+  function scoreSetting(n) {
+    setQuestionScore(n);
+  }
   //!처음에 data받아온 값으로 score 초기지정
 
   const handleScoreChange = (score, id) => {
@@ -143,13 +162,13 @@ export default function QuestionDetail() {
                 src={data.profileImg}
                 alt="Profile"
               ></img>{' '}
-              , {data.displayName}{' '}
+              {data.displayName}{' '}
             </div>
           </div>
         </div>
       </Question>
 
-      <Answer />
+      <Answer data={data} />
       {/* <AnswerForm /> */}
     </div>
   );
