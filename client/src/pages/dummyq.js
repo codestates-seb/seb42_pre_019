@@ -57,6 +57,7 @@ const Qdiv = styled.div`
   .avatar {
     width: 16px;
     height: 16px;
+    margin-right: 6px;
   }
 `;
 const Quser = styled.a`
