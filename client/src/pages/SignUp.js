@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import '../App.css';
-// import axios from 'axios';
+// import profile from '../../public/profileImg';
+import axios from 'axios';
 
 /* eslint-disable */
 const SignUpcss = styled.section`
@@ -204,60 +205,69 @@ export default function SignUp() {
   const [password, setPassword] = useState('');
   const [passwordErrorMessage, setPasswordErrorMessage] = useState('');
 
-  // const data = {
-  //   userid: Math.random(100),
-  //   displayName: displayName,
-  //   userEmail: userEmail,
-  //   password: password,
-  //   signupAt: Date.now(),
-  //   profileImg: imgData[Math.random(10)],
-  // };
+  const avataImg = `profileImg/${Math.floor(Math.random() * 10)}.png`;
 
-  //TODO: handler space
+  const dataa = {
+    userid: Math.floor(Math.random() * 5000),
+    displayName: displayName,
+    userEmail: userEmail,
+    password: password,
+    signupAt: new Date().toLocaleDateString('en-US'),
+    profileImg: avataImg,
+  };
 
+  //빈칸 에러메세지 표기 및 axios 요청
   const signupRequestHandler = (e) => {
     console.log(displayName, userEmail, password);
     e.preventDefault();
-    if (!displayName) {
-      if (!userEmail) {
-        setEmailErrorMessage('Please fill the email form');
-      }
-      if (!password) {
-        setPasswordErrorMessage('Please fill the password form');
-      }
-      return setNameErrorMessage('Please fill the Name form');
-    } else if (!userEmail) {
-      if (!password) {
-        setPasswordErrorMessage('Please fill the password form');
-      }
-      return setEmailErrorMessage('Please fill the email form');
-    } else if (!password) {
-      return setPasswordErrorMessage('Please fill the password form');
-    } else {
-      setDisplayName('');
-      setUserEmail('');
-      setPassword('');
-      setNameErrorMessage('');
-      setEmailErrorMessage('');
-      setPasswordErrorMessage('');
-    }
-    // return axios
-    //   .post('https://localhost:4000/signup',
-    //   data,
-    //   {
-    //     'Access-Control-Allow-Origin': '*',
-    //     'Content-Type': 'application/json',
-    //   }) //!에러코드 전부 주석처리하면 서버에 요청은 감
-    //   .then((res) => {
-    //     //setUserInfo(res.data); //!응답오면 유저인포 담아주고 ->아직 선언 X
-    //     // setIsLogin(true); //!로그인 여부 true로 변환 ->아직 선언 X
-    //     console.log(res.data);
-    //   })
-    //   .catch((err) => {
-    //     // if (err.response.status === 401) {
-    //     //   setErrorMessage("로그인에 실패했습니다.");
-    //     // }
-    //   });
+    // if (!displayName) {
+    //   if (!userEmail) {
+    //     setEmailErrorMessage('Please fill the email form');
+    //   }
+    //   if (!password) {
+    //     setPasswordErrorMessage('Please fill the password form');
+    //   }
+    //   return setNameErrorMessage('Please fill the Name form');
+    // } else if (!userEmail) {
+    //   if (!password) {
+    //     setPasswordErrorMessage('Please fill the password form');
+    //   }
+    //   return setEmailErrorMessage('Please fill the email form');
+    // } else if (!password) {
+    //   return setPasswordErrorMessage('Please fill the password form');
+    // } else {
+    //   setDisplayName('');
+    //   setUserEmail('');
+    //   setPassword('');
+    //   setNameErrorMessage('');
+    //   setEmailErrorMessage('');
+    //   setPasswordErrorMessage('');
+    // }
+    return axios
+      .post(
+        'http://localhost:5000/data',
+        {
+          firstName: 'Fred',
+          lastName: 'Flintstone',
+        },
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        }
+      )
+      .then((res) => {
+        //setUserInfo(res.data); //!응답오면 유저인포 담아주고 ->아직 선언 X
+        //todo: toast message
+        //todo: loginPage 이동
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log('error');
+        // if (err.response.status === 401) {
+        //   setErrorMessage("로그인에 실패했습니다.");
+        // }
+      });
   };
 
   return (

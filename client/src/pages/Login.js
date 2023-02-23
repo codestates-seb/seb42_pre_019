@@ -178,25 +178,25 @@ export default function Login() {
       setEmailErrorMessage('');
       setPasswordErrorMessage('');
     }
-    // return axios
-    //   .post(
-    //     'https://localhost:4000/login',
-    //     { data },
-    //     {
-    //       'Access-Control-Allow-Origin': '*',
-    //       'Content-Type': 'application/json',
-    //     }
-    //   ) //!에러코드 전부 주석처리하면 서버에 요청은 감
-    //   .then((res) => {
-    //     //setUserInfo(res.data); //!응답오면 유저인포 담아주고 ->아직 선언 X
-    //     // setIsLogin(true); //!로그인 여부 true로 변환 ->아직 선언 X
-    //     console.log(res.data);
-    //   })
-    //   .catch((err) => {
-    //     // if (err.response.status === 401) {
-    //     //   setErrorMessage("로그인에 실패했습니다.");
-    //     // }
-    //   });
+    return axios
+      .post(
+        'http://ec2-13-125-250-173.ap-northeast-2.compute.amazonaws.com:8080/users/users/login',
+        { data },
+        {
+          'Access-Control-Allow-Origin': '*',
+          'Content-Type': 'application/json',
+        }
+      ) //!에러코드 전부 주석처리하면 서버에 요청은 감
+      .then((res) => {
+        //setUserInfo(res.data); //!응답오면 유저인포 담아주고 ->아직 선언 X
+        // setIsLogin(true); //!로그인 여부 true로 변환 ->아직 선언 X
+        console.log(res.data);
+      })
+      .catch((err) => {
+        // if (err.response.status === 401) {
+        //   setErrorMessage("로그인에 실패했습니다.");
+        // }
+      });
   };
   return (
     <Logincss>
