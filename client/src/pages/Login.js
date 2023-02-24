@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import '../App.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
+import Toast from '../components/Toast';
 
 /* eslint-disable */
 
@@ -152,16 +153,40 @@ const Logincss = styled.div`
   }
 `;
 
-export default function Login() {
+export default function Login({ isLogin, setIsLogin }) {
   const [userEmail, setUserEmail] = useState('');
   const [emailErrorMessage, setEmailErrorMessage] = useState('');
   const [password, setPassword] = useState('');
   const [passwordErrorMessage, setPasswordErrorMessage] = useState('');
+  // const [LoginFailMsg,setLoginFailMsg] = useState('')
 
+  const [showToast, setShowToast] = useState(false);
+  const [phrase, setPhrase] = useState(5);
+
+  //!toastMsg
+  const handleInputChange = (event) => {
+    setPhrase(event.target.value);
+  };
+  useEffect(() => {
+    if (showToast) {
+      const timeout = setTimeout(() => {
+        setShowToast(false);
+      }, 6000);
+      return () => clearTimeout(timeout);
+    }
+  }, [showToast]);
+
+  //!login
   const loginData = {
     userEmail: userEmail,
     password: password,
   };
+
+  useEffect(() => {
+    if (isLogin) {
+      return (window.location.href = '/');
+    }
+  }, [isLogin]);
 
   const loginRequestHandler = (e) => {
     console.log(userEmail, password);
@@ -180,23 +205,41 @@ export default function Login() {
       setPasswordErrorMessage('');
     }
     return axios
-      .post(`http://localhost:5000/login`, loginData) //!에러코드 전부 주석처리하면 서버에 요청은 감
+      .post(`/users`, loginData)
       .then((res) => {
-        //setUserInfo(res.data); //!응답오면 유저인포 담아주고 ->아직 선언 X
-        // setIsLogin(true); //!로그인 여부 true로 변환 ->아직 선언 X
+        //setUserInfo(res.data); //!유저인포 담아주기
         console.log(res.data);
         e.preventDefault();
-        // window.location.href = '/';
+        setIsLogin(true);
+        //TODO: 해더 변경하기
       })
       .catch((err) => {
+        setShowToast(true);
         // if (err.response.status === 401) {
         //   setErrorMessage("로그인에 실패했습니다.");
         // }
       });
     //http://localhost:5000/users?id=2&login?id=1
   };
+
   return (
     <Logincss>
+      {showToast && (
+        <Toast
+          style={{ backgroundColor: 'hsl(210,8%,15%)', color: 'white' }}
+          inputE={
+            <input
+              style={{ display: 'none' }}
+              type="text"
+              value={phrase}
+              onChange={handleInputChange}
+            />
+          }
+          phrase={phrase}
+          title={'로그인에 실패했습니다.'}
+          secText={`초 뒤 다시 로그인을 시도 하세요`}
+        />
+      )}
       <div className="loginItemBox">
         <div className="imgbox">
           <img src="logo-stackoverflow.png" alt="miniLogo" />

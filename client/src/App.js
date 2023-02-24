@@ -14,8 +14,9 @@ import SignUp from './pages/SignUp';
 import Tags from './pages/Tags';
 import Users from './pages/Users';
 import UserDetail from './pages/UserDetail';
-
 import { useState } from 'react';
+
+// import { useState } from 'react';
 
 const Sidebar = styled.div`
   position: relative;
@@ -36,16 +37,21 @@ const Content = styled.div`
 //TODO: header 삼항연산자로
 
 export default function App() {
+  // const yesLogin = () => {
+  //   setIsLogin(!isLogin);
+  // };
+  // const handleLogin = (isLogin) =>{
+  //   console.log(isLogin)
+  // }
   const [isLogin, setIsLogin] = useState(false);
-  const yesLogin = () => {
-    setIsLogin(!isLogin);
-  };
-
   return (
     <BrowserRouter>
-      <Header yesLogin={yesLogin} />
+      <Header isLogin={isLogin} />
       <Routes>
-        <Route path="/login" element={<Login />}></Route>
+        <Route
+          path="/login"
+          element={<Login isLogin={isLogin} setIsLogin={setIsLogin} />}
+        ></Route>
         <Route path="/signup" element={<SignUp />}></Route>
       </Routes>
 

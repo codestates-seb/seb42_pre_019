@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Footercss = styled.footer`
@@ -9,7 +10,7 @@ const Footercss = styled.footer`
   flex-flow: row wrap;
   background-color: hsl(210, 8%, 15%);
   color: hsl(210, 8%, 75%);
-  > div {
+  .footerContainer {
     display: flex;
     justify-content: center;
     width: 1264px;
@@ -22,8 +23,57 @@ const Footercss = styled.footer`
 
 export default function Footer() {
   return (
-    <Footercss>
-      <div>Footer</div>
+    <Footercss id="footer">
+      <div className="footerContainer">
+        <div className="logo">
+          <Link to="/">
+            <img src="favicon.ico" aria-label="Stack Overflow" />
+          </Link>
+        </div>
+        <nav>
+          <div>
+            <h5>STACK OVERFLOW</h5>
+            <ul>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+            </ul>
+          </div>
+          <div>
+            <h5>PRODUCERS</h5>
+            <ul>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+            </ul>
+          </div>
+          <div>
+            <h5>FRONT-END</h5>
+            <ul>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+            </ul>
+          </div>
+          <div>
+            <h5>BACK-END</h5>
+            <ul>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+            </ul>
+          </div>
+        </nav>
+        <div className="copyright"></div>
+      </div>
     </Footercss>
   );
 }

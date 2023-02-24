@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import Dummyq from './dummyq';
 import { Link } from 'react-router-dom';
 // import { useState } from 'react';
+import Answerform from '../components/Answerform';
 
 const Qmain = styled.div`
   display: flex;
@@ -103,6 +104,7 @@ export default function Questions() {
       <Dummyq />
       <Dummyq />
       <Dummyq />
+      <Answerform />
     </Qmain>
   );
 }

@@ -36,39 +36,29 @@ const Toastcss = styled.div`
   }
 `;
 
-function Toast() {
-  const [phrase, setPhrase] = useState(5);
-
+export default function Toast(props) {
+  const [count, setcount] = useState(props.phrase);
   useEffect(() => {
     const timer = setInterval(() => {
-      setPhrase((phrase) => phrase - 1);
+      setcount((count) => count - 1);
     }, 1000);
-    if (phrase === 0) {
+    if (count === 0) {
       clearInterval(timer);
     }
     return () => clearTimeout(timer);
   }, []);
 
-  const handleInputChange = (event) => {
-    setPhrase(event.target.value);
-  };
-
-  //   const innerText = `${count}초 뒤에 메인 화면으로 이동`;
-
   return (
     <Toastcss>
-      <div className="toast">
-        <i className="fa-solid fa-circle-check"></i>
-        <h1>Welcome to stackoverflow!</h1>
-        <input
-          style={{ display: 'none' }}
-          type="text"
-          value={phrase}
-          onChange={handleInputChange}
-        />
-        {`${phrase}초 뒤 로그인 화면으로 이동합니다`}
+      <div className="toast" style={props.style}>
+        {props.icon}
+        <h1>{props.title}</h1>
+        {props.inputE}
+        <div>
+          {count}
+          {props.secText}
+        </div>
       </div>
     </Toastcss>
   );
 }
-export default Toast;

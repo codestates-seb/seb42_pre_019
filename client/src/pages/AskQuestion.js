@@ -4,6 +4,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import styled from 'styled-components';
 import { useState } from 'react';
 import axios from 'axios';
+
 const AskQuestioncss = styled.form`
   padding: 25px;
   width: 60%;
@@ -91,7 +92,7 @@ export default function AskQuestion() {
         }}
         onChange={(event, editor) => {
           const data = editor.getData(); //.slice(4, -4));
-          setBody(data.slice(4, -4));
+          setBody(data);
           console.log(body);
           // let data2 = data.slice(4, -4); //p태그 없앨 경우 사용.
           // console.log(data2);
