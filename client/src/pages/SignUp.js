@@ -264,7 +264,7 @@ export default function SignUp() {
       setPasswordErrorMessage('');
     }
     return axios
-      .post('http://localhost:5000/users', data)
+      .post('/users', data)
       .then((res) => {
         //setUserInfo(res.data); //!응답오면 유저인포 담아주고 ->아직 선언 X
         //todo: toast message

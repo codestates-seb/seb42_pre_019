@@ -153,14 +153,12 @@ const Logincss = styled.div`
   }
 `;
 
-export default function Login() {
+export default function Login({ isLogin, setIsLogin }) {
   const [userEmail, setUserEmail] = useState('');
   const [emailErrorMessage, setEmailErrorMessage] = useState('');
   const [password, setPassword] = useState('');
   const [passwordErrorMessage, setPasswordErrorMessage] = useState('');
   // const [LoginFailMsg,setLoginFailMsg] = useState('')
-
-  const [isLogin, setIsLogin] = useState(false);
 
   const [showToast, setShowToast] = useState(false);
   const [phrase, setPhrase] = useState(5);
@@ -207,7 +205,7 @@ export default function Login() {
       setPasswordErrorMessage('');
     }
     return axios
-      .post(`http://localhost:5000/users`, loginData)
+      .post(`/users`, loginData)
       .then((res) => {
         //setUserInfo(res.data); //!유저인포 담아주기
         console.log(res.data);
