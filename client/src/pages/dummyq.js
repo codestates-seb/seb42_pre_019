@@ -1,5 +1,7 @@
+import axios from 'axios';
+import { useEffect } from 'react';
 import styled from 'styled-components';
-
+import { useState } from 'react';
 const Qdiv = styled.div`
   display: flex;
   flex-direction: column;
@@ -65,11 +67,33 @@ const Quser = styled.a`
 `;
 
 function Dummyq() {
+  const [data, setData] = useState({
+    answers: 0,
+    votes: 0,
+    views: 0,
+    result: [],
+  });
+
+  // const [data, setData] = useState([]);
+  // useEffect(() => {
+  //   const fetchSearch = async () => {
+  //     try {
+  //       const res = await axios.get('/search');
+  //       setData(res.data);
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  //   };
+
+  //   fetchSearch();
+  // }, []);
+
   return (
     <Qdiv>
       <div className="vav">
         <div className="count">
           344<span>votes</span>
+          {/* score로  */}
         </div>
         <div className="count">
           0<span>answers</span>
