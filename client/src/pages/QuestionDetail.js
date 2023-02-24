@@ -21,7 +21,9 @@ const Question = styled.div`
     justify-content: space-between;
     /* align-content: space-evenly; */
     > h1 {
-      font-weight: 400;
+      font-weight: 500;
+      font-size: large;
+      padding-bottom: 20px;
     }
     .askbutton {
       font-size: 14px;
