@@ -3,8 +3,8 @@ import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import styled from 'styled-components';
 import { useState } from 'react';
-
-const AskQuestioncss = styled.div`
+import axios from 'axios';
+const AskQuestioncss = styled.form`
   padding: 25px;
   width: 60%;
   h1 {
@@ -45,10 +45,20 @@ const AskQuestioncss = styled.div`
 `;
 export default function AskQuestion() {
   const [title, setTitle] = useState('');
-  // const [body, setBody] = useState('');
+  const [body, setBody] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    const questionData = { title, body };
+    try {
+      const res = await axios.post(
+        'http://localhost:5000/questions',
+        questionData
+      );
+      console.log('Question submitted successfully:', res.data);
+    } catch (err) {
+      console.error('Error submitting question:', err);
+    }
   };
 
   return (
@@ -61,6 +71,7 @@ export default function AskQuestion() {
           <input
             className="title-input"
             type={'text'}
+            id="title"
             placeholder="what's your bug, feature request, or meta-discussion topic? Be specific"
             value={title}
             onChange={(e) => {
@@ -79,9 +90,10 @@ export default function AskQuestion() {
           console.log('Editor is ready to use!', editor);
         }}
         onChange={(event, editor) => {
-          const data = editor.getData();
-          console.log({ event, editor, data });
-          // let data2 = data.slice(4, -4); p태그 없앨 경우 사용.
+          const data = editor.getData(); //.slice(4, -4));
+          setBody(data.slice(4, -4));
+          console.log(body);
+          // let data2 = data.slice(4, -4); //p태그 없앨 경우 사용.
           // console.log(data2);
         }}
         onBlur={(event, editor) => {
@@ -91,7 +103,7 @@ export default function AskQuestion() {
           console.log('Focus.', editor);
         }}
       />
-      <div className="tag">
+      {/* <div className="tag">
         {/* <h3>Tags</h3>
         Add up to 5 tags to describe what your question is about.
         <div className="taginput">
@@ -101,13 +113,18 @@ export default function AskQuestion() {
             placeholder="must include at least one of  (bug feature-request discussion support)"
           ></input>
         </div> */}
-      </div>
+      {/* </div>  */}
       <div>
         <button className="writebutton" type="Submit">
           {/* console.log(data) */}
           {/* //onClick={} */}
           post your question
         </button>
+        <button
+          onClick={() => {
+            axios.post('/http://localhost:5000/questions', { name: 'han' });
+          }}
+        />
         {/* questiondetail로 보내주셈 구현해야함. */}
         {/* <button className="discardbutton" onClick={}>Discard draft</button> */}
       </div>
