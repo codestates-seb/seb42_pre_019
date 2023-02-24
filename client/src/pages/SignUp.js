@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import '../App.css';
 // import profile from '../../public/profileImg';
 import axios from 'axios';
+import Toast from '../components/Toast';
 
 /* eslint-disable */
 const SignUpcss = styled.section`
@@ -207,7 +208,7 @@ export default function SignUp() {
 
   const avataImg = `profileImg/${Math.floor(Math.random() * 10)}.png`;
 
-  const dataa = {
+  const data = {
     userid: Math.floor(Math.random() * 5000),
     displayName: displayName,
     userEmail: userEmail,
@@ -216,51 +217,57 @@ export default function SignUp() {
     profileImg: avataImg,
   };
 
+  //!toastMessage
+  const [showToast, setShowToast] = useState(false);
+
+  useEffect(() => {
+    if (showToast) {
+      const timeout = setTimeout(() => {
+        window.location.href = '/login';
+        setShowToast(false);
+      }, 6000);
+      return () => clearTimeout(timeout);
+    }
+  }, [showToast]);
+
+  //!toastMessage
+
   //빈칸 에러메세지 표기 및 axios 요청
   const signupRequestHandler = (e) => {
     console.log(displayName, userEmail, password);
     e.preventDefault();
-    // if (!displayName) {
-    //   if (!userEmail) {
-    //     setEmailErrorMessage('Please fill the email form');
-    //   }
-    //   if (!password) {
-    //     setPasswordErrorMessage('Please fill the password form');
-    //   }
-    //   return setNameErrorMessage('Please fill the Name form');
-    // } else if (!userEmail) {
-    //   if (!password) {
-    //     setPasswordErrorMessage('Please fill the password form');
-    //   }
-    //   return setEmailErrorMessage('Please fill the email form');
-    // } else if (!password) {
-    //   return setPasswordErrorMessage('Please fill the password form');
-    // } else {
-    //   setDisplayName('');
-    //   setUserEmail('');
-    //   setPassword('');
-    //   setNameErrorMessage('');
-    //   setEmailErrorMessage('');
-    //   setPasswordErrorMessage('');
-    // }
+    if (!displayName) {
+      if (!userEmail) {
+        setEmailErrorMessage('Please fill the email form');
+      }
+      if (!password) {
+        setPasswordErrorMessage('Please fill the password form');
+      }
+      return setNameErrorMessage('Please fill the Name form');
+    } else if (!userEmail) {
+      if (!password) {
+        setPasswordErrorMessage('Please fill the password form');
+      }
+      return setEmailErrorMessage('Please fill the email form');
+    } else if (!password) {
+      return setPasswordErrorMessage('Please fill the password form');
+    } else {
+      setDisplayName('');
+      setUserEmail('');
+      setPassword('');
+      setNameErrorMessage('');
+      setEmailErrorMessage('');
+      setPasswordErrorMessage('');
+    }
     return axios
-      .post(
-        'http://localhost:5000/data',
-        {
-          firstName: 'Fred',
-          lastName: 'Flintstone',
-        },
-        {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-        }
-      )
+      .post('http://localhost:5000/users', data)
       .then((res) => {
         //setUserInfo(res.data); //!응답오면 유저인포 담아주고 ->아직 선언 X
         //todo: toast message
         //todo: loginPage 이동
         console.log(res.data);
+        e.preventDefault();
+        setShowToast(true);
       })
       .catch((err) => {
         console.log('error');
@@ -272,6 +279,7 @@ export default function SignUp() {
 
   return (
     <SignUpcss>
+      {showToast && <Toast />}
       <div className="signupTextBox">
         <h1>Join the Stack Overflow community</h1>
         <div>
