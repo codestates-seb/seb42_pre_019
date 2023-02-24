@@ -17,13 +17,12 @@ import UserDetail from './pages/UserDetail';
 
 import { useState } from 'react';
 
-// const userid = 0;
-
 const Sidebar = styled.div`
   position: relative;
   box-sizing: border-box;
   width: 164px;
   height: calc(100% - 200px);
+  min-height: 640px;
 `;
 const Content = styled.div`
   display: flex;

@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import '../App.css';
 import { useState } from 'react';
-// import axios from 'axios';
+import axios from 'axios';
+
 /* eslint-disable */
 
 const Logincss = styled.div`
@@ -157,10 +158,10 @@ export default function Login() {
   const [password, setPassword] = useState('');
   const [passwordErrorMessage, setPasswordErrorMessage] = useState('');
 
-  // const data = {
-  //   userEmail: userEmail,
-  //   password: password,
-  // };
+  const loginData = {
+    userEmail: userEmail,
+    password: password,
+  };
 
   const loginRequestHandler = (e) => {
     console.log(userEmail, password);
@@ -179,24 +180,20 @@ export default function Login() {
       setPasswordErrorMessage('');
     }
     return axios
-      .post(
-        'http://ec2-13-125-250-173.ap-northeast-2.compute.amazonaws.com:8080/users/users/login',
-        { data },
-        {
-          'Access-Control-Allow-Origin': '*',
-          'Content-Type': 'application/json',
-        }
-      ) //!에러코드 전부 주석처리하면 서버에 요청은 감
+      .post(`http://localhost:5000/login`, loginData) //!에러코드 전부 주석처리하면 서버에 요청은 감
       .then((res) => {
         //setUserInfo(res.data); //!응답오면 유저인포 담아주고 ->아직 선언 X
         // setIsLogin(true); //!로그인 여부 true로 변환 ->아직 선언 X
         console.log(res.data);
+        e.preventDefault();
+        // window.location.href = '/';
       })
       .catch((err) => {
         // if (err.response.status === 401) {
         //   setErrorMessage("로그인에 실패했습니다.");
         // }
       });
+    //http://localhost:5000/users?id=2&login?id=1
   };
   return (
     <Logincss>
