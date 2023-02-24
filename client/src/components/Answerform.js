@@ -1,17 +1,18 @@
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import styled from 'styled-components';
-// import { useState } from 'react';
+import { useState } from 'react';
+import axios from 'axios';
 
-const Answerformcss = styled.div`
+const Answerformcss = styled.form`
   padding: 25px;
   width: 60%;
   .ck-toolbar {
-    width: 620.4px;
+    width: 860.4px;
   }
   .ck-editor__editable {
-    min-height: 400px;
-    width: 604.4px;
+    min-height: 220px;
+    width: 844.4px;
   }
   .writebutton {
     margin-top: 10px;
@@ -31,10 +32,20 @@ const Answerformcss = styled.div`
   }
 `;
 export default function Answerform() {
-  // const [body, setBody] = useState('');
+  const [body, setBody] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    const answerData = { body };
+    try {
+      const res = await axios.post(
+        'http://localhost:5000/questions',
+        answerData
+      );
+      console.log('Question submitted successfully:', res.data);
+    } catch (err) {
+      console.error('Error submitting question:', err);
+    }
   };
 
   return (
@@ -49,9 +60,11 @@ export default function Answerform() {
         }}
         onChange={(event, editor) => {
           const data = editor.getData();
+          setBody(data);
           console.log({ event, editor, data });
-          //let data2 = data.slice(4, -4);
-          //console.log(data2);
+
+          //setBody.slice(4, -4) <p>없이 받아올때;
+          console.log(body);
         }}
         onBlur={(event, editor) => {
           console.log('Blur.', editor);
@@ -62,11 +75,8 @@ export default function Answerform() {
       />
       <div>
         <button className="writebutton" type="Submit">
-          {/* console.log(data) */}
-          {/* //onClick={} */}
-          post your question
+          answer your question
         </button>
-        {/* questiondetail/???번째글에 추가해주세요 구현해야함. */}
       </div>
     </Answerformcss>
   );

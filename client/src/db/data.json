@@ -1,153 +1,106 @@
 {
-  "users": [
+<<<<<<< HEAD
+  "question": [
     {
-      "login": [
-        {
-          "userEmail": "s",
-          "password": "d",
-          "id": 1
-        }
-      ],
+      "questionId": 1111,
+      "userID": 1,
+      "displayName": "Jihyun KIm",
+      "title": "How can I make clone site of StackOverflow?",
+      "body": "How can I make clone site of StackOverflow? How can I make clone site of StackOverflow?How can I make clone site of StackOverflow?How can I make clone site of StackOverflow?How can I make clone site of StackOverflow?How can I make clone site of StackOverflow? How can I make clone site of StackOverflow? How can I make clone site of StackOverflow  How can I make clone site of StackOverflow? How can I make clone site of StackOverflow? How can I make clone site of StackOverflow?",
+      "score": 11,
+      "answerId": [21, 22],
+      "createdAt": "2023.02.23.11:00",
+      "profileImg": "stackoverflowSampleProfile.png"
+    },
+    {
+      "questionId": 1112,
+      "userID": 2,
+      "displayName": "한현희",
+      "title": "현희님 현희님 How can I make clone site of StackOverflow?",
+      "body": "현희님 현희님 현희님How can I make clone site of StackOverflow? How can I make clone site of StackOverflow?How can I make clone site of StackOverflow?How can I make clone site of StackOverflow?How can I make clone site of StackOverflow?How can I make clone site of StackOverflow? How can I make clone site of StackOverflow? How can I make clone site of StackOverflow  How can I make clone site of StackOverflow? How can I make clone site of StackOverflow? How can I make clone site of StackOverflow?",
+      "score": 22,
+      "answerId": [3333, 4444],
+      "createdAt": "2023.02.23.11:00",
+      "profileImg": "stackoverflowSampleProfile.png"
+    },
+    {
+      "questionId": 1113,
+      "userID": 3,
+      "displayName": "신솜민",
+      "title": "솜민님 솜민님 How can I make clone site of StackOverflow?",
+      "body": "솜민님 솜민님 솜민님 How can I make clone site of StackOverflow? How can I make clone site of StackOverflow?How can I make clone site of StackOverflow?How can I make clone site of StackOverflow?How can I make clone site of StackOverflow?How can I make clone site of StackOverflow? How can I make clone site of StackOverflow? How can I make clone site of StackOverflow  How can I make clone site of StackOverflow? How can I make clone site of StackOverflow? How can I make clone site of StackOverflow?",
+      "score": 33,
+      "answerId": [3333, 4444],
+      "createdAt": "2023.02.23.11:00",
+      "profileImg": "stackoverflowSampleProfile.png"
+    }
+  ],
+  "answer": [
+    {
+      "answerId": 21,
+      "userId": 21,
+      "questionId": 1111,
+      "displayName": "aaaaa",
+      "body": "i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...",
+      "score": 3,
+      "createdAt": " 2023.02.23.11:11",
+      "profileImg": "stackoverflowSampleProfile.png"
+    },
+    {
+      "answerId": 22,
+      "userId": 22,
+      "questionId": 1111,
+      "displayName": "bbbbbbbbbbbb",
+      "body": "1234123413412341234123412341234123421341341234213412341234@@@@@@@@@@@@@@@@@@@@@@@@@i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know..",
+      "score": 3,
+      "createdAt": "2023.02.23.11:12",
+      "profileImg": "stackoverflowSampleProfile.png"
+    },
+    {
+      "answerId": 23,
+      "userId": 23,
+      "questionId": 1112,
+      "displayName": "현희님 ",
+      "body": "현희님 123434@@@@@@@@@@@@@@@@@@@@@@@@@i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know..",
+      "score": 3,
+      "createdAt": "2023.02.23.11:12",
+      "profileImg": "stackoverflowSampleProfile.png"
+    },
+    {
+      "answerId": 24,
+      "userId": 25,
+      "questionId": 1112,
+      "displayName": "현희님 현희님",
+      "body": "현희님 현희님 123412341234@@@@@@@@@@@@@@@@@@@@@@@@@i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know..",
+      "score": 3,
+      "createdAt": "2023.02.23.11:12",
+      "profileImg": "stackoverflowSampleProfile.png"
+    },
+    {
+      "answerId": 25,
+      "userId": 26,
+      "questionId": 1113,
+      "displayName": "솜민님님님",
+      "body": "솜민님님님 솜민님님님 1234123413412341234123412341234123421341341234213412341234@@@@@@@@@@@@@@@@@@@@@@@@@i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know..",
+      "score": 3,
+      "createdAt": "2023.02.23.11:12",
+      "profileImg": "stackoverflowSampleProfile.png"
+=======
+  "questions": [
+    {
+      "title": "aaaaa",
+      "body": "aaaa",
       "id": 1
     },
     {
-      "userEmail": "a",
-      "password": "f",
+      "title": "bbbbbb",
+      "body": "<p>bbbbbb</p>",
       "id": 2
     },
     {
-      "userEmail": "s",
-      "password": "d",
+      "body": "<p>!!!!</p>",
       "id": 3
-    },
-    {
-      "userEmail": "sd",
-      "password": "f",
-      "id": 4
-    },
-    {
-      "userEmail": "as",
-      "password": "df",
-      "id": 5
-    },
-    {
-      "userEmail": "sd",
-      "password": "f",
-      "id": 6
-    },
-    {
-      "userid": 2557,
-      "displayName": "q",
-      "userEmail": "w",
-      "password": "e",
-      "signupAt": "2/24/2023",
-      "profileImg": "profileImg/3.png",
-      "id": 7
-    },
-    {
-      "userEmail": "w",
-      "password": "d",
-      "id": 8
-    },
-    {
-      "userEmail": "s",
-      "password": "d",
-      "id": 9
-    },
-    {
-      "userEmail": "q",
-      "password": "w",
-      "id": 10
-    },
-    {
-      "userEmail": "e",
-      "password": "r",
-      "id": 11
-    },
-    {
-      "userEmail": "ㄴ",
-      "password": "ㅇ",
-      "id": 12
-    },
-    {
-      "userEmail": "ㄴ",
-      "password": "ㅇ",
-      "id": 13
-    },
-    {
-      "userid": 3578,
-      "displayName": "ㄴㅇ",
-      "userEmail": "ㅇ",
-      "password": "ㄹ",
-      "signupAt": "2/24/2023",
-      "profileImg": "profileImg/4.png",
-      "id": 14
-    },
-    {
-      "userid": 3805,
-      "displayName": "ㄴ",
-      "userEmail": "ㅇ",
-      "password": "ㄹ",
-      "signupAt": "2/24/2023",
-      "profileImg": "profileImg/4.png",
-      "id": 15
-    },
-    {
-      "userid": 3450,
-      "displayName": "ㄴ",
-      "userEmail": "ㅇ",
-      "password": "ㄹ",
-      "signupAt": "2/24/2023",
-      "profileImg": "profileImg/0.png",
-      "id": 16
-    },
-    {
-      "userid": 1377,
-      "displayName": "ㅇ",
-      "userEmail": "ㄹ",
-      "password": "ㄹ",
-      "signupAt": "2/24/2023",
-      "profileImg": "profileImg/4.png",
-      "id": 17
-    },
-    {
-      "userid": 1264,
-      "displayName": "ㄴ",
-      "userEmail": "ㅇ",
-      "password": "ㄹ",
-      "signupAt": "2/24/2023",
-      "profileImg": "profileImg/1.png",
-      "id": 18
-    },
-    {
-      "userid": 784,
-      "displayName": "ㄴ",
-      "userEmail": "ㅇ",
-      "password": "ㄹ",
-      "signupAt": "2/24/2023",
-      "profileImg": "profileImg/6.png",
-      "id": 19
-    },
-    {
-      "userEmail": "ㄴㅇ",
-      "password": "ㄹ",
-      "id": 20
-    },
-    {
-      "userid": 1025,
-      "displayName": "ㅁㄴㅇㄹ",
-      "userEmail": "ㅁㄴㅇㄹ",
-      "password": "ㅁㄴㄹㅇ",
-      "signupAt": "2/24/2023",
-      "profileImg": "profileImg/1.png",
-      "id": 21
-    }
-  ],
-  "login": [
-    {
-      "userEmail": "s",
-      "password": "d",
-      "id": 1
+>>>>>>> f6b0603 ([feature]answerform 리사이징 및 post기능)
     }
   ]
 }
