@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretUp, faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
@@ -41,27 +41,26 @@ const AnswerCover = styled.div`
   }
 `;
 
-export default function Answer(data) {
-  const [answer2, setAnswer] = useState({});
-
-  function answerAxios(answerid) {
+export default function Answer(props) {
+  const [questionAnswerData, setQuestionAnswerData] = useState(); //!QuestionId로 Answer요청
+  useEffect(() => {
+    // console.log(propQuesionid);
+    axiosAnswerbyQuestionId(props.propQuesionid);
+  }, []);
+  function axiosAnswerbyQuestionId(id) {
     return axios
-      .get(`http://localhost5000/answer?answerId=${answerid}`, {
+      .get(`/answer?questionId=${id}`, {
         'Content-Type': 'application/json',
       })
       .then((res) => {
-        console.log(res.data['0']);
-        setAnswer(res.data['0']);
+        setQuestionAnswerData(res.data);
+        console.log('questionAnswerData');
+        console.log(questionAnswerData);
       })
       .catch((err) => {
-        console.log('Answer GET error');
+        console.log('questionAnswerData GET error');
       });
   }
-
-  useEffect(() => {
-    answerAxios(24), answerAxios(25);
-    console.log(answer2);
-  }, []);
 
   const answer = [
     //! 임시 더미데이터
@@ -87,48 +86,50 @@ export default function Answer(data) {
     },
   ];
 
-  const [answerData, setAnswerData] = useState(''); //요청을 어떤식으로 보낼건지에 따라 달라짐
   const [answerScore, setAnswerScore] = useState(answer.score);
 
   return (
     <AnswerCover>
-      <h2>{answer.length} Answers</h2>
-      {answer.map((el) => {
-        return (
-          <div>
-            <div className="answer-body">
-              <div className="score">
-                <FontAwesomeIcon
-                  icon={faCaretUp}
-                  style={{ height: '30px', color: 'darkgrey' }}
-                />
-                {el.score}
-                <FontAwesomeIcon
-                  icon={faCaretDown}
-                  style={{ height: '30px', color: 'darkgrey' }}
-                />
-              </div>
-              <div>{el.body}</div>
-            </div>
-            <div className="answer-bottom">
-              <div>
-                <button>Edit</button>
-              </div>
-              <div className="answer-user-card">
-                <div>answered {el.createdAt}</div>
-                <div>
-                  <img
-                    className="answer-profile"
-                    src={el.profileImg}
-                    alt="Profile"
-                  ></img>{' '}
-                  , {el.displayName}{' '}
+      <h2>
+        {Array.isArray(questionAnswerData) && questionAnswerData.length} Answers
+      </h2>
+      {Array.isArray(questionAnswerData) &&
+        questionAnswerData.map((el) => {
+          return (
+            <div>
+              <div className="answer-body">
+                <div className="score">
+                  <FontAwesomeIcon
+                    icon={faCaretUp}
+                    style={{ height: '30px', color: 'darkgrey' }}
+                  />
+                  {el.score}
+                  <FontAwesomeIcon
+                    icon={faCaretDown}
+                    style={{ height: '30px', color: 'darkgrey' }}
+                  />
                 </div>
-              </div>{' '}
+                <div>{el.body}</div>
+              </div>
+              <div className="answer-bottom">
+                <div>
+                  <button>Edit</button>
+                </div>
+                <div className="answer-user-card">
+                  <div>answered {el.createdAt}</div>
+                  <div>
+                    <img
+                      className="answer-profile"
+                      src={el.profileImg}
+                      alt="Profile"
+                    ></img>{' '}
+                    , {el.displayName}{' '}
+                  </div>
+                </div>{' '}
+              </div>
             </div>
-          </div>
-        );
-      })}
+          );
+        })}
     </AnswerCover>
   );
 }

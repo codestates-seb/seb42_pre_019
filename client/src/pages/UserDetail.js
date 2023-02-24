@@ -7,8 +7,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCakeCandles } from '@fortawesome/free-solid-svg-icons';
 import { faClock } from '@fortawesome/free-regular-svg-icons';
 import { faCalendarDays } from '@fortawesome/free-regular-svg-icons';
-
-import { useState } from 'react';
+import axios from 'axios';
+import { useState, useEffect } from 'react';
+import Answer from '../components/Answer';
 
 const Page = styled.div`
   padding: 24px;
@@ -110,38 +111,103 @@ const MainContent = styled.div`
   }
 `;
 
-export default function UserDetail() {
-  const imgUrl = 'stackoverflowSampleProfile.png';
-  const displayName = 'kjh';
-  const dummyData = [
-    { id: 0, title: 'Answers', description: ['Answers List'] },
-    { id: 1, title: 'Questions', description: ['Questions List'] },
-    { id: 2, title: 'Tags', description: ['Tags List'] },
+export default function UserDetail(prop) {
+  const [userDetailData, setUserDetailData] = useState();
+
+  function userDetailAxios(id) {
+    return axios
+      .get(`/users?userId=${id}`, {
+        'Content-Type': 'application/json',
+      })
+      .then((res) => {
+        console.log(`res.data:`);
+        console.log(res.data);
+        setUserDetailData(res.data);
+        // console.log(userDetailData);
+      })
+      .catch((err) => {
+        console.log('UserDetail GET error');
+      });
+  }
+
+  const [userDetailQuestionData, setUserDetailQuestionData] = useState(); //!Question
+  function userDetailQuestionAxios(id) {
+    return axios
+      .get(`/questions?userId=${id}`, {
+        'Content-Type': 'application/json',
+      })
+      .then((res) => {
+        setUserDetailQuestionData(res.data);
+        console.log(userDetailQuestionData);
+      })
+      .catch((err) => {
+        console.log('userDetailQuestion GET error');
+      });
+  }
+
+  const [userDetailAnswerData, setUserDetailAnswerData] = useState(); //!Answer
+  function userDetailAnswerAxios(id) {
+    return axios
+      .get(`/answers?userId=${id}`, {
+        'Content-Type': 'application/json',
+      })
+      .then((res) => {
+        setUserDetailAnswerData(res.data);
+        console.log(userDetailAnswerData);
+      })
+      .catch((err) => {
+        console.log('userDetailAnswerData GET error');
+      });
+  }
+
+  useEffect(() => {
+    userDetailAxios(1); //! 여기 인자로 넣은 값 <- users에서 받아온 prop이 될 예정
+    userDetailQuestionAxios(1);
+    userDetailAnswerAxios(1);
+  }, []);
+
+  const QuestionAndAnswerData = [
+    //! 미니탭 제작
+    { id: 0, title: 'Answers', description: [] },
+    { id: 1, title: 'Questions', description: [] },
   ];
-  const [focusIndex, setFocusIndex] = useState(0);
+
+  QuestionAndAnswerData[0].description.push(userDetailAnswerData);
+  QuestionAndAnswerData[1].description.push(userDetailQuestionData);
+  console.log(QuestionAndAnswerData);
+  console.log('question');
+  console.log(userDetailQuestionData);
+
+  const [focusIndex, setFocusIndex] = useState(1);
 
   return (
     <>
       <Page>
         <Breifprofile>
-          <img src={imgUrl} alt="profile"></img>
-          <span>
-            <div className="displayName">{displayName}</div>
-            <div>
+          {Array.isArray(userDetailData) ? (
+            <>
+              <img src={userDetailData[0].imageurl} alt="profile"></img>
               <span>
-                <FontAwesomeIcon icon={faCakeCandles} /> member for 1 year,10
-                months{' '}
+                <div className="displayName">
+                  {userDetailData[0].displayName}
+                </div>
+                <div>
+                  <span>
+                    <FontAwesomeIcon icon={faCakeCandles} /> member for 1
+                    year,10 months{' '}
+                  </span>
+                  <span>
+                    <FontAwesomeIcon icon={faClock} />
+                    Last seem this week{' '}
+                  </span>
+                  <span>
+                    <FontAwesomeIcon icon={faCalendarDays} /> Visited 9days, 1
+                    consecutive
+                  </span>
+                </div>
               </span>
-              <span>
-                <FontAwesomeIcon icon={faClock} />
-                Last seem this week{' '}
-              </span>
-              <span>
-                <FontAwesomeIcon icon={faCalendarDays} /> Visited 9days, 1
-                consecutive
-              </span>
-            </div>
-          </span>
+            </>
+          ) : null}
         </Breifprofile>
         <CrossMenu>
           <ul>
@@ -156,12 +222,10 @@ export default function UserDetail() {
           <Sidebar>
             <ul>
               {/* <li className="menu2">Summary</li> */}
-              {dummyData.map((item) => (
+              {QuestionAndAnswerData.map((item) => (
                 <li
                   key={item.id}
                   className={item.id === focusIndex ? 'menu2 focus' : 'menu2'}
-                  // className="menu2"
-                  // style={item.id===focusIndex?{ background-color: 'blue'}:{background-color: 'red'}}
                   onClick={() => setFocusIndex(item.id)}
                 >
                   {item.title}
@@ -170,15 +234,31 @@ export default function UserDetail() {
             </ul>
           </Sidebar>
           <div>
-            {dummyData
-              .filter((item) => focusIndex === item.id)
-              .map((item) => (
-                <div>
-                  <span className="miniTitle">
-                    {item.description.length} {item.title}
-                  </span>
-                  <div>{item.description}</div>
-                </div>
+            {Array.isArray(QuestionAndAnswerData) &&
+              QuestionAndAnswerData.filter(
+                (item) => focusIndex === item.id
+              ).map((item) => (
+                <>
+                  <div>
+                    <span className="miniTitle">
+                      {item.description.length} {item.title}
+                    </span>
+                    {item.title === 'Questions' ? (
+                      <div>
+                        {Array.isArray(userDetailQuestionData) &&
+                          userDetailQuestionData.map((el) => {
+                            <div>{el.body}</div>;
+                          })}{' '}
+                        {/* <div>{userDetailQuestionData[0].title}</div> */}
+                      </div>
+                    ) : (
+                      <div>
+                        answer List
+                        {/* <Answer data={userDetailAnswerData} /> */}
+                      </div>
+                    )}
+                  </div>
+                </>
               ))}
           </div>
         </MainContent>

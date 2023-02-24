@@ -85,7 +85,7 @@ export default function QuestionDetail() {
   const [data, setData] = useState({});
   function questionAxios(qusetionid) {
     return axios
-      .get(`http://localhost:5000/question?questionId=${qusetionid}`, {
+      .get(`/questions?questionId=${qusetionid}`, {
         'Content-Type': 'application/json',
       })
       .then((res) => {
@@ -101,15 +101,18 @@ export default function QuestionDetail() {
         console.log('Quesion GET error');
       });
   }
-
+  const propQuesionid = 1113;
   useEffect(() => {
-    questionAxios(1113);
-    scoreSetting(data.score); //! 여기서 나오는 1111이 질문 번호 -> 이 번호에따라 주소값 달라짐 ->https://stackoverflow/question/1111
+    //! 여기서 나오는 1111이 질문 번호 -> 이 번호에따라 주소값 달라짐 ->https://stackoverflow/question/1111
+
+    questionAxios(propQuesionid);
+    scoreSetting(data.score);
   }, []);
 
   const [questionScore, setQuestionScore] = useState(data.score);
   function scoreSetting(n) {
     setQuestionScore(n);
+    console.log(`score ${questionScore}`);
   }
   //!처음에 data받아온 값으로 score 초기지정
 
@@ -119,8 +122,6 @@ export default function QuestionDetail() {
     //!데이터 받을때 어떻게 받나 ... questionDetail에서 한번에 가능? 아니면 question따로 , 해당하는 Answer따로 ?
   };
 
-  //   }
-  // }
   return (
     <div>
       <Question>
@@ -169,8 +170,7 @@ export default function QuestionDetail() {
           </div>
         </div>
       </Question>
-
-      <Answer data={data} />
+      <Answer propQuesionid={propQuesionid} />
       {/* <AnswerForm /> */}
     </div>
   );

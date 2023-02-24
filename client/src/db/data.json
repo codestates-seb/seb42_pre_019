@@ -1,8 +1,8 @@
 {
-  "question": [
+  "questions": [
     {
       "questionId": 1111,
-      "userID": 1,
+      "userId": 1,
       "displayName": "Jihyun KIm",
       "title": "How can I make clone site of StackOverflow?",
       "body": "How can I make clone site of StackOverflow? How can I make clone site of StackOverflow?How can I make clone site of StackOverflow?How can I make clone site of StackOverflow?How can I make clone site of StackOverflow?How can I make clone site of StackOverflow? How can I make clone site of StackOverflow? How can I make clone site of StackOverflow  How can I make clone site of StackOverflow? How can I make clone site of StackOverflow? How can I make clone site of StackOverflow?",
@@ -13,7 +13,7 @@
     },
     {
       "questionId": 1112,
-      "userID": 2,
+      "userId": 2,
       "displayName": "한현희",
       "title": "현희님 현희님 How can I make clone site of StackOverflow?",
       "body": "현희님 현희님 현희님How can I make clone site of StackOverflow? How can I make clone site of StackOverflow?How can I make clone site of StackOverflow?How can I make clone site of StackOverflow?How can I make clone site of StackOverflow?How can I make clone site of StackOverflow? How can I make clone site of StackOverflow? How can I make clone site of StackOverflow  How can I make clone site of StackOverflow? How can I make clone site of StackOverflow? How can I make clone site of StackOverflow?",
@@ -24,7 +24,7 @@
     },
     {
       "questionId": 1113,
-      "userID": 3,
+      "userId": 3,
       "displayName": "신솜민",
       "title": "솜민님 솜민님 How can I make clone site of StackOverflow?",
       "body": "솜민님 솜민님 솜민님 How can I make clone site of StackOverflow? How can I make clone site of StackOverflow?How can I make clone site of StackOverflow?How can I make clone site of StackOverflow?How can I make clone site of StackOverflow?How can I make clone site of StackOverflow? How can I make clone site of StackOverflow? How can I make clone site of StackOverflow  How can I make clone site of StackOverflow? How can I make clone site of StackOverflow? How can I make clone site of StackOverflow?",
@@ -34,7 +34,7 @@
       "profileImg": "stackoverflowSampleProfile.png"
     }
   ],
-  "answer": [
+  "answers": [
     {
       "answerId": 21,
       "userId": 21,
@@ -84,6 +84,88 @@
       "score": 3,
       "createdAt": "2023.02.23.11:12",
       "profileImg": "stackoverflowSampleProfile.png"
+    },
+    {
+      "answerId": 25,
+      "userId": 1,
+      "questionId": 1113,
+      "displayName": "Jihyun KIm",
+      "body": "김지현 Answer data 1  1234123413412341234123412341234123421341341234213412341234@@@@@@@@@@@@@@@@@@@@@@@@@i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know..",
+      "score": 3,
+      "createdAt": "2023.02.23.11:12",
+      "profileImg": "stackoverflowSampleProfile.png"
+    },
+    {
+      "answerId": 23,
+      "userId": 1,
+      "questionId": 1112,
+      "displayName": "Jihyun KIm",
+      "body": "김지현 Answer data 1  123434@@@@@@@@@@@@@@@@@@@@@@@@@i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know..",
+      "score": 3,
+      "createdAt": "2023.02.23.11:12",
+      "profileImg": "stackoverflowSampleProfile.png"
+    }
+  ],
+  "users": [
+    {
+      "userId": 1,
+      "imageurl": "stackoverflowSampleProfile.png",
+      "displayName": "jihyunkim"
+    },
+    {
+      "userId": 2,
+      "imageurl": "stackoverflowSampleProfile.png",
+      "displayName": "한현희"
+    },
+    {
+      "userId": 3,
+      "imageurl": "stackoverflowSampleProfile.png",
+      "displayName": "신솜민"
+    },
+    {
+      "userId": 21,
+      "imageurl": "stackoverflowSampleProfile.png",
+      "displayName": "aaaaa"
+    },
+    {
+      "userId": 22,
+      "imageurl": "stackoverflowSampleProfile.png",
+      "displayName": "bbbbbbbbbbbb"
+    },
+    {
+      "userId": 23,
+      "imageurl": "stackoverflowSampleProfile.png",
+      "displayName": "현희님"
+    },
+    {
+      "userId": 24,
+      "imageurl": "stackoverflowSampleProfile.png",
+      "displayName": "현희님 현희님"
+    },
+    {
+      "userId": 25,
+      "imageurl": "stackoverflowSampleProfile.png",
+      "displayName": "솜민님님님"
+    },
+    {
+      "userId": 9,
+      "imageurl": "stackoverflowSampleProfile.png",
+      "displayName": "금비님"
+    },
+    {
+      "userId": 10,
+      "imageurl": "stackoverflowSampleProfile.png",
+      "displayName": "종민님"
+    },
+    {
+      "userId": 11,
+      "imageurl": "stackoverflowSampleProfile.png",
+      "displayName": "중꺾당"
+    },
+    {
+      "userId": 12,
+      "imageurl": "stackoverflowSampleProfile.png",
+      "displayName": "당근"
     }
   ]
 }

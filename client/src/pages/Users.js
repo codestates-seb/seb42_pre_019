@@ -2,10 +2,12 @@
 /* eslint-disable */
 
 import styled from 'styled-components';
-import useState from 'react';
+import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+
 <i class="fa-solid fa-magnifying-glass"></i>;
 
 const Userspage = styled.div`
@@ -106,80 +108,30 @@ const UserCardList = styled.div`
   }
 `;
 export default function Users() {
-  const data = [
-    {
-      id: 1,
-      imageurl: 'stackoverflowSampleProfile.png',
-      displayName: 'jihyunkim',
-      tags: ['javascript', 'react', 'css'],
-    },
-    {
-      id: 2,
-      imageurl: 'stackoverflowSampleProfile.png',
-      displayName: 'jihyunkim',
-      tags: ['javascript', 'react', 'css'],
-    },
-    {
-      id: 3,
-      imageurl: 'stackoverflowSampleProfile.png',
-      displayName: 'jihyunkim',
-      tags: ['javascript', 'react', 'css'],
-    },
-    {
-      id: 4,
-      imageurl: 'stackoverflowSampleProfile.png',
-      displayName: 'jihyunkim',
-      tags: ['javascript', 'react', 'css'],
-    },
-    {
-      id: 5,
-      imageurl: 'stackoverflowSampleProfile.png',
-      displayName: 'jihyunkim',
-      tags: ['javascript', 'react', 'css'],
-    },
-    {
-      id: 6,
-      imageurl: 'stackoverflowSampleProfile.png',
-      displayName: 'jihyunkim',
-      tags: ['javascript', 'react', 'css'],
-    },
-    {
-      id: 7,
-      imageurl: 'stackoverflowSampleProfile.png',
-      displayName: 'jihyunkim',
-      tags: ['javascript', 'react', 'css'],
-    },
-    {
-      id: 8,
-      imageurl: 'stackoverflowSampleProfile.png',
-      displayName: 'jihyunkim',
-      tags: ['javascript', 'react', 'css'],
-    },
-    {
-      id: 9,
-      imageurl: 'stackoverflowSampleProfile.png',
-      displayName: 'jihyunkim',
-      tags: ['javascript', 'react', 'css'],
-    },
-    {
-      id: 10,
-      imageurl: 'stackoverflowSampleProfile.png',
-      displayName: 'jihyunkim',
-      tags: ['javascript', 'react', 'css'],
-    },
-    {
-      id: 11,
-      imageurl: 'stackoverflowSampleProfile.png',
-      displayName: 'jihyunkim',
-      tags: ['javascript', 'react', 'css'],
-    },
-    {
-      id: 12,
-      imageurl: 'stackoverflowSampleProfile.png',
-      displayName: 'jihyunkim',
-      tags: ['javascript', 'react', 'css'],
-    },
-  ];
+  //! 만약 페이지네이션을 할거면 api 요청 메세지 달라져야 하나요?
+  const [usersData, setUsersData] = useState('1');
+  console.log(usersData);
+  function usersAxios() {
+    return axios
+      .get(`/users`, {
+        'Content-Type': 'application/json',
+      })
+
+      .then((res) => {
+        console.log(`res.data:`);
+        console.log(res.data);
+        setUsersData(res.data);
+      })
+      .catch((err) => {
+        console.log('Users GET error');
+      });
+  }
+
+  useEffect(() => {
+    usersAxios();
+    // console.log(`data1: ${data1}`);
+  }, []);
+  console.log(usersData);
 
   return (
     <Userspage>
@@ -204,20 +156,26 @@ export default function Users() {
         </div>
       </div>
       <UserCardList>
-        {data.map((el) => (
-          <div className="userCard">
-            <img className="profile" src={el.imageurl} alt="profile"></img>
-            <div className="detail">
-              <Link className="displayName">{el.displayName}</Link>
-              <div>평판</div>
+        {Array.isArray(usersData) &&
+          usersData.map((el) => (
+            <div className="userCard">
+              <img className="profile" src={el.imageurl} alt="profile"></img>
+              <div className="detail">
+                <Link className="displayName">{el.displayName}</Link>
+                <div> score</div>
+                <span>
+                  {' '}
+                  <Link className="link2">javascript, react , frontend</Link>
+                </span>
+                {/* <div>평판</div>
               {el.tags.map((el) => (
                 <span>
                   <Link className="link2">{el},</Link>{' '}
                 </span>
-              ))}
+              ))} */}
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
       </UserCardList>
     </Userspage>
   );
