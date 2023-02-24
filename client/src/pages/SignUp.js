@@ -230,6 +230,10 @@ export default function SignUp() {
     }
   }, [showToast]);
 
+  const [phrase, setPhrase] = useState(5);
+  const handleInputChange = (event) => {
+    setPhrase(event.target.value);
+  };
   //!toastMessage
 
   //빈칸 에러메세지 표기 및 axios 요청
@@ -279,7 +283,22 @@ export default function SignUp() {
 
   return (
     <SignUpcss>
-      {showToast && <Toast />}
+      {showToast && (
+        <Toast
+          icon={<i className="fa-solid fa-circle-check"></i>}
+          title={'Welcome to stackoverflow!'}
+          inputE={
+            <input
+              style={{ display: 'none' }}
+              type="text"
+              value={phrase}
+              onChange={handleInputChange}
+            />
+          }
+          phrase={phrase}
+          secText={`초 뒤 로그인 화면으로 이동합니다`}
+        />
+      )}
       <div className="signupTextBox">
         <h1>Join the Stack Overflow community</h1>
         <div>

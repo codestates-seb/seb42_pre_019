@@ -15,7 +15,7 @@ import Tags from './pages/Tags';
 import Users from './pages/Users';
 import UserDetail from './pages/UserDetail';
 
-import { useState } from 'react';
+// import { useState } from 'react';
 
 const Sidebar = styled.div`
   position: relative;
@@ -36,14 +36,13 @@ const Content = styled.div`
 //TODO: header 삼항연산자로
 
 export default function App() {
-  const [isLogin, setIsLogin] = useState(false);
-  const yesLogin = () => {
-    setIsLogin(!isLogin);
-  };
+  // const yesLogin = () => {
+  //   setIsLogin(!isLogin);
+  // };
 
   return (
     <BrowserRouter>
-      <Header yesLogin={yesLogin} />
+      <Header />
       <Routes>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/signup" element={<SignUp />}></Route>

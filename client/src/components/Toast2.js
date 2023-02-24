@@ -36,7 +36,7 @@ const Toastcss = styled.div`
   }
 `;
 
-export default function Toast(props) {
+export default function Toast2(props) {
   const [count, setcount] = useState(props.phrase);
   useEffect(() => {
     const timer = setInterval(() => {
@@ -48,10 +48,11 @@ export default function Toast(props) {
     return () => clearTimeout(timer);
   }, []);
 
+  //   const innerText = `${count}초 뒤에 메인 화면으로 이동`;
+
   return (
     <Toastcss>
       <div className="toast" style={props.style}>
-        {props.icon}
         <h1>{props.title}</h1>
         {props.inputE}
         <div>
