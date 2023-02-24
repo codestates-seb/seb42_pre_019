@@ -55,7 +55,7 @@ export default function Questions() {
       border-right: none;
     }
     .filter {
-      background: lightgrey;
+      background: #e3e6e8;
       width: 57px;
       height: 33px;
       margin: 10px;
