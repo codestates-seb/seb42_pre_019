@@ -1,10 +1,17 @@
 import styled from 'styled-components';
 import Dummyq from './dummyq';
 import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 // import { useState } from 'react';
-import Answerform from '../components/Answerform';
 
 const Qmain = styled.div`
+  .qcss {
+    margin-left: 30px;
+  }
+  h1 {
+    font-size: 27px;
+  }
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -17,6 +24,7 @@ const Qmain = styled.div`
     justify-content: space-between;
   }
   .askbutton {
+    margin-right: 11px;
     font-size: 14px;
     background: #0d0d0e;
     color: #f6f6f6;
@@ -25,6 +33,7 @@ const Qmain = styled.div`
     border-radius: 5px;
   }
   .sort {
+    margin-left: 30px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -70,9 +79,17 @@ const Qmain = styled.div`
   }
 `;
 export default function Questions() {
-  // const [answers, setanswers] = useState(0);
-  // const [votes, setvotes] = useState(0);
-  // const [views, setviews] = useState(0);
+  const [queCount, setQueCount] = useState(0);
+  useEffect(() => {
+    axios
+      .get('/questions')
+      .then((res) => {
+        setQueCount(res.data.count);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   return (
     <Qmain>
@@ -83,7 +100,7 @@ export default function Questions() {
         </button>
       </div>
       <div className="sort">
-        <h3>48,296 questions</h3>
+        <h3>{queCount} Questions</h3>
         <nav className="ql">
           <ul>
             <li className="li1 leftli">Newest</li>
@@ -104,7 +121,6 @@ export default function Questions() {
       <Dummyq />
       <Dummyq />
       <Dummyq />
-      <Answerform />
     </Qmain>
   );
 }

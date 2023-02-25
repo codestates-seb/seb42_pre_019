@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretUp, faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import AnswerforQuestionDetail from '../components/AnswerforQuestionDetail';
 import axios from 'axios';
+import Answerform from '../components/Answerform';
 
 // import AnswerForm from '../components/AnswerForm';
 

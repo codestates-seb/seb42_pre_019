@@ -15,14 +15,14 @@ const AskQuestioncss = styled.form`
     width: 100%;
   }
   .ck-toolbar {
-    width: 620.4px;
+    width: 820.4px;
   }
   .ck-editor__editable {
     min-height: 400px;
-    width: 604.4px;
+    width: 804.4px;
   }
   .titleinput {
-    width: 600px;
+    width: 800px;
   }
   .taginput {
     width: 600px;
@@ -52,6 +52,7 @@ export default function AskQuestion() {
     e.preventDefault();
     const questionData = { title, body };
     try {
+      // const res = await axios.post('/board/write', questionData);
       const res = await axios.post(
         'http://localhost:5000/questions',
         questionData
@@ -86,7 +87,7 @@ export default function AskQuestion() {
       </div>
       <CKEditor
         editor={ClassicEditor}
-        data="<p></p>"
+        data={body}
         onReady={(editor) => {
           console.log('Editor is ready to use!', editor);
         }}
@@ -104,32 +105,11 @@ export default function AskQuestion() {
           console.log('Focus.', editor);
         }}
       />
-      {/* <div className="tag">
-        {/* <h3>Tags</h3>
-        Add up to 5 tags to describe what your question is about.
-        <div className="taginput">
-          <input
-            className="title-input"
-            type={'text'}
-            placeholder="must include at least one of  (bug feature-request discussion support)"
-          ></input>
-        </div> */}
-      {/* </div>  */}
       <div>
         <button className="writebutton" type="Submit">
-          {/* console.log(data) */}
-          {/* //onClick={} */}
           post your question
         </button>
-        <button
-          onClick={() => {
-            axios.post('/http://localhost:5000/questions', { name: 'han' });
-          }}
-        />
-        {/* questiondetail로 보내주셈 구현해야함. */}
-        {/* <button className="discardbutton" onClick={}>Discard draft</button> */}
       </div>
-      {/* 삭제창띄우고 questiion 페이지로이동? */}
     </AskQuestioncss>
   );
 }
