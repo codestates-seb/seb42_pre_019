@@ -119,7 +119,7 @@ export default function Users() {
 
   function usersAxios() {
     return axios
-      .get(`/users`, {
+      .get(`http://localhost:5000/users`, {
         'Content-Type': 'application/json',
       })
 
