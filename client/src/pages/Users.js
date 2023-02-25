@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 <i class="fa-solid fa-magnifying-glass"></i>;
@@ -111,6 +111,12 @@ export default function Users() {
   //! 만약 페이지네이션을 할거면 api 요청 메세지 달라져야 하나요?
   const [usersData, setUsersData] = useState('1');
   console.log(usersData);
+
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate(`/users/${el.userid}`);
+  };
+
   function usersAxios() {
     return axios
       .get(`/users`, {
@@ -158,14 +164,18 @@ export default function Users() {
       <UserCardList>
         {Array.isArray(usersData) &&
           usersData.map((el) => (
-            <div className="userCard">
+            <div className="userCard" key={el.userId}>
               <img className="profile" src={el.imageurl} alt="profile"></img>
               <div className="detail">
-                <Link className="displayName">{el.displayName}</Link>
+                <Link to={`/users/${el.userId}`} lassName="displayName">
+                  {el.displayName}
+                </Link>
                 <div> score</div>
                 <span>
                   {' '}
-                  <Link className="link2">javascript, react , frontend</Link>
+                  <Link className="link2" onClick={handleClick}>
+                    javascript, react , frontend
+                  </Link>
                 </span>
                 {/* <div>평판</div>
               {el.tags.map((el) => (

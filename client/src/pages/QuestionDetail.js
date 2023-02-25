@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretUp, faCaretDown } from '@fortawesome/free-solid-svg-icons';
-import Answer from '../components/Answer';
+import AnswerforQuestionDetail from '../components/AnswerforQuestionDetail';
 import axios from 'axios';
 
 // import AnswerForm from '../components/AnswerForm';
@@ -85,7 +85,7 @@ export default function QuestionDetail() {
   const [data, setData] = useState({});
   function questionAxios(qusetionid) {
     return axios
-      .get(`/questions?questionId=${qusetionid}`, {
+      .get(`http://localhost:5000/questions?questionId=${qusetionid}`, {
         'Content-Type': 'application/json',
       })
       .then((res) => {
@@ -101,10 +101,9 @@ export default function QuestionDetail() {
         console.log('Quesion GET error');
       });
   }
-  const propQuesionid = 1113;
+  //! 여기서 나오는 1111이 질문 번호 -> 이 번호에따라 주소값 달라짐 ->https://stackoverflow/question/1111
+  const propQuesionid = 1111;
   useEffect(() => {
-    //! 여기서 나오는 1111이 질문 번호 -> 이 번호에따라 주소값 달라짐 ->https://stackoverflow/question/1111
-
     questionAxios(propQuesionid);
     scoreSetting(data.score);
   }, []);
@@ -170,7 +169,7 @@ export default function QuestionDetail() {
           </div>
         </div>
       </Question>
-      <Answer propQuesionid={propQuesionid} />
+      <AnswerforQuestionDetail propQuesionid={propQuesionid} />
       {/* <AnswerForm /> */}
     </div>
   );

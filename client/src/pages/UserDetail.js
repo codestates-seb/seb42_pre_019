@@ -9,7 +9,9 @@ import { faClock } from '@fortawesome/free-regular-svg-icons';
 import { faCalendarDays } from '@fortawesome/free-regular-svg-icons';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-import Answer from '../components/Answer';
+import AnswerforUserDetail from '../components/AnswerforUserdetail';
+import QuestionforUserdetail from '../components/QuestiionforUserdetail';
+import { useParams } from 'react-router-dom';
 
 const Page = styled.div`
   padding: 24px;
@@ -111,12 +113,12 @@ const MainContent = styled.div`
   }
 `;
 
-export default function UserDetail(prop) {
+export default function UserDetail({ prop }) {
   const [userDetailData, setUserDetailData] = useState();
 
   function userDetailAxios(id) {
     return axios
-      .get(`/users?userId=${id}`, {
+      .get(`http://localhost:5000/users?userId=${id}`, {
         'Content-Type': 'application/json',
       })
       .then((res) => {
@@ -148,7 +150,7 @@ export default function UserDetail(prop) {
   const [userDetailAnswerData, setUserDetailAnswerData] = useState(); //!Answer
   function userDetailAnswerAxios(id) {
     return axios
-      .get(`/answers?userId=${id}`, {
+      .get(`http://localhost:5000/answers?userId=${id}`, {
         'Content-Type': 'application/json',
       })
       .then((res) => {
@@ -159,21 +161,23 @@ export default function UserDetail(prop) {
         console.log('userDetailAnswerData GET error');
       });
   }
+  // const propUserid = 1;
+  const propUserid = Number(useParams().userId);
+  console.log('propUserid');
+  console.log({ propUserid });
 
   useEffect(() => {
-    userDetailAxios(1); //! 여기 인자로 넣은 값 <- users에서 받아온 prop이 될 예정
+    userDetailAxios(propUserid); //! 여기 인자로 넣은 값 <- users에서 받아온 prop이 될 예정
     userDetailQuestionAxios(1);
     userDetailAnswerAxios(1);
   }, []);
 
   const QuestionAndAnswerData = [
     //! 미니탭 제작
-    { id: 0, title: 'Answers', description: [] },
-    { id: 1, title: 'Questions', description: [] },
+    { id: 0, title: 'Answers' },
+    { id: 1, title: 'Questions' },
   ];
 
-  QuestionAndAnswerData[0].description.push(userDetailAnswerData);
-  QuestionAndAnswerData[1].description.push(userDetailQuestionData);
   console.log(QuestionAndAnswerData);
   console.log('question');
   console.log(userDetailQuestionData);
@@ -184,30 +188,31 @@ export default function UserDetail(prop) {
     <>
       <Page>
         <Breifprofile>
-          {Array.isArray(userDetailData) ? (
-            <>
-              <img src={userDetailData[0].imageurl} alt="profile"></img>
-              <span>
-                <div className="displayName">
-                  {userDetailData[0].displayName}
-                </div>
-                <div>
-                  <span>
-                    <FontAwesomeIcon icon={faCakeCandles} /> member for 1
-                    year,10 months{' '}
-                  </span>
-                  <span>
-                    <FontAwesomeIcon icon={faClock} />
-                    Last seem this week{' '}
-                  </span>
-                  <span>
-                    <FontAwesomeIcon icon={faCalendarDays} /> Visited 9days, 1
-                    consecutive
-                  </span>
-                </div>
-              </span>
-            </>
-          ) : null}
+          {Array.isArray(userDetailData) &&
+            userDetailData.map((el) => (
+              <>
+                {console.log(el.imageurl)}
+                <img src={el.imageurl} alt="profile"></img>
+
+                <span>
+                  <div className="displayName">{el.displayName}</div>
+                  <div>
+                    <span>
+                      <FontAwesomeIcon icon={faCakeCandles} /> member for 1
+                      year,10 months{' '}
+                    </span>
+                    <span>
+                      <FontAwesomeIcon icon={faClock} />
+                      Last seem this week{' '}
+                    </span>
+                    <span>
+                      <FontAwesomeIcon icon={faCalendarDays} /> Visited 9days, 1
+                      consecutive
+                    </span>
+                  </div>
+                </span>
+              </>
+            ))}
         </Breifprofile>
         <CrossMenu>
           <ul>
@@ -240,20 +245,19 @@ export default function UserDetail(prop) {
               ).map((item) => (
                 <>
                   <div>
-                    <span className="miniTitle">
-                      {item.description.length} {item.title}
-                    </span>
+                    <span className="miniTitle">{item.title}</span>
                     {item.title === 'Questions' ? (
                       <div>
-                        {Array.isArray(userDetailQuestionData) &&
+                        <QuestionforUserdetail propUserid={propUserid} />
+                        {/* {Array.isArray(userDetailQuestionData) &&
                           userDetailQuestionData.map((el) => {
                             <div>{el.body}</div>;
                           })}{' '}
-                        {/* <div>{userDetailQuestionData[0].title}</div> */}
+                        <div>{userDetailQuestionData[0].title}</div> */}
                       </div>
                     ) : (
                       <div>
-                        answer List
+                        <AnswerforUserDetail propUserid={propUserid} />
                         {/* <Answer data={userDetailAnswerData} /> */}
                       </div>
                     )}

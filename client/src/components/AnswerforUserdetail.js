@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCaretUp, faCaretDown } from '@fortawesome/free-solid-svg-icons';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faCaretUp, faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 
 /* eslint-disable */
@@ -41,15 +41,17 @@ const AnswerCover = styled.div`
   }
 `;
 
-export default function Answer(props) {
+export default function AnswerforUserDetail(props) {
+  //변경
   const [questionAnswerData, setQuestionAnswerData] = useState(); //!QuestionId로 Answer요청
   useEffect(() => {
     // console.log(propQuesionid);
-    axiosAnswerbyQuestionId(props.propQuesionid);
+    axiosAnswerbyQuestionId(props.propUserid); //변경
   }, []);
   function axiosAnswerbyQuestionId(id) {
     return axios
-      .get(`/answer?questionId=${id}`, {
+      .get(`http://localhost:5000/answers?userId=${id}`, {
+        //변경
         'Content-Type': 'application/json',
       })
       .then((res) => {
@@ -90,15 +92,12 @@ export default function Answer(props) {
 
   return (
     <AnswerCover>
-      <h2>
-        {Array.isArray(questionAnswerData) && questionAnswerData.length} Answers
-      </h2>
       {Array.isArray(questionAnswerData) &&
         questionAnswerData.map((el) => {
           return (
             <div>
               <div className="answer-body">
-                <div className="score">
+                {/* <div className="score">
                   <FontAwesomeIcon
                     icon={faCaretUp}
                     style={{ height: '30px', color: 'darkgrey' }}
@@ -108,7 +107,7 @@ export default function Answer(props) {
                     icon={faCaretDown}
                     style={{ height: '30px', color: 'darkgrey' }}
                   />
-                </div>
+                </div> */}
                 <div>{el.body}</div>
               </div>
               <div className="answer-bottom">

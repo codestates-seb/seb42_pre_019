@@ -68,8 +68,13 @@ export default function App() {
             <Route path="/questiondetail" element={<QuestionDetail />}></Route>
 
             <Route path="/tags" element={<Tags />}></Route>
+            <Route path="/users/:userId" element={<UserDetail />}></Route>
             <Route path="/users" element={<Users />}></Route>
-            <Route path="/userdetail" element={<UserDetail />}></Route>
+            {/* <Route path="/userdetail" element={<UserDetail />}></Route> */}
+            {/* <Route
+              path="/users/:userId"
+              render={(props) => <UserDetail {...props} />}
+            ></Route> */}
           </Routes>
         </Content>
       </div>

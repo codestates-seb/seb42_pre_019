@@ -5,11 +5,11 @@
       "userId": 1,
       "displayName": "Jihyun KIm",
       "title": "How can I make clone site of StackOverflow?",
-      "body": "How can I make clone site of StackOverflow? How can I make clone site of StackOverflow?How can I make clone site of StackOverflow?How can I make clone site of StackOverflow?How can I make clone site of StackOverflow?How can I make clone site of StackOverflow? How can I make clone site of StackOverflow? How can I make clone site of StackOverflow  How can I make clone site of StackOverflow? How can I make clone site of StackOverflow? How can I make clone site of StackOverflow?",
+      "body": "<p>How can I make clone site of</p> StackOverflow? How can I make clone site of StackOverflow?How can I make clone site of StackOverflow?How can I make clone site of StackOverflow?How can I make clone site of StackOverflow?How can I make clone site of StackOverflow? How can I make clone site of StackOverflow? How can I make clone site of StackOverflow  How can I make clone site of StackOverflow? How can I make clone site of StackOverflow? How can I make clone site of StackOverflow?",
       "score": 11,
       "answerId": [21, 22],
       "createdAt": "2023.02.23.11:00",
-      "profileImg": "stackoverflowSampleProfile.png"
+      "profileImg": "avatar.png"
     },
     {
       "questionId": 1112,
@@ -109,17 +109,17 @@
   "users": [
     {
       "userId": 1,
-      "imageurl": "stackoverflowSampleProfile.png",
+      "imageurl": "avatar.png",
       "displayName": "jihyunkim"
     },
     {
       "userId": 2,
-      "imageurl": "stackoverflowSampleProfile.png",
+      "imageurl": "avatar.png",
       "displayName": "한현희"
     },
     {
       "userId": 3,
-      "imageurl": "stackoverflowSampleProfile.png",
+      "imageurl": "avatar.png",
       "displayName": "신솜민"
     },
     {
