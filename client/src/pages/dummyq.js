@@ -1,8 +1,7 @@
 /* eslint-disable */
 import axios from 'axios';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { useState } from 'react';
 
 const Qdiv = styled.div`
   display: flex;

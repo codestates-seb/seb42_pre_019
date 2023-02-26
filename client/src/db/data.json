@@ -9,6 +9,7 @@
       "score": 11,
       "answerId": [
         21,
+
         22
       ],
       "createdAt": "2023.02.23.11:00",
@@ -23,6 +24,7 @@
       "score": 22,
       "answerId": [
         3333,
+
         4444
       ],
       "createdAt": "2023.02.23.11:00",
@@ -37,6 +39,7 @@
       "score": 33,
       "answerId": [
         3333,
+
         4444
       ],
       "createdAt": "2023.02.23.11:00",
@@ -175,6 +178,16 @@
       "userId": 12,
       "imageurl": "stackoverflowSampleProfile.png",
       "displayName": "당근"
+    }
+  ],
+  "newusers": [
+    {
+      "id": "txsa5nihr",
+      "displayName": "ㅁㄴㅇ",
+      "userEmail": "ㄴㅇ",
+      "password": "ㄹㄴㅇ",
+      "signupAt": "2/26/2023",
+      "profileImg": "profileImg/0.png"
     }
   ],
   "test": [

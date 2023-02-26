@@ -178,6 +178,7 @@ export default function Login({ isLogin, setIsLogin }) {
 
   //!login
   const loginData = {
+    id: Math.random().toString(36).substring(2, 11),
     userEmail: userEmail,
     password: password,
   };
@@ -205,7 +206,7 @@ export default function Login({ isLogin, setIsLogin }) {
       setPasswordErrorMessage('');
     }
     return axios
-      .post(`/users`, loginData)
+      .post(`${process.env.REACT_APP_API_KEY}/login`, loginData)
       .then((res) => {
         //setUserInfo(res.data); //!유저인포 담아주기
         console.log(res.data);
@@ -219,7 +220,6 @@ export default function Login({ isLogin, setIsLogin }) {
         //   setErrorMessage("로그인에 실패했습니다.");
         // }
       });
-    //http://localhost:5000/users?id=2&login?id=1
   };
 
   return (

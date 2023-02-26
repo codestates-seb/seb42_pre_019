@@ -1,11 +1,9 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import '../App.css';
-// import profile from '../../public/profileImg';
 import axios from 'axios';
 import Toast from '../components/Toast';
 
-/* eslint-disable */
 const SignUpcss = styled.section`
   /* background-color: red; */
   background-color: hsl(210, 8%, 95%);
@@ -209,7 +207,7 @@ export default function SignUp() {
   const avataImg = `profileImg/${Math.floor(Math.random() * 10)}.png`;
 
   const data = {
-    userid: Math.floor(Math.random() * 5000),
+    id: Math.random().toString(36).substring(2, 11),
     displayName: displayName,
     userEmail: userEmail,
     password: password,
@@ -264,7 +262,7 @@ export default function SignUp() {
       setPasswordErrorMessage('');
     }
     return axios
-      .post('http://localhost:5000/users', data)
+      .post(`${process.env.REACT_APP_API_KEY}/newusers`, data)
       .then((res) => {
         //setUserInfo(res.data); //!응답오면 유저인포 담아주고 ->아직 선언 X
         //todo: toast message
@@ -273,7 +271,7 @@ export default function SignUp() {
         e.preventDefault();
         setShowToast(true);
       })
-      .catch((err) => {
+      .catch(() => {
         console.log('error');
         // if (err.response.status === 401) {
         //   setErrorMessage("로그인에 실패했습니다.");
