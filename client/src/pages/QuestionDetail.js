@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretUp, faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import AnswerforQuestionDetail from '../components/AnswerforQuestionDetail';
 import axios from 'axios';
-import Answerform from '../components/Answerform';
+import AnswerForm from '../components/Answerform'; //요기 F 대문자로 수정 및 아래 주석해제(에러해결3) 해결시 삭제요망.
 
 // import AnswerForm from '../components/AnswerForm';
 

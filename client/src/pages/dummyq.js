@@ -1,7 +1,9 @@
+/* eslint-disable */
 import axios from 'axios';
 import { useEffect } from 'react';
 import styled from 'styled-components';
 import { useState } from 'react';
+
 const Qdiv = styled.div`
   display: flex;
   flex-direction: column;
@@ -74,37 +76,47 @@ function Dummyq() {
     result: [],
   });
 
-  // const [data, setData] = useState([]);
-  // useEffect(() => {
-  //   const fetchSearch = async () => {
-  //     try {
-  //       const res = await axios.get('/search');
-  //       setData(res.data);
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   };
+  useEffect(() => {
+    const fetchSearch = async () => {
+      try {
+        const res = await axios.get('http://localhost:5000/questions', {
+          'Content-Type': 'application/json',
+        });
+        setData((prevData) => ({ ...prevData, result: res.data }));
+        // console.log(res.data);
+        console.log(data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchSearch();
+  }, []);
 
-  //   fetchSearch();
-  // }, []);
+  // const [title,setTitle] = useState('title')
+  // const [title,setTitle] = useState('')
 
   return (
     <Qdiv>
       <div className="vav">
         <div className="count">
-          344<span>votes</span>
+          344{data.votes}
+          console.log(data.votes)
+          <span>votes</span>
           {/* score로  */}
         </div>
         <div className="count">
-          0<span>answers</span>
+          0{data.answers}
+          <span>answers</span>
         </div>
         <div className="count">
-          9<span>views</span>
+          9{data.views}
+          <span>views</span>
         </div>
       </div>
       <div className="middlecontent">
         <div className="middletitle">
           Dont be that account buying and selling reputation and bounties
+          {data.title}
         </div>
         <div className="middledetail">
           In recent months we have found several accounts that offered bounties

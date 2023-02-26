@@ -3,6 +3,7 @@ import Dummyq from './dummyq';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+// import { useSelector } from 'react-redux';
 // import { useState } from 'react';
 
 const Qmain = styled.div`
@@ -82,7 +83,7 @@ export default function Questions() {
   const [queCount, setQueCount] = useState(0);
   useEffect(() => {
     axios
-      .get('/questions')
+      .get('http://localhost:5000/questions')
       .then((res) => {
         setQueCount(res.data.count);
       })
@@ -115,7 +116,6 @@ export default function Questions() {
           </button>
         </nav>
       </div>
-
       <Dummyq />
       <Dummyq />
       <Dummyq />

@@ -4,6 +4,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import styled from 'styled-components';
 import { useState } from 'react';
 import axios from 'axios';
+import { useEffect } from 'react';
 
 const AskQuestioncss = styled.form`
   padding: 25px;
@@ -47,16 +48,40 @@ const AskQuestioncss = styled.form`
 export default function AskQuestion() {
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
+  const [questionId, setQuestionId] = useState('');
+  const [userId, setUserId] = useState('');
+  // const [data, setData] = useState({
+  //   questionId: '',
+  //   title: '',
+  //   body: 0,
+  //   views: 0,
+  //   result: [],
+  // });
+
+  useEffect(() => {
+    const fetchUserId = async () => {
+      try {
+        const res = await axios.get('http://localhost:5000/users');
+        setUserId(res.data.userId);
+        console.log(userId);
+      } catch (err) {
+        console.error('Error fetching user ID:', err);
+      }
+    };
+    fetchUserId();
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const questionData = { title, body };
+    setQuestionId(Math.random().toString(36).substring(2, 11));
+
+    if (!userId) {
+      console.error('User Id is missing');
+    }
+    const questionData = { questionId, title, body, userId: userId };
     try {
       // const res = await axios.post('/board/write', questionData);
-      const res = await axios.post(
-        'http://localhost:5000/questions',
-        questionData
-      );
+      const res = await axios.post('http://localhost:5000/test', questionData);
       console.log('Question submitted successfully:', res.data);
     } catch (err) {
       console.error('Error submitting question:', err);
@@ -73,7 +98,6 @@ export default function AskQuestion() {
           <input
             className="title-input"
             type={'text'}
-            id="title"
             placeholder="what's your bug, feature request, or meta-discussion topic? Be specific"
             value={title}
             onChange={(e) => {
@@ -94,6 +118,7 @@ export default function AskQuestion() {
         onChange={(event, editor) => {
           const data = editor.getData(); //.slice(4, -4));
           setBody(data);
+
           console.log(body);
           // let data2 = data.slice(4, -4); //p태그 없앨 경우 사용.
           // console.log(data2);
