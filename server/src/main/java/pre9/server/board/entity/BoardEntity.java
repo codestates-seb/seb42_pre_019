@@ -1,7 +1,7 @@
 package pre9.server.board.entity;
 
 
-import lombok.Generated;
+import  pre9.server.board.dto.BoardDTO;
 import lombok.Getter;
 import lombok.Setter;
 

@@ -1,6 +1,6 @@
 package pre9.server.board.entity;
 
-
+import pre9.server.board.dto.CommentDTO;
 import lombok.Getter;
 import lombok.Setter;
 
