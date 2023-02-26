@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretUp, faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import AnswerforQuestionDetail from '../components/AnswerforQuestionDetail';
 import axios from 'axios';
-import AnswerForm from '../components/Answerform'; //요기 F 대문자로 수정 및 아래 주석해제(에러해결3) 해결시 삭제요망.
+// import AnswerForm from '../components/Answerform'; //요기 F 대문자로 수정 및 아래 주석해제(에러해결3) 해결시 삭제요망.
 
 // import AnswerForm from '../components/AnswerForm';
 
@@ -103,7 +103,8 @@ export default function QuestionDetail() {
       });
   }
   //! 여기서 나오는 1111이 질문 번호 -> 이 번호에따라 주소값 달라짐 ->https://stackoverflow/question/1111
-  const propQuesionid = 1111;
+  // const propQuesionid = 1111;
+  const propQuesionid = useParams().questionId;
   useEffect(() => {
     questionAxios(propQuesionid);
     scoreSetting(data.score);

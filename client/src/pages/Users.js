@@ -112,10 +112,10 @@ export default function Users() {
   const [usersData, setUsersData] = useState('1');
   console.log(usersData);
 
-  const navigate = useNavigate();
-  const handleClick = () => {
-    navigate(`/users/${el.userid}`);
-  };
+  // const navigate = useNavigate();
+  // const handleClick = () => {
+  //   navigate(`/users/${el.userid}`);
+  // };
 
   function usersAxios() {
     return axios
@@ -167,15 +167,13 @@ export default function Users() {
             <div className="userCard" key={el.userId}>
               <img className="profile" src={el.imageurl} alt="profile"></img>
               <div className="detail">
-                <Link to={`/users/${el.userId}`} lassName="displayName">
+                <Link to={`/users/${el.userId}`} className="displayName">
                   {el.displayName}
                 </Link>
                 <div> score</div>
                 <span>
                   {' '}
-                  <Link className="link2" onClick={handleClick}>
-                    javascript, react , frontend
-                  </Link>
+                  <Link className="link2">javascript, react , frontend</Link>
                 </span>
                 {/* <div>평판</div>
               {el.tags.map((el) => (

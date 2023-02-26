@@ -1,6 +1,7 @@
+/* eslint-disable */
 import styled from 'styled-components';
 import Dummyq from './dummyq';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 // import { useSelector } from 'react-redux';
@@ -79,17 +80,102 @@ const Qmain = styled.div`
     }
   }
 `;
+
+const Qdiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  border: 1px solid lightgrey;
+
+  .vav {
+    display: flex;
+    flex-direction: raw;
+    display: flex;
+    margin-top: 20px;
+    margin-left: 20px;
+    font-size: 25px;
+  }
+  .middlecontent {
+    margin-left: 20px;
+  }
+  .middletitle {
+    font-size: 17px;
+    margin-top: 10px;
+  }
+  .middledetail {
+    font-size: 13px;
+    margin-top: 10px;
+  }
+  .count {
+    margin-right: 10px;
+    font-size: 13px;
+  }
+  span {
+    margin: 3px;
+    font-size: 13px;
+  }
+
+  .tag {
+    margin: 0px 5px 2px 0px;
+    padding: 4.8px 6px;
+    font-size: 12px;
+    border-radius: 4px;
+    background: #dde9f2;
+    color: #326892;
+  }
+  .bottominfo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 25px;
+    margin-top: 10px;
+  }
+  .bottomright {
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+    margin-right: 20px;
+  }
+  .avatar {
+    width: 16px;
+    height: 16px;
+    margin-right: 6px;
+  }
+`;
+const Quser = styled.a`
+  color: hsl(0deg 100% 39%);
+`;
+
 export default function Questions() {
-  const [queCount, setQueCount] = useState(0);
-  useEffect(() => {
-    axios
-      .get('http://localhost:5000/questions')
+  // const [queCount, setQueCount] = useState(0);
+  // useEffect(() => {
+  //   axios
+  //     .get('http://localhost:5000/questions')
+  //     .then((res) => {
+  //       // setQueCount(res.data.count);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }, []);
+  const [questionsData, setQuestionsData] = useState('1');
+  function questionsAxios() {
+    return axios
+      .get(`http://localhost:5000/questions`, {
+        'Content-Type': 'application/json',
+      })
+
       .then((res) => {
-        setQueCount(res.data.count);
+        console.log(`res.data:`);
+        console.log(res.data);
+        setQuestionsData(res.data);
       })
       .catch((err) => {
-        console.log(err);
+        console.log('questionsAxios GET error');
       });
+  }
+
+  useEffect(() => {
+    questionsAxios();
   }, []);
 
   return (
@@ -101,7 +187,7 @@ export default function Questions() {
         </button>
       </div>
       <div className="sort">
-        <h3>{queCount} Questions</h3>
+        <h3> {questionsData.length}Questions</h3>
         <nav className="ql">
           <ul>
             <li className="li1 leftli">Newest</li>
@@ -116,11 +202,44 @@ export default function Questions() {
           </button>
         </nav>
       </div>
-      <Dummyq />
-      <Dummyq />
-      <Dummyq />
-      <Dummyq />
-      <Dummyq />
+      {Array.isArray(questionsData) &&
+        questionsData.map((el) => (
+          <Qdiv>
+            <div className="vav">
+              <div className="count">
+                {/* 344{data.votes}
+          console.log(data.votes) */}
+                {el.score}
+                <span>votes</span>
+                {/* score로  */}
+              </div>
+              <div className="count">
+                {el.answerId.length}
+                <span>answers</span>
+              </div>
+            </div>
+            <div className="middlecontent">
+              <Link to={`/questions/${el.questionId}`} className="middletitle">
+                {el.title}
+              </Link>
+              <div className="middledetail">{el.body}</div>
+              <div className="bottominfo">
+                <span className="bottomleft">
+                  {/* <button className="tag">discussion</button>
+                  <button className="tag">reputation</button>
+                  <button className="tag">voting-fraud</button>
+                  <button className="tag">psa</button> */}
+                </span>
+                <span className="bottomright">
+                  <Quser />
+                  <img className="avatar" src={el.profileImg} alt="profile" />
+                  <div className="userrepu">{el.displayName}</div>
+                  <div className="writetime">asked {el.createdAt}</div>
+                </span>
+              </div>
+            </div>
+          </Qdiv>
+        ))}
     </Qmain>
   );
 }

@@ -62,10 +62,13 @@ export default function App() {
         <Content>
           <Routes>
             <Route exact path="/" element={<Home />}></Route>
+            <Route
+              path="/questions/:questionId"
+              element={<QuestionDetail />}
+            ></Route>
 
             <Route path="/questions" element={<Questions />}></Route>
             <Route path="/askquestion" element={<AskQuestion />}></Route>
-            <Route path="/questiondetail" element={<QuestionDetail />}></Route>
 
             <Route path="/tags" element={<Tags />}></Route>
             <Route path="/users/:userId" element={<UserDetail />}></Route>
