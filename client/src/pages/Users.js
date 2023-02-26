@@ -210,6 +210,7 @@ export default function Users() {
         <div>{state.user.userId}</div>
         <div>{state.user.displayName}</div>
         <div>{state.user.profileImg}</div>
+        <div>{state.user.isLogin ? 'true' : 'false'}</div>
       </div>
     </Userspage>
   );

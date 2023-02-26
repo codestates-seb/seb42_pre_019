@@ -154,7 +154,7 @@ const Logincss = styled.div`
   }
 `;
 
-export default function Login({ isLogin, setIsLogin }) {
+export default function Login() {
   //!Redux test
   const state = useSelector((state) => state); //! state 꺼내오기 hook
   console.log(state);
@@ -218,17 +218,17 @@ export default function Login({ isLogin, setIsLogin }) {
           //setUserInfo(res.data); //!유저인포 담아주기
           console.log(res.data);
           e.preventDefault();
-          setIsLogin(true);
           dispatch({
             type: 'SET_USER_ID',
             payload: {
               userId: loginData.id,
               displayName: loginData.userEmail,
               profileImg: 'stackoverflowSampleProfile.png',
+              isLogin: true,
             },
           });
           console.log(loginData);
-          console.log(isLogin);
+          console.log(state.user.isLogin);
         })
         //TODO: 해더 변경하기
 
@@ -240,6 +240,7 @@ export default function Login({ isLogin, setIsLogin }) {
         })
     );
   };
+  console.log(state.user.isLogin);
   return (
     <Logincss>
       {showToast && (
