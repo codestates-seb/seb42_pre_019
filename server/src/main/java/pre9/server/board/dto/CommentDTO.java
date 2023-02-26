@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @Setter
 @ToString
 public class CommentDTO {
-    private Long id;
+    private Long id;  //댓글Id
     private String commentWriter;
     private String commentContents;
     private Long boardId;

@@ -20,7 +20,6 @@ public class CommentEntity extends BaseEntity {
 
     @Column
     private String commentContents;
-
     /* Board:Comment = 1:N */
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "board_id")
