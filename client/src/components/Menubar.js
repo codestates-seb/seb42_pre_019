@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-
 const Nav = styled.nav`
   position: sticky;
   width: auto;

@@ -91,9 +91,6 @@ function Dummyq() {
     fetchSearch();
   }, []);
 
-  // const [title,setTitle] = useState('title')
-  // const [title,setTitle] = useState('')
-
   return (
     <Qdiv>
       <div className="vav">

@@ -3,6 +3,7 @@ import '../App.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Toast from '../components/Toast';
+import { useDispatch, useSelector } from 'react-redux';
 
 /* eslint-disable */
 
@@ -154,6 +155,17 @@ const Logincss = styled.div`
 `;
 
 export default function Login({ isLogin, setIsLogin }) {
+  //!Redux test
+  const state = useSelector((state) => state); //! state 꺼내오기 hook
+  console.log(state);
+  const dispatch = useDispatch(); //! dispatch 쉽게하는 hook
+  const payloadSample = {
+    userId: 'Redux',
+    displayName: '테스트 성공?',
+    profileImg: 'stackoverflowSampleProfile.png',
+  };
+  //여기까지 Redux test
+
   const [userEmail, setUserEmail] = useState('');
   const [emailErrorMessage, setEmailErrorMessage] = useState('');
   const [password, setPassword] = useState('');
@@ -183,12 +195,6 @@ export default function Login({ isLogin, setIsLogin }) {
     password: password,
   };
 
-  useEffect(() => {
-    if (isLogin) {
-      return (window.location.href = '/');
-    }
-  }, [isLogin]);
-
   const loginRequestHandler = (e) => {
     console.log(userEmail, password);
     e.preventDefault();
@@ -205,23 +211,35 @@ export default function Login({ isLogin, setIsLogin }) {
       setEmailErrorMessage('');
       setPasswordErrorMessage('');
     }
-    return axios
-      .post(`${process.env.REACT_APP_API_KEY}/login`, loginData)
-      .then((res) => {
-        //setUserInfo(res.data); //!유저인포 담아주기
-        console.log(res.data);
-        e.preventDefault();
-        setIsLogin(true);
+    return (
+      axios
+        .post(`${process.env.REACT_APP_API_KEY}/login`, loginData)
+        .then((res) => {
+          //setUserInfo(res.data); //!유저인포 담아주기
+          console.log(res.data);
+          e.preventDefault();
+          setIsLogin(true);
+          dispatch({
+            type: 'SET_USER_ID',
+            payload: {
+              userId: loginData.id,
+              displayName: loginData.userEmail,
+              profileImg: 'stackoverflowSampleProfile.png',
+            },
+          });
+          console.log(loginData);
+          console.log(isLogin);
+        })
         //TODO: 해더 변경하기
-      })
-      .catch((err) => {
-        setShowToast(true);
-        // if (err.response.status === 401) {
-        //   setErrorMessage("로그인에 실패했습니다.");
-        // }
-      });
-  };
 
+        .catch((err) => {
+          setShowToast(true);
+          // if (err.response.status === 401) {
+          //   setErrorMessage("로그인에 실패했습니다.");
+          // }
+        })
+    );
+  };
   return (
     <Logincss>
       {showToast && (

@@ -4,6 +4,8 @@ import Dummyq from './dummyq';
 import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+
 // import { useSelector } from 'react-redux';
 // import { useState } from 'react';
 
@@ -100,6 +102,8 @@ const Qdiv = styled.div`
   .middletitle {
     font-size: 17px;
     margin-top: 10px;
+    text-decoration-line: none;
+    color: #0074cc;
   }
   .middledetail {
     font-size: 13px;
@@ -140,12 +144,18 @@ const Qdiv = styled.div`
     height: 16px;
     margin-right: 6px;
   }
+  .userrepu {
+    font-weight: bold;
+    margin-right: 3px;
+  }
 `;
 const Quser = styled.a`
   color: hsl(0deg 100% 39%);
 `;
 
 export default function Questions() {
+  const state = useSelector((state) => state); //! state 꺼내오기 hook
+
   // const [queCount, setQueCount] = useState(0);
   // useEffect(() => {
   //   axios
@@ -160,7 +170,7 @@ export default function Questions() {
   const [questionsData, setQuestionsData] = useState('1');
   function questionsAxios() {
     return axios
-      .get(`http://localhost:5000/questions`, {
+      .get(`${process.env.REACT_APP_API_KEY}/questions`, {
         'Content-Type': 'application/json',
       })
 
@@ -233,13 +243,14 @@ export default function Questions() {
                 <span className="bottomright">
                   <Quser />
                   <img className="avatar" src={el.profileImg} alt="profile" />
-                  <div className="userrepu">{el.displayName}</div>
-                  <div className="writetime">asked {el.createdAt}</div>
+                  <div className="userrepu">{el.displayName} </div>
+                  <div className="writetime"> asked {el.createdAt}</div>
                 </span>
               </div>
             </div>
           </Qdiv>
         ))}
+      <div>{state.user.displayName}</div>
     </Qmain>
   );
 }

@@ -118,7 +118,7 @@ export default function UserDetail({ prop }) {
 
   function userDetailAxios(id) {
     return axios
-      .get(`http://localhost:5000/users?userId=${id}`, {
+      .get(`${process.env.REACT_APP_API_KEY}/users?userId=${id}`, {
         'Content-Type': 'application/json',
       })
       .then((res) => {
@@ -162,7 +162,7 @@ export default function UserDetail({ prop }) {
       });
   }
   // const propUserid = 1;
-  const propUserid = Number(useParams().userId);
+  const propUserid = useParams().userId;
   console.log('propUserid');
   console.log({ propUserid });
 

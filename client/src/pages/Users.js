@@ -7,8 +7,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
 
-<i class="fa-solid fa-magnifying-glass"></i>;
+{
+  /* <i class="fa-solid fa-magnifying-glass"></i>; */
+}
 
 const Userspage = styled.div`
   padding: 24px;
@@ -108,6 +111,17 @@ const UserCardList = styled.div`
   }
 `;
 export default function Users() {
+  //!Redux test
+  const state = useSelector((state) => state); //! state 꺼내오기 hook
+  console.log(state);
+  const dispatch = useDispatch(); //! dispatch 쉽게하는 hook
+  const payloadSample = {
+    userId: 'Redux',
+    displayName: '테스트 성공?',
+    profileImg: 'stackoverflowSampleProfile.png',
+  };
+  //여기까지 Redux test
+
   //! 만약 페이지네이션을 할거면 api 요청 메세지 달라져야 하나요?
   const [usersData, setUsersData] = useState('1');
   console.log(usersData);
@@ -119,7 +133,7 @@ export default function Users() {
 
   function usersAxios() {
     return axios
-      .get(`http://localhost:5000/users`, {
+      .get(`${process.env.REACT_APP_API_KEY}/users`, {
         'Content-Type': 'application/json',
       })
 
@@ -185,6 +199,18 @@ export default function Users() {
             </div>
           ))}
       </UserCardList>
+      <div>
+        <button
+          onClick={() =>
+            dispatch({ type: 'SET_USER_ID', payload: payloadSample })
+          }
+        >
+          리덕스 테스트
+        </button>
+        <div>{state.user.userId}</div>
+        <div>{state.user.displayName}</div>
+        <div>{state.user.profileImg}</div>
+      </div>
     </Userspage>
   );
 }

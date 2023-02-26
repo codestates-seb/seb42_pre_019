@@ -87,9 +87,12 @@ export default function QuestionDetail() {
   const [data, setData] = useState({});
   function questionAxios(qusetionid) {
     return axios
-      .get(`http://localhost:5000/questions?questionId=${qusetionid}`, {
-        'Content-Type': 'application/json',
-      })
+      .get(
+        `${process.env.REACT_APP_API_KEY}/questions?questionId=${qusetionid}`,
+        {
+          'Content-Type': 'application/json',
+        }
+      )
       .then((res) => {
         // const data2 = res.data;
         // console.log(res.data);
