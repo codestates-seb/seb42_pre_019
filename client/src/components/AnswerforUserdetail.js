@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faCaretUp, faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
+import HTMLPrinter from '../components/HTMLprinter';
 
 /* eslint-disable */
 
@@ -108,7 +109,8 @@ export default function AnswerforUserDetail(props) {
                     style={{ height: '30px', color: 'darkgrey' }}
                   />
                 </div> */}
-                <div>{el.body}</div>
+
+                <HTMLPrinter htmlString={el.body} />
               </div>
               <div className="answer-bottom">
                 <div>

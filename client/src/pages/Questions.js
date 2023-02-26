@@ -2,10 +2,11 @@
 import styled from 'styled-components';
 import Dummyq from './dummyq';
 import { Link, useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, React } from 'react';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 
+import HTMLPrinter from '../components/HTMLprinter';
 // import { useSelector } from 'react-redux';
 // import { useState } from 'react';
 
@@ -155,6 +156,7 @@ const Quser = styled.a`
 
 export default function Questions() {
   const state = useSelector((state) => state); //! state 꺼내오기 hook
+  const parser = new DOMParser(); //! HTML 처리
 
   // const [queCount, setQueCount] = useState(0);
   // useEffect(() => {
@@ -214,7 +216,7 @@ export default function Questions() {
       </div>
       {Array.isArray(questionsData) &&
         questionsData.map((el) => (
-          <Qdiv>
+          <Qdiv key={el.questionId}>
             <div className="vav">
               <div className="count">
                 {/* 344{data.votes}
@@ -232,7 +234,9 @@ export default function Questions() {
               <Link to={`/questions/${el.questionId}`} className="middletitle">
                 {el.title}
               </Link>
-              <div className="middledetail">{el.body}</div>
+              <div className="middledetail">
+                <HTMLPrinter htmlString={el.body} />
+              </div>
               <div className="bottominfo">
                 <span className="bottomleft">
                   {/* <button className="tag">discussion</button>
