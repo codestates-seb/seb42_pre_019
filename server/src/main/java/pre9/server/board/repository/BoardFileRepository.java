@@ -1,4 +1,7 @@
 package pre9.server.board.repository;
 
-public class BoardFileRepository {
+import pre9.server.board.entity.BoardFileEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface BoardFileRepository extends JpaRepository<BoardFileEntity, Long> {
 }

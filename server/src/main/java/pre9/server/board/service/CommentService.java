@@ -2,6 +2,11 @@ package pre9.server.board.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import pre9.server.board.dto.CommentDTO;
+import pre9.server.board.entity.BoardEntity;
+import pre9.server.board.entity.CommentEntity;
+import pre9.server.board.repository.BoardRepository;
+import pre9.server.board.repository.CommentRepository;
 
 import java.util.ArrayList;
 import java.util.List;

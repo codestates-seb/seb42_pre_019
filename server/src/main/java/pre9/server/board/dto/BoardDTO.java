@@ -1,11 +1,12 @@
 package pre9.server.board.dto;
 
+import pre9.server.board.entity.BoardEntity;
 import lombok.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
 
-// DTO(Data Transfer Object), VO, Bean,         Entity
+
 @Getter
 @Setter
 @ToString
@@ -37,7 +38,7 @@ public class BoardDTO {
     public static BoardDTO toBoardDTO(BoardEntity boardEntity) {
         BoardDTO boardDTO = new BoardDTO();
         boardDTO.setId(boardEntity.getId());
-        boardDTO.setBoardWriter(boardEntity.getBoardWriter());
+        boardDTO.setBoardWriter(boardEntity.getboardWriter());
         boardDTO.setBoardPass(boardEntity.getBoardPass());
         boardDTO.setBoardTitle(boardEntity.getBoardTitle());
         boardDTO.setBoardContents(boardEntity.getBoardContents());

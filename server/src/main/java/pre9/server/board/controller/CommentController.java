@@ -1,5 +1,7 @@
 package pre9.server.board.controller;
 
+import pre9.server.board.dto.CommentDTO;
+import pre9.server.board.service.CommentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

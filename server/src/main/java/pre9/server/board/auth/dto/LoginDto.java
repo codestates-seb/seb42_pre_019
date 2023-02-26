@@ -1,4 +1,4 @@
-package pre9.server.auth.dto;
+package pre9.server.board.auth.dto;
 
 import lombok.Getter;
 
