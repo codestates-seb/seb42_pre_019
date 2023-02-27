@@ -1,3 +1,4 @@
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import '../App.css';
@@ -104,8 +105,11 @@ const Headercss = styled.div`
   }
 `;
 
-export default function Header(isLogin) {
+export default function Header() {
+  const isLogin = useSelector((store) => store.userReducer.isLogin); //! state 꺼냄
+  const dispatch = useDispatch();
   console.log(isLogin);
+  dispatch();
   return (
     <Header1>
       <Headercss>
@@ -120,7 +124,7 @@ export default function Header(isLogin) {
           <i className="fa-solid fa-magnifying-glass"></i>
         </form>
         <nav>
-          {isLogin === true ? (
+          {isLogin ? (
             <div>ss</div>
           ) : (
             <div>

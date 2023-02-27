@@ -156,14 +156,9 @@ const Logincss = styled.div`
 
 export default function Login() {
   //!Redux test
-  const state = useSelector((state) => state); //! state 꺼내오기 hook
-  console.log(state);
+  const isLogin = useSelector((store) => store.userReducer.isLogin); //! state 꺼내오기 hook
   const dispatch = useDispatch(); //! dispatch 쉽게하는 hook
-  const payloadSample = {
-    userId: 'Redux',
-    displayName: '테스트 성공?',
-    profileImg: 'stackoverflowSampleProfile.png',
-  };
+
   //여기까지 Redux test
 
   const [userEmail, setUserEmail] = useState('');
@@ -211,36 +206,19 @@ export default function Login() {
       setEmailErrorMessage('');
       setPasswordErrorMessage('');
     }
-    return (
-      axios
-        .post(`${process.env.REACT_APP_API_KEY}/login`, loginData)
-        .then((res) => {
-          //setUserInfo(res.data); //!유저인포 담아주기
-          console.log(res.data);
-          e.preventDefault();
-          dispatch({
-            type: 'SET_USER_ID',
-            payload: {
-              userId: loginData.id,
-              displayName: loginData.userEmail,
-              profileImg: 'stackoverflowSampleProfile.png',
-              isLogin: true,
-            },
-          });
-          console.log(loginData);
-          console.log(state.user.isLogin);
-        })
-        //TODO: 해더 변경하기
-
-        .catch((err) => {
-          setShowToast(true);
-          // if (err.response.status === 401) {
-          //   setErrorMessage("로그인에 실패했습니다.");
-          // }
-        })
-    );
+    return axios
+      .post(`${process.env.REACT_APP_API_KEY}/login`, loginData)
+      .then((res) => {
+        //setUserInfo(res.data); //!유저인포 담아주기
+        console.log(res.data);
+        e.preventDefault();
+        dispatch(loginAction(res.data));
+      })
+      .catch((err) => {
+        setShowToast(true);
+      });
   };
-  console.log(state.user.isLogin);
+  console.log(isLogin);
   return (
     <Logincss>
       {showToast && (
