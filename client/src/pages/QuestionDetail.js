@@ -87,47 +87,61 @@ export default function QuestionDetail() {
   // const [questionData, setQuestionData] = useState('초기값');
 
   const [data, setData] = useState({});
-  function questionAxios(qusetionid) {
+  function questionAxios(questionid) {
     return axios
       .get(
-        `${process.env.REACT_APP_API_KEY}/questions?questionId=${qusetionid}`,
+        `${process.env.REACT_APP_API_KEY}/questions?questionId=${questionid}`,
         {
           'Content-Type': 'application/json',
         }
       )
       .then((res) => {
-        // const data2 = res.data;
-        // console.log(res.data);
         console.log(res.data['0']); //! 얘가 우리가 원하는 객체 형태
-        // console.log(data2);
-        // console.log(`data2: ${data2}`);
-        // console.log(`data: ${questionData}`);
         setData(res.data['0']);
       })
       .catch((err) => {
         console.log('Quesion GET error');
       });
   }
-  //! 여기서 나오는 1111이 질문 번호 -> 이 번호에따라 주소값 달라짐 ->https://stackoverflow/question/1111
-  // const propQuesionid = 1111;
-  const propQuesionid = useParams().questionId;
-  useEffect(() => {
-    questionAxios(propQuesionid);
-    scoreSetting(data.score);
-  }, []);
 
-  const [questionScore, setQuestionScore] = useState(data.score);
-  function scoreSetting(n) {
-    setQuestionScore(n);
-    console.log(`score ${questionScore}`);
-  }
+  const propQuesionid = useParams().questionId;
+
+  // const [questionScore, setQuestionScore] = useState('1234');
+  // const [questionScore, setQuestionScore] = useState('134');
+
+  // function scoreSetting(n) {
+  //   setQuestionScore(n);
+  //   console.log(n);
+  //   console.log(`score ${questionScore}`);
+  // }
   //!처음에 data받아온 값으로 score 초기지정
 
-  const handleScoreChange = (score, id) => {
+  const handleScoreChangePlus = (questionid) => {
+    return axios
+      .put(
+        `${process.env.REACT_APP_API_KEY}/questions?questionId=${questionid}`,
+        { score: 1 }
+      )
+      .then((res) => {
+        console.log({ ...data, score: data.score + 1 });
+        return setData({ ...data, score: data.score + 1 });
+      })
+      .catch((err) => {
+        console.log({ ...data, score: data.score + 1 });
+        console.log('handleScoreChangePlus GET error');
+      });
     //!onClick에 따라 state 변화시키며 동시에 데이터 전송?
     //!answer을 전부 가져와서 각각 id , score를 넘겨줌
     //!데이터 받을때 어떻게 받나 ... questionDetail에서 한번에 가능? 아니면 question따로 , 해당하는 Answer따로 ?
   };
+
+  const qustionScoreUpClick = (id) => {
+    handleScoreChangePlus(id);
+  };
+
+  useEffect(() => {
+    questionAxios(propQuesionid);
+  }, []);
 
   return (
     <div>
@@ -149,9 +163,10 @@ export default function QuestionDetail() {
             <FontAwesomeIcon
               icon={faCaretUp}
               style={{ height: '30px', color: 'darkgrey' }}
+              onClick={qustionScoreUpClick(data.questionId)}
               // onClick={scorePlus()}
             />
-            {questionScore}
+            <div>{data.score}</div>
             <FontAwesomeIcon
               icon={faCaretDown}
               style={{ height: '30px', color: 'darkgrey' }}
