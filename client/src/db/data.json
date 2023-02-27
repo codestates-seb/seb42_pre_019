@@ -7,10 +7,7 @@
       "title": "How can I make clone site of StackOverflow?",
       "body": "<p>HTML p태그 출력확인 </p><p>HTML p태그 출력확인 </p><p>HTML p태그 출력확인 </p><p>HTML p태그 출력확인 </p><p>How can I make clone site of StackOverflow?</p><p>How can I make clone site of StackOverflow? How can I make clone site of StackOverflow?How can I make clone site of StackOverflow?How can I make clone site of StackOverflow?How can I make clone site of StackOverflow?How can I make clone site of StackOverflow? How can I make clone site of StackOverflow? How can I make clone site of StackOverflow  How can I make clone site of StackOverflow? How can I make clone site of StackOverflow? How can I make clone site of StackOverflow?</p>",
       "score": 11,
-      "answerId": [
-        21,
-        22
-      ],
+      "answerId": [21, 22],
       "createdAt": "2023.02.23.11:00",
       "profileImg": "avatar.png"
     },
@@ -21,11 +18,7 @@
       "title": "현희님 현희님 How can I make clone site of StackOverflow?",
       "body": "<p>현희님 현희님 현희님How can I make clone site of StackOverflow?</p><p> How can I make clone site of StackOverflow?How can I make clone site of StackOverflow?How can I make clone site of StackOverflow?How can I make clone site of StackOverflow?How can I make clone site of StackOverflow? How can I make clone site of StackOverflow? How can I make clone site of StackOverflow  How can I make clone site of StackOverflow? How can I make clone site of StackOverflow? How can I make clone site of StackOverflow?</p>",
       "score": 22,
-      "answerId": [
-        23,
-        24,
-        27
-      ],
+      "answerId": [23, 24, 27],
       "createdAt": "2023.02.23.11:00",
       "profileImg": "stackoverflowSampleProfile.png"
     },
@@ -36,10 +29,7 @@
       "title": "솜민님 솜민님 How can I make clone site of StackOverflow?",
       "body": "<p>솜민님 솜민님 솜민님 How can I make clone site of StackOverflow? How can I make clone</p><p> site of StackOverflow?How can I make clone site of StackOverflow?How can I make clone site of StackOverflow?How can I make clone site of StackOverflow?How can I make clone site of StackOverflow? How can I make clone site of StackOverflow? How can I make clone site of StackOverflow  How can I make clone site of StackOverflow? How can I make clone site of StackOverflow? How can I make clone site of StackOverflow?</p>",
       "score": 33,
-      "answerId": [
-        25,
-        26
-      ],
+      "answerId": [25, 26],
       "createdAt": "2023.02.23.11:00",
       "profileImg": "stackoverflowSampleProfile.png"
     }
@@ -191,172 +181,14 @@
   "test": [],
   "login": [
     {
-      "isLogin": false,
-      "id": "44lk724rx",
-      "userEmail": "ㄴㅇ",
-      "password": "ㅇㄹ"
+      "id": "26bab2s4n",
+      "userEmail": "test",
+      "password": "test"
     },
     {
-      "isLogin": false,
-      "id": "wm3t6fbvo",
-      "userEmail": "ㄴ",
-      "password": "ㅇㄹ"
-    },
-    {
-      "isLogin": false,
-      "id": "f1x5lhpdi",
-      "userEmail": "ㄴㅇ",
-      "password": "ㅇㄹ"
-    },
-    {
-      "isLogin": false,
-      "id": "nxib57vkx",
-      "userEmail": "ㅇ",
-      "password": "ㄹ"
-    },
-    {
-      "isLogin": false,
-      "id": "j9p1wxl6s",
-      "userEmail": "ㄴ",
-      "password": "ㅇ"
-    },
-    {
-      "isLogin": false,
-      "id": "9iztkssrc",
-      "userEmail": "ㄴㅇ",
-      "password": "ㅇㄹ"
-    },
-    {
-      "isLogin": false,
-      "id": "z2fs8xy9f",
-      "userEmail": "ㄴㅇ",
-      "password": "ㄹㅇ"
-    },
-    {
-      "isLogin": false,
-      "id": "4t8vkbusi",
-      "userEmail": "ㄴㅇ",
-      "password": "ㅇㄹ"
-    },
-    {
-      "isLogin": false,
-      "id": "prgvb6fia",
-      "userEmail": "ㄴ",
-      "password": "ㅇ"
-    },
-    {
-      "isLogin": false,
-      "id": "shuy0rhsc",
-      "userEmail": "ㄴㅇ",
-      "password": "ㅇㄹ"
-    },
-    {
-      "isLogin": false,
-      "id": "qklhw23wo",
-      "userEmail": "ㄴㅇ",
-      "password": "ㅇㄹ"
-    },
-    {
-      "isLogin": false,
-      "id": "vvoodkmib",
-      "userEmail": "sd",
-      "password": "df"
-    },
-    {
-      "isLogin": false,
-      "id": "6sce6cdyq",
-      "userEmail": "sd",
-      "password": "df"
-    },
-    {
-      "isLogin": false,
-      "id": "qaclgfjty",
-      "userEmail": "sd",
-      "password": "f"
-    },
-    {
-      "isLogin": false,
-      "id": "jx5kbsaot",
-      "userEmail": "sd",
-      "password": "df"
-    },
-    {
-      "isLogin": false,
-      "id": "8fypwb6en",
-      "userEmail": "sd",
-      "password": "df"
-    },
-    {
-      "isLogin": false,
-      "id": "1jc9fx8yi",
-      "userEmail": "sdf",
-      "password": "we"
-    },
-    {
-      "isLogin": false,
-      "id": "3t8pcq6u7",
-      "userEmail": "sd",
-      "password": "d"
-    },
-    {
-      "isLogin": false,
-      "id": "5ja8cjqt7",
-      "userEmail": "sdf",
-      "password": "f"
-    },
-    {
-      "isLogin": false,
-      "id": "86ovg9m3v",
-      "userEmail": "sd",
-      "password": "d"
-    },
-    {
-      "isLogin": false,
-      "id": "hn2u87c5v",
-      "userEmail": "ㄴㅇ",
-      "password": "ㅇㄹ"
-    },
-    {
-      "isLogin": false,
-      "id": "8r3dmh994",
-      "userEmail": "ㄴ",
-      "password": "ㅇ"
-    },
-    {
-      "isLogin": false,
-      "id": "9xhb41j6x",
-      "userEmail": "ㄴㅇ",
-      "password": "ㅇㄹ"
-    },
-    {
-      "isLogin": false,
-      "id": "rwl0fvnqm",
-      "userEmail": "f",
-      "password": "sd"
-    },
-    {
-      "isLogin": false,
-      "id": "bkzdd76qz",
-      "userEmail": "d",
-      "password": "f"
-    },
-    {
-      "isLogin": false,
-      "id": "loiyf87s9",
-      "userEmail": "sd",
-      "password": "df"
-    },
-    {
-      "isLogin": false,
-      "id": "v6sw64cx0",
-      "userEmail": "ㅇ",
-      "password": "ㄹ"
-    },
-    {
-      "isLogin": false,
-      "id": "lapz6g1rl",
-      "userEmail": "ㅇ",
-      "password": "ㄹ"
+      "id": "v0v2bf0jd",
+      "userEmail": "0978",
+      "password": "0987"
     }
   ]
 }

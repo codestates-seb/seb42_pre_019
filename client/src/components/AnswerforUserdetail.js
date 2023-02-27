@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faCaretUp, faCaretDown } from '@fortawesome/free-solid-svg-icons';
+
 import axios from 'axios';
 import HTMLPrinter from '../components/HTMLprinter';
 
@@ -20,7 +19,7 @@ const AnswerCover = styled.div`
     flex-direction: row;
     .score {
       font-size: 17px;
-      /* font-weight: bold; */
+
       padding-right: 15px;
     }
   }
@@ -32,7 +31,6 @@ const AnswerCover = styled.div`
     margin-top: 16px;
     padding-bottom: 4px;
     .answer-user-card {
-      /* background-color: #ceddde; */
       padding: 7px;
       width: 160px;
     }
@@ -43,16 +41,13 @@ const AnswerCover = styled.div`
 `;
 
 export default function AnswerforUserDetail(props) {
-  //변경
   const [questionAnswerData, setQuestionAnswerData] = useState(); //!QuestionId로 Answer요청
   useEffect(() => {
-    // console.log(propQuesionid);
-    axiosAnswerbyQuestionId(props.propUserid); //변경
+    axiosAnswerbyQuestionId(props.propUserid);
   }, []);
   function axiosAnswerbyQuestionId(id) {
     return axios
       .get(`http://localhost:5000/answers?userId=${id}`, {
-        //변경
         'Content-Type': 'application/json',
       })
       .then((res) => {
@@ -65,32 +60,6 @@ export default function AnswerforUserDetail(props) {
       });
   }
 
-  const answer = [
-    //! 임시 더미데이터
-    {
-      answerId: 3333,
-      userId: 2,
-      questionId: 1111,
-      displayName: 'aaaaa',
-      body: `i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...`,
-      score: 3,
-      createdAt: '2023.02.23.11:11',
-      profileImg: 'stackoverflowSampleProfile.png',
-    },
-    {
-      answerId: 4444,
-      userId: 3,
-      questionId: 1111,
-      displayName: 'bbbbbbbbbbbb',
-      body: `1234123413412341234123412341234123421341341234213412341234@@@@@@@@@@@@@@@@@@@@@@@@@i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...`,
-      score: 3,
-      createdAt: '2023.02.23.11:12',
-      profileImg: 'stackoverflowSampleProfile.png',
-    },
-  ];
-
-  const [answerScore, setAnswerScore] = useState(answer.score);
-
   return (
     <AnswerCover>
       {Array.isArray(questionAnswerData) &&
@@ -98,18 +67,6 @@ export default function AnswerforUserDetail(props) {
           return (
             <div>
               <div className="answer-body">
-                {/* <div className="score">
-                  <FontAwesomeIcon
-                    icon={faCaretUp}
-                    style={{ height: '30px', color: 'darkgrey' }}
-                  />
-                  {el.score}
-                  <FontAwesomeIcon
-                    icon={faCaretDown}
-                    style={{ height: '30px', color: 'darkgrey' }}
-                  />
-                </div> */}
-
                 <HTMLPrinter htmlString={el.body} />
               </div>
               <div className="answer-bottom">
