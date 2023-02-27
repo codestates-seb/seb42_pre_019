@@ -14,16 +14,13 @@ import SignUp from './pages/SignUp';
 import Tags from './pages/Tags';
 import Users from './pages/Users';
 import UserDetail from './pages/UserDetail';
-import { useState } from 'react';
-
-// import { useState } from 'react';
 
 const Sidebar = styled.div`
   position: relative;
   box-sizing: border-box;
   width: 164px;
   height: calc(100% - 200px);
-  min-height: 640px;
+  min-height: 670px;
 `;
 const Content = styled.div`
   display: flex;
@@ -37,21 +34,11 @@ const Content = styled.div`
 //TODO: header 삼항연산자로
 
 export default function App() {
-  // const yesLogin = () => {
-  //   setIsLogin(!isLogin);
-  // };
-  // const handleLogin = (isLogin) =>{
-  //   console.log(isLogin)
-  // }
-  const [isLogin, setIsLogin] = useState(false);
   return (
     <BrowserRouter>
-      <Header isLogin={isLogin} />
+      <Header />
       <Routes>
-        <Route
-          path="/login"
-          element={<Login isLogin={isLogin} setIsLogin={setIsLogin} />}
-        ></Route>
+        <Route path="/login" element={<Login />}></Route>
         <Route path="/signup" element={<SignUp />}></Route>
       </Routes>
 

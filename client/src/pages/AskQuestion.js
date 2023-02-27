@@ -1,11 +1,11 @@
+/* eslint-disable */
 //질문 개별 상세페이지입니다.
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import styled from 'styled-components';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useEffect } from 'react';
-import Answerform from '../components/Answerform';
+// import Answerform from '../components/Answerform';
 
 const AskQuestioncss = styled.form`
   padding: 25px;

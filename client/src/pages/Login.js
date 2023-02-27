@@ -1,14 +1,13 @@
+/* eslint-disable */
 import styled from 'styled-components';
 import '../App.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Toast from '../components/Toast';
 import { useDispatch, useSelector } from 'react-redux';
-
-/* eslint-disable */
-
+import { loginAction } from '../Redux/actions';
+import { Link } from 'react-router-dom';
 const Logincss = styled.div`
-  /* background-color: red; */
   background-color: hsl(210, 8%, 95%);
   position: absolute;
   width: 100%;
@@ -80,8 +79,6 @@ const Logincss = styled.div`
     align-items: stretch;
     margin-bottom: 12px;
     width: 100%;
-
-    /* max-width: calc(97.2307692rem * 3); */
   }
   #formContainer {
     position: relative;
@@ -116,13 +113,15 @@ const Logincss = styled.div`
       margin-bottom: 0px;
       width: 100%;
     }
+    a {
+      text-decoration-line: none;
+    }
     span {
       padding: 0px 0px 10px 0px;
       font-size: 1.2em;
       font-weight: bolder;
     }
     .errormessage {
-      /* display: none; */
       margin-top: 4px;
       color: red;
       font-size: 0.9em;
@@ -155,17 +154,15 @@ const Logincss = styled.div`
 `;
 
 export default function Login() {
-  //!Redux test
-  const isLogin = useSelector((store) => store.userReducer.isLogin); //! state 꺼내오기 hook
-  const dispatch = useDispatch(); //! dispatch 쉽게하는 hook
-
-  //여기까지 Redux test
+  //Redux test
+  const dispatch = useDispatch();
+  // state 꺼내오기 hook
+  const isLogin = useSelector((state) => state.isLogin);
 
   const [userEmail, setUserEmail] = useState('');
   const [emailErrorMessage, setEmailErrorMessage] = useState('');
   const [password, setPassword] = useState('');
   const [passwordErrorMessage, setPasswordErrorMessage] = useState('');
-  // const [LoginFailMsg,setLoginFailMsg] = useState('')
 
   const [showToast, setShowToast] = useState(false);
   const [phrase, setPhrase] = useState(5);
@@ -185,13 +182,13 @@ export default function Login() {
 
   //!login
   const loginData = {
+    isLogin: false,
     id: Math.random().toString(36).substring(2, 11),
     userEmail: userEmail,
     password: password,
   };
 
   const loginRequestHandler = (e) => {
-    console.log(userEmail, password);
     e.preventDefault();
     if (!userEmail) {
       if (!password) {
@@ -209,8 +206,6 @@ export default function Login() {
     return axios
       .post(`${process.env.REACT_APP_API_KEY}/login`, loginData)
       .then((res) => {
-        //setUserInfo(res.data); //!유저인포 담아주기
-        console.log(res.data);
         e.preventDefault();
         dispatch(loginAction(res.data));
       })
@@ -218,7 +213,7 @@ export default function Login() {
         setShowToast(true);
       });
   };
-  console.log(isLogin);
+
   return (
     <Logincss>
       {showToast && (
@@ -264,8 +259,6 @@ export default function Login() {
                 type="text"
                 value={userEmail}
                 onChange={(e) => setUserEmail(e.target.value)}
-                //!onChange를 ()=> 형식으로 하면 handelLogin.. 함수가 실행이 안됨 대신 input form이 이어지고 계속 써짐
-                //!반면 onChange를 ()=>없이쓰면 handle... 함수는 실행 되는데 한글자 이상 입력 불가
               ></input>
               {emailErrorMessage === '' ? null : (
                 <p className="errormessage">{emailErrorMessage}</p>
@@ -283,9 +276,11 @@ export default function Login() {
             {passwordErrorMessage === '' ? null : (
               <p className="errormessage">{passwordErrorMessage}</p>
             )}
+            {/* <Link to="/"> */}
             <button className="log btn" type="submit">
               Log in
             </button>
+            {/* </Link> */}
           </form>
         </div>
         <div className="help">

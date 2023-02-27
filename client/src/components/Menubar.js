@@ -28,6 +28,12 @@ const Nav = styled.nav`
     width: 100%;
     padding-left: 4px;
   }
+  div > li {
+    height: 268px;
+    width: 152px;
+    /* padding-inline-start: 20px; */
+    padding: 4px 4px 4px 0px;
+  }
 `;
 
 export default function Menubar() {
@@ -57,10 +63,11 @@ export default function Menubar() {
       </ol>
 
       <li>TEAMS</li>
-
-      <li>
-        <img src="menubar-img.png" alt="img" />
-      </li>
+      <div>
+        <li>
+          <img src="menubar-img.png" alt="img" />
+        </li>
+      </div>
     </Nav>
   );
 }

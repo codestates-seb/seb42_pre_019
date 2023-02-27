@@ -1,7 +1,10 @@
-import { useDispatch, useSelector } from 'react-redux';
+/* eslint-disable */
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import '../App.css';
+import Logout from '../pages/Logout';
 
 const Header1 = styled.header`
   position: fixed !important;
@@ -103,40 +106,136 @@ const Headercss = styled.div`
   button {
     all: unset;
   }
+  .logonbar {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    box-sizing: border-box;
+    padding-right: 12px;
+    height: 100%;
+    a {
+      color: hsl(210, 8%, 35%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0 10px;
+      text-decoration: none;
+      position: relative;
+      cursor: pointer;
+    }
+    a > img {
+      width: 20px;
+      height: 20px;
+      margin: 0;
+      padding: 0;
+      filter: invert(33%) sepia(11%) saturate(418%) hue-rotate(169deg)
+        brightness(95%) contrast(87%);
+    }
+  }
+  ol {
+    display: flex;
+    height: 100%;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  li {
+    display: inline-flex;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  li:hover {
+    background-color: hsl(210, 8%, 90%);
+  }
+  .imges {
+    width: 28px;
+    height: 28px;
+    padding: 0px;
+    padding-right: 8px;
+  }
+  .olol > ol {
+    gap: 4px;
+  }
 `;
 
 export default function Header() {
-  const isLogin = useSelector((store) => store.userReducer.isLogin); //! state 꺼냄
-  const dispatch = useDispatch();
-  console.log(isLogin);
-  dispatch();
+  const [logoutPage, setLogoutPage] = useState(false);
+  const isLogin = useSelector((state) => state.isLogin);
+  const handleLogout = () => {
+    setLogoutPage(!logoutPage);
+  };
   return (
     <Header1>
       <Headercss>
         <Link to="/">
           <img src="logo-stackoverflow.png" alt="logo" />
         </Link>
-        <div className="minitap">About</div>
-        <div className="minitap">Products</div>
-        <div className="minitap">For Teams</div>
+        {isLogin ? (
+          <div className="minitap">Products</div>
+        ) : (
+          <>
+            <div className="minitap">About</div>
+            <div className="minitap">Products</div>
+            <div className="minitap">For Teams</div>
+          </>
+        )}
+
         <form>
           <input placeholder="Search..." />
           <i className="fa-solid fa-magnifying-glass"></i>
         </form>
-        <nav>
-          {isLogin ? (
-            <div>ss</div>
-          ) : (
-            <div>
-              <Link to="/login" className="login btn">
-                Log in
-              </Link>
-              <Link to="/signup" className="signup btn">
-                Sign up
-              </Link>
-            </div>
-          )}
-        </nav>
+
+        {isLogin ? (
+          <nav className="logonbar">
+            <ol>
+              <li>
+                <a to="#">
+                  <div>
+                    <img src="profileImg/1.png" alt="avata" className="imges" />
+                  </div>
+
+                  <div className="olol">
+                    <ol>
+                      <li style={{ fontWeight: 'bold' }}>1</li>
+                      <li style={{ color: '#ab825f' }}>● 2</li>
+                    </ol>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a to="#">
+                  <img src="headerMenu1.png" alt="dox" />
+                </a>
+              </li>
+              <li>
+                <a to="#">
+                  <img src="headerMenu2.png" alt="tropy" />
+                </a>
+              </li>
+              <li>
+                <a to="#">
+                  <img src="headerMenu3.png" alt="qeustion" />
+                </a>
+              </li>
+              <li>
+                <a onClick={handleLogout}>
+                  <img src="headerMenu4.png" alt="logout" />
+                </a>
+                {logoutPage ? <Logout /> : null}
+              </li>
+            </ol>
+          </nav>
+        ) : (
+          <div>
+            <Link to="/login" className="login btn">
+              Log in
+            </Link>
+            <Link to="/signup" className="signup btn">
+              Sign up
+            </Link>
+          </div>
+        )}
       </Headercss>
     </Header1>
   );

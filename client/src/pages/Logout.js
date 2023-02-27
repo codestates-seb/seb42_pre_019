@@ -1,5 +1,8 @@
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import '../App.css';
+import { logoutAction } from '../Redux/actions';
+
 const Logoutcss = styled.div`
   position: absolute;
   display: flex;
@@ -12,11 +15,10 @@ const Logoutcss = styled.div`
   background-color: white;
   box-shadow: 0 1px 2px hsla(0, 0%, 0%, 0.05), 0 1px 4px hsla(0, 0%, 0%, 0.05),
     0 2px 8px hsla(0, 0%, 0%, 0.05);
-  background-color: hsl(210, 8%, 97.5%);
+  background-color: hsl(210, 8%, 95%);
   button {
     position: relative;
     align-items: center;
-    background-color: hsl(205, 46%, 92%);
     border: 1px solid hsl(205, 47%, 42%);
     border-color: hsl(205, 41%, 63%);
     border-radius: 3px;
@@ -44,13 +46,11 @@ const Logoutcss = styled.div`
   }
 `;
 
-export default function Logout(props, { outPage }) {
+export default function Logout() {
+  const dispatch = useDispatch();
   const handleOut = () => {
-    // props.setLogoutBtn(!props.logoutBtn);
-    // setProps(!props);
-    console.log(props);
-    console.log(outPage);
-    // setIsLogin(!isLogin.isLogin);
+    dispatch(logoutAction());
+    window.location.href = '/';
   };
   return (
     <Logoutcss>

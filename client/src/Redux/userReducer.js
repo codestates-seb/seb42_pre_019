@@ -4,15 +4,16 @@ const initialState = {
   isLogin: false,
 };
 
-const userReducer = (state = { ...initialState }, action) => {
-  {
-    if (action.type === LOG_IN)
-      //액션이름 불러옴
+const userReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case LOG_IN:
+      return {
+        ...action.payload,
+      };
+    case LOG_OUT:
       return { ...action.payload };
-    if (action.type === LOG_OUT)
-      //액션이름 정하고
-      return { ...action.payload };
-    else return state;
+    default:
+      return state;
     //해당없으면 그냥 반환
   }
 };

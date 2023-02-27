@@ -3,15 +3,15 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { legacy_createStore as createStore, combineReducers } from 'redux'; //리덕스 세팅1
-import { Provider } from 'react-redux'; //리덕스 세팅2
-import userReducer from './Redux/userReducer';
+import { Provider } from 'react-redux'; //리덕스 세팅1
+import { legacy_createStore as createStore } from 'redux';
+import userReducer from './Redux/userReducer'; //리덕스 세팅2
 
-const rootReducer = combineReducers({
-  user: userReducer,
-});
+// const rootReducer = combineReducers({
+//   user: userReducer,
+// });
 
-const store = createStore(rootReducer);
+const store = createStore(userReducer);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
