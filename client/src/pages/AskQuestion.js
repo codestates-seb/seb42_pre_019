@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { useState } from 'react';
 import axios from 'axios';
 import { useEffect } from 'react';
+import Answerform from '../components/Answerform';
 
 const AskQuestioncss = styled.form`
   padding: 25px;
@@ -45,43 +46,60 @@ const AskQuestioncss = styled.form`
     height: 4vh;
   }
 `;
+
 export default function AskQuestion() {
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
   const [questionId, setQuestionId] = useState('');
-  const [userId, setUserId] = useState('');
-  // const [data, setData] = useState({
-  //   questionId: '',
-  //   title: '',
-  //   body: 0,
-  //   views: 0,
-  //   result: [],
-  // });
+  const [createdAt, setCreatedAt] = useState('');
+  const [answerId, setAnswerId] = useState([]);
+  const profilImage = 'stackoverflowSampleProfile.png'; //Redux
+  const displayName = 'asdfasdf'; //Redux
+  const userId = 'uadadfasdfasfd'; //Redux
+  let score = 0;
 
   useEffect(() => {
-    const fetchUserId = async () => {
-      try {
-        const res = await axios.get('http://localhost:5000/users');
-        setUserId(res.data.userId);
-        console.log(userId);
-      } catch (err) {
-        console.error('Error fetching user ID:', err);
-      }
-    };
-    fetchUserId();
+    setQuestionId(Math.random().toString(36).substring(2, 11));
+    setCreatedAt(
+      new Date(
+        new Date().getTime() +
+          new Date().getTimezoneOffset() * 60 * 1000 +
+          9 * 60 * 60 * 1000
+      )
+    );
+    setAnswerId(['']);
+    // const fetchUserId = async () => {
+    //   try {
+    //     const res = await axios.get(`${process.env.REACT_APP_API_KEY}/users`);
+    //     setUserId(res.data.userId);
+    //   } catch (err) {
+    //     console.error('Error fetching user ID:', err);
+    //   }
+    // };
+    // fetchUserId();
   }, []);
-
+  // redux로 관리 ...userId,profilImg
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setQuestionId(Math.random().toString(36).substring(2, 11));
 
-    if (!userId) {
-      console.error('User Id is missing');
-    }
-    const questionData = { questionId, title, body, userId: userId };
+    console.log(questionId);
+    const questionData = {
+      questionId,
+      title,
+      body,
+      score,
+      createdAt,
+      userId,
+      answerId,
+      profilImage,
+      displayName,
+    };
     try {
       // const res = await axios.post('/board/write', questionData);
-      const res = await axios.post('http://localhost:5000/test', questionData);
+      const res = await axios.post(
+        `${process.env.REACT_APP_API_KEY}/test`,
+        questionData
+      );
       console.log('Question submitted successfully:', res.data);
     } catch (err) {
       console.error('Error submitting question:', err);

@@ -7,10 +7,7 @@
       "title": "How can I make clone site of StackOverflow?",
       "body": "<p>HTML p태그 출력확인 </p><p>HTML p태그 출력확인 </p><p>HTML p태그 출력확인 </p><p>HTML p태그 출력확인 </p><p>How can I make clone site of StackOverflow?</p><p>How can I make clone site of StackOverflow? How can I make clone site of StackOverflow?How can I make clone site of StackOverflow?How can I make clone site of StackOverflow?How can I make clone site of StackOverflow?How can I make clone site of StackOverflow? How can I make clone site of StackOverflow? How can I make clone site of StackOverflow  How can I make clone site of StackOverflow? How can I make clone site of StackOverflow? How can I make clone site of StackOverflow?</p>",
       "score": 11,
-      "answerId": [
-        21,
-        22
-      ],
+      "answerId": [21, 22],
       "createdAt": "2023.02.23.11:00",
       "profileImg": "avatar.png"
     },
@@ -21,11 +18,7 @@
       "title": "현희님 현희님 How can I make clone site of StackOverflow?",
       "body": "<p>현희님 현희님 현희님How can I make clone site of StackOverflow?</p><p> How can I make clone site of StackOverflow?How can I make clone site of StackOverflow?How can I make clone site of StackOverflow?How can I make clone site of StackOverflow?How can I make clone site of StackOverflow? How can I make clone site of StackOverflow? How can I make clone site of StackOverflow  How can I make clone site of StackOverflow? How can I make clone site of StackOverflow? How can I make clone site of StackOverflow?</p>",
       "score": 22,
-      "answerId": [
-        23,
-        24,
-        27
-      ],
+      "answerId": [23, 24, 27],
       "createdAt": "2023.02.23.11:00",
       "profileImg": "stackoverflowSampleProfile.png"
     },
@@ -36,10 +29,7 @@
       "title": "솜민님 솜민님 How can I make clone site of StackOverflow?",
       "body": "<p>솜민님 솜민님 솜민님 How can I make clone site of StackOverflow? How can I make clone</p><p> site of StackOverflow?How can I make clone site of StackOverflow?How can I make clone site of StackOverflow?How can I make clone site of StackOverflow?How can I make clone site of StackOverflow? How can I make clone site of StackOverflow? How can I make clone site of StackOverflow  How can I make clone site of StackOverflow? How can I make clone site of StackOverflow? How can I make clone site of StackOverflow?</p>",
       "score": 33,
-      "answerId": [
-        25,
-        26
-      ],
+      "answerId": [25, 26],
       "createdAt": "2023.02.23.11:00",
       "profileImg": "stackoverflowSampleProfile.png"
     }

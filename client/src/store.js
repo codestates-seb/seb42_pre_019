@@ -1,7 +1,9 @@
 //state 들을 보관하는 파일(redux store)
-import { configureStore, createSlice } from '@reduxjs/toolkit';
+//1. npm install @reduxjs/toolkit react-redux 먼저 설치해야됨.
+import { configureStore, createSlice } from '@reduxjs/toolkit'; // 2.import
 
-//usestate 역할임, state 하나를 slice 라고 부른다고함.
+//3. index.js 파일가서 import { Provider } from "react-redux"; , import store from './store.js' 임포트함
+// usestate 역할임, state 하나를 slice 라고 부른다고함.
 let reduxSample = createSlice({
   name: 'reduxSample', //'state이름'
   initialState: 'reduxSample입니다.', //'값',
