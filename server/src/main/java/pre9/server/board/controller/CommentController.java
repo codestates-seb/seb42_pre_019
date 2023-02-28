@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
-@CrossOrigin(origins = "*",allowedHeaders = "*")
+//@CrossOrigin(origins = "*",allowedHeaders = "*")
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/comment")
