@@ -12,6 +12,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.Positive;
 import java.net.URI;
 
+@CrossOrigin(origins = "*",allowedHeaders = "*")
 @RestController
 @RequestMapping("/users")
 @Validated

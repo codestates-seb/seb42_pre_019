@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.util.List;
 
 
+@CrossOrigin(origins = "*",allowedHeaders = "*")
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/board")

@@ -1,5 +1,6 @@
 package pre9.server.board.controller;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import pre9.server.board.dto.CommentDTO;
 import pre9.server.board.service.CommentService;
 import lombok.RequiredArgsConstructor;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
-
+@CrossOrigin(origins = "*",allowedHeaders = "*")
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/comment")
