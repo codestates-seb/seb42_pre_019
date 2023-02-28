@@ -5,8 +5,9 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Toast from '../components/Toast';
 import { useDispatch, useSelector } from 'react-redux';
-import { loginAction } from '../Redux/actions';
-import { Link } from 'react-router-dom';
+import { loginAction } from '../reducers/actions';
+import { useNavigate } from 'react-router-dom';
+
 const Logincss = styled.div`
   background-color: hsl(210, 8%, 95%);
   position: absolute;
@@ -156,8 +157,9 @@ const Logincss = styled.div`
 export default function Login() {
   //Redux test
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   // state 꺼내오기 hook
-  const isLogin = useSelector((state) => state.isLogin);
+  const isLogin = useSelector((state) => state.user.isLogin);
 
   const [userEmail, setUserEmail] = useState('');
   const [emailErrorMessage, setEmailErrorMessage] = useState('');
@@ -204,10 +206,12 @@ export default function Login() {
       setPasswordErrorMessage('');
     }
     return axios
-      .post(`${process.env.REACT_APP_API_KEY}/login`, loginData)
+      .post(`${process.env.REACT_APP_API_KEY}/login`, JSON.stringify(loginData))
       .then((res) => {
         e.preventDefault();
+        console.log(isLogin);
         dispatch(loginAction(res.data));
+        navigate('/');
       })
       .catch((err) => {
         setShowToast(true);
@@ -276,11 +280,10 @@ export default function Login() {
             {passwordErrorMessage === '' ? null : (
               <p className="errormessage">{passwordErrorMessage}</p>
             )}
-            {/* <Link to="/"> */}
+
             <button className="log btn" type="submit">
               Log in
             </button>
-            {/* </Link> */}
           </form>
         </div>
         <div className="help">

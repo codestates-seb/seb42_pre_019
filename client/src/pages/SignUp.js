@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import '../App.css';
 import axios from 'axios';
 import Toast from '../components/Toast';
+import { useDispatch } from 'react-redux';
+import { signupAction } from '../reducers/actions';
 
 const SignUpcss = styled.section`
   /* background-color: red; */
@@ -197,6 +199,9 @@ const SignUpcss = styled.section`
 `;
 
 export default function SignUp() {
+  const dispatch = useDispatch();
+  // state 꺼내오기 hook
+
   //TODO: State space
   const [displayName, setDisplayName] = useState('');
   const [nameErrorMessage, setNameErrorMessage] = useState('');
@@ -263,14 +268,13 @@ export default function SignUp() {
       setPasswordErrorMessage('');
     }
     return axios
-      .post(`${process.env.REACT_APP_API_KEY}/newusers`, data)
+      .post(`${process.env.REACT_APP_API_KEY}/newusers`, JSON.stringify(data))
       .then((res) => {
         //setUserInfo(res.data); //!응답오면 유저인포 담아주고 ->아직 선언 X
         //todo: toast message
         //todo: loginPage 이동
-        console.log(res.data);
         e.preventDefault();
-        setShowToast(true);
+        dispatch(signupAction(res.data));
       })
       .catch(() => {
         console.log('error');

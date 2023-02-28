@@ -32,7 +32,6 @@ const Answerformcss = styled.form`
     height: 4vh;
   }
 `;
-
 export default function Answerform() {
   const [body, setBody] = useState('');
   const [createdAt, setCreatedAt] = useState('');

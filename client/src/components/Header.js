@@ -161,7 +161,7 @@ const Headercss = styled.div`
 
 export default function Header() {
   const [logoutPage, setLogoutPage] = useState(false);
-  const isLogin = useSelector((state) => state.isLogin);
+  const isLogin = useSelector((state) => state.user.isLogin);
   const handleLogout = () => {
     setLogoutPage(!logoutPage);
   };

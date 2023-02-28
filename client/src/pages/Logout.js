@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import '../App.css';
-import { logoutAction } from '../Redux/actions';
+import { logoutAction } from '../reducers/actions';
 
 const Logoutcss = styled.div`
   position: absolute;
