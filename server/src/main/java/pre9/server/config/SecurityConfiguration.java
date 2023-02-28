@@ -13,6 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.CorsUtils;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import pre9.server.auth.JwtTokenizer;
 import pre9.server.auth.filter.JwtAuthenticationFilter;
@@ -44,8 +45,8 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .headers().frameOptions().sameOrigin()
-                .and()
+                //.headers()//.frameOptions().sameOrigin() h2 웹 콘솔 사용을 위해 추가
+                //.and()
                 .csrf().disable()
                 .cors(withDefaults())
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
@@ -53,19 +54,19 @@ public class SecurityConfiguration {
                 .formLogin().disable()
                 .httpBasic().disable()
                 .exceptionHandling()
-                .authenticationEntryPoint(new UserAuthenticationEntryPoint())  // 추가
-                .accessDeniedHandler(new UserAccessDeniedHandler())            // 추가
+                .authenticationEntryPoint(new UserAuthenticationEntryPoint())
+                .accessDeniedHandler(new UserAccessDeniedHandler())
                 .and()
-                .apply(new CustomFilterConfigurer())
-                .and()
-                .authorizeHttpRequests(authorize -> authorize
-                        .antMatchers(HttpMethod.POST, "/*/users").permitAll()
-                        .antMatchers(HttpMethod.PATCH, "/*/users/**").hasRole("USER")
-                        .antMatchers(HttpMethod.GET, "/*/users").hasRole("ADMIN")
-                        .antMatchers(HttpMethod.GET, "/*/users/**").hasAnyRole("USER", "ADMIN")
-                        .antMatchers(HttpMethod.DELETE, "/*/users/**").hasRole("USER")
-                        .anyRequest().permitAll()
-                );
+                .apply(new CustomFilterConfigurer());
+                //.authorizeHttpRequests(authorize -> authorize
+                 //       .antMatchers(HttpMethod.POST, "/*/users").permitAll()
+                  //      .antMatchers(HttpMethod.PATCH, "/*/users/**").hasRole("USER")
+                   //     .antMatchers(HttpMethod.GET, "/*/users").hasRole("ADMIN")
+                    ///    .antMatchers(HttpMethod.GET, "/*/users/**").hasAnyRole("USER", "ADMIN")
+                    //    .antMatchers(HttpMethod.DELETE, "/*/users/**").hasRole("USER")
+                      //  .anyRequest().permitAll()
+
+
         return http.build();
     }
 
@@ -77,9 +78,11 @@ public class SecurityConfiguration {
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("*"));
+        configuration.addAllowedOriginPattern("*");
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PATCH", "DELETE", "OPTIONS")); // preflight 요청으로 인해 options 메소드 추가
-        configuration.setAllowedHeaders(Arrays.asList("*"));
+        configuration.addAllowedHeader("*");
+        configuration.setAllowCredentials(true);
+
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;
