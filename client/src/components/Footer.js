@@ -10,7 +10,6 @@ const Footercss = styled.footer`
   align-items: center;
   background-color: hsl(210, 8%, 15%);
   color: hsl(210, 8%, 75%);
-
   .footerContainer {
     display: flex;
     justify-content: center;

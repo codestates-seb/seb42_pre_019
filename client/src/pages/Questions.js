@@ -7,8 +7,6 @@ import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 
 import HTMLPrinter from '../components/HTMLprinter';
-// import { useSelector } from 'react-redux';
-// import { useState } from 'react';
 
 const Qmain = styled.div`
   .qcss {
@@ -87,7 +85,7 @@ const Qmain = styled.div`
 const Qdiv = styled.div`
   display: flex;
   flex-direction: column;
-  border: 1px solid lightgrey;
+  border-top: 1px solid lightgrey;
 
   .vav {
     display: flex;
@@ -158,17 +156,6 @@ export default function Questions() {
   const state = useSelector((state) => state); //! state 꺼내오기 hook
   const parser = new DOMParser(); //! HTML 처리
 
-  // const [queCount, setQueCount] = useState(0);
-  // useEffect(() => {
-  //   axios
-  //     .get('http://localhost:5000/questions')
-  //     .then((res) => {
-  //       // setQueCount(res.data.count);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }, []);
   const [questionsData, setQuestionsData] = useState('1');
   function questionsAxios() {
     return axios
@@ -219,11 +206,8 @@ export default function Questions() {
           <Qdiv key={el.questionId}>
             <div className="vav">
               <div className="count">
-                {/* 344{data.votes}
-          console.log(data.votes) */}
                 {el.score}
                 <span>votes</span>
-                {/* score로  */}
               </div>
               <div className="count">
                 {el.answerId.length}
@@ -238,12 +222,7 @@ export default function Questions() {
                 <HTMLPrinter htmlString={el.body} />
               </div>
               <div className="bottominfo">
-                <span className="bottomleft">
-                  {/* <button className="tag">discussion</button>
-                  <button className="tag">reputation</button>
-                  <button className="tag">voting-fraud</button>
-                  <button className="tag">psa</button> */}
-                </span>
+                <span className="bottomleft"></span>
                 <span className="bottomright">
                   <Quser />
                   <img className="avatar" src={el.profileImg} alt="profile" />
@@ -254,7 +233,6 @@ export default function Questions() {
             </div>
           </Qdiv>
         ))}
-      <div>{state.user.displayName}</div>
     </Qmain>
   );
 }

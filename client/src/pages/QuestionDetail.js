@@ -8,9 +8,7 @@ import AnswerforQuestionDetail from '../components/AnswerforQuestionDetail';
 import axios from 'axios';
 import HTMLPrinter from '../components/HTMLprinter';
 
-// import AnswerForm from '../components/Answerform'; //요기 F 대문자로 수정 및 아래 주석해제(에러해결3) 해결시 삭제요망.
-
-// import AnswerForm from '../components/AnswerForm';
+import AnswerForm from '../components/Answerform';
 /* eslint-disable */
 const Question = styled.div`
   display: flex;
@@ -21,7 +19,6 @@ const Question = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    /* align-content: space-evenly; */
     > h1 {
       font-weight: 500;
       font-size: large;
@@ -82,8 +79,6 @@ const Question = styled.div`
 `;
 
 export default function QuestionDetail() {
-  // const [questionData, setQuestionData] = useState('초기값');
-
   const [data, setData] = useState({});
   function questionAxios(questionid) {
     return axios
@@ -103,39 +98,6 @@ export default function QuestionDetail() {
   }
 
   const propQuesionid = useParams().questionId;
-
-  // const [questionScore, setQuestionScore] = useState('1234');
-  // const [questionScore, setQuestionScore] = useState('134');
-
-  // function scoreSetting(n) {
-  //   setQuestionScore(n);
-  //   console.log(n);
-  //   console.log(`score ${questionScore}`);
-  // }
-  //!처음에 data받아온 값으로 score 초기지정
-
-  const handleScoreChangePlus = (questionid) => {
-    return axios
-      .put(
-        `${process.env.REACT_APP_API_KEY}/questions?questionId=${questionid}`,
-        { score: 1 }
-      )
-      .then((res) => {
-        console.log({ ...data, score: data.score + 1 });
-        return setData({ ...data, score: data.score + 1 });
-      })
-      .catch((err) => {
-        console.log({ ...data, score: data.score + 1 });
-        console.log('handleScoreChangePlus GET error');
-      });
-    //!onClick에 따라 state 변화시키며 동시에 데이터 전송?
-    //!answer을 전부 가져와서 각각 id , score를 넘겨줌
-    //!데이터 받을때 어떻게 받나 ... questionDetail에서 한번에 가능? 아니면 question따로 , 해당하는 Answer따로 ?
-  };
-
-  const qustionScoreUpClick = (id) => {
-    handleScoreChangePlus(id);
-  };
 
   useEffect(() => {
     questionAxios(propQuesionid);
@@ -161,8 +123,6 @@ export default function QuestionDetail() {
             <FontAwesomeIcon
               icon={faCaretUp}
               style={{ height: '30px', color: 'darkgrey' }}
-              onClick={qustionScoreUpClick(data.questionId)}
-              // onClick={scorePlus()}
             />
             <div>{data.score}</div>
             <FontAwesomeIcon

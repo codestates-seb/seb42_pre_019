@@ -63,32 +63,6 @@ export default function AnswerforQuestionDetail(props) {
       });
   }
 
-  const answer = [
-    //! 임시 더미데이터
-    {
-      answerId: 3333,
-      userId: 2,
-      questionId: 1111,
-      displayName: 'aaaaa',
-      body: `i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...`,
-      score: 3,
-      createdAt: '2023.02.23.11:11',
-      profileImg: 'stackoverflowSampleProfile.png',
-    },
-    {
-      answerId: 4444,
-      userId: 3,
-      questionId: 1111,
-      displayName: 'bbbbbbbbbbbb',
-      body: `1234123413412341234123412341234123421341341234213412341234@@@@@@@@@@@@@@@@@@@@@@@@@i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...i don't know...`,
-      score: 3,
-      createdAt: '2023.02.23.11:12',
-      profileImg: 'stackoverflowSampleProfile.png',
-    },
-  ];
-
-  const [answerScore, setAnswerScore] = useState(answer.score);
-
   return (
     <AnswerCover>
       <h2>
@@ -97,7 +71,7 @@ export default function AnswerforQuestionDetail(props) {
       {Array.isArray(questionAnswerData) &&
         questionAnswerData.map((el) => {
           return (
-            <div>
+            <div key={el.AnswerId}>
               <div className="answer-body">
                 <div className="score">
                   <FontAwesomeIcon

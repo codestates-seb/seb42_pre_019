@@ -154,6 +154,9 @@ const Logincss = styled.div`
   }
 `;
 
+//! 모든 요청에 withCredentials가 true로 설정됩니다. ->쿠키첨부나 auth관련 정보 등 credential한 정보가 담겨있는가?
+axios.defaults.withCredentials = true;
+
 export default function Login() {
   //Redux test
   const dispatch = useDispatch();

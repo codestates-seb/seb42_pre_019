@@ -27,8 +27,6 @@ const Breifprofile = styled.div`
     border-radius: 5px;
   }
   > span {
-    /* margin-top: 50px;
-       */
     justify-content: center;
     margin: auto;
     margin-left: 20px;
@@ -37,9 +35,6 @@ const Breifprofile = styled.div`
       margin: 4px 4px 12px;
     }
   }
-  /* > span:nth-child(1) {
-      font-size: 30px;
-    } */
 `;
 const CrossMenu = styled.div`
   > ul {
@@ -67,10 +62,6 @@ const CrossMenu = styled.div`
   }
 `;
 const Sidebar = styled.span`
-  /* position: fixed; */
-  /* margin-top: 0; */
-  /* position: sticky;
-    top: 10px; */
   > ul {
     display: flex;
     list-style: none;
@@ -81,7 +72,7 @@ const Sidebar = styled.span`
   .menu2 {
     margin: 5px;
     display: flex;
-    /* position: relative; */
+
     font-size: 0.9em;
     text-decoration: none;
     color: black;
@@ -125,51 +116,20 @@ export default function UserDetail({ prop }) {
         console.log(`res.data:`);
         console.log(res.data);
         setUserDetailData(res.data);
-        // console.log(userDetailData);
       })
       .catch((err) => {
         console.log('UserDetail GET error');
       });
   }
 
-  const [userDetailQuestionData, setUserDetailQuestionData] = useState(); //!Question
-  function userDetailQuestionAxios(id) {
-    return axios
-      .get(`/questions?userId=${id}`, {
-        'Content-Type': 'application/json',
-      })
-      .then((res) => {
-        setUserDetailQuestionData(res.data);
-        console.log(userDetailQuestionData);
-      })
-      .catch((err) => {
-        console.log('userDetailQuestion GET error');
-      });
-  }
-
-  const [userDetailAnswerData, setUserDetailAnswerData] = useState(); //!Answer
-  function userDetailAnswerAxios(id) {
-    return axios
-      .get(`http://localhost:5000/answers?userId=${id}`, {
-        'Content-Type': 'application/json',
-      })
-      .then((res) => {
-        setUserDetailAnswerData(res.data);
-        console.log(userDetailAnswerData);
-      })
-      .catch((err) => {
-        console.log('userDetailAnswerData GET error');
-      });
-  }
-  // const propUserid = 1;
   const propUserid = useParams().userId;
   console.log('propUserid');
   console.log({ propUserid });
 
   useEffect(() => {
-    userDetailAxios(propUserid); //! 여기 인자로 넣은 값 <- users에서 받아온 prop이 될 예정
-    userDetailQuestionAxios(1);
-    userDetailAnswerAxios(1);
+    userDetailAxios(propUserid); // users에서 받아온 prop
+    // userDetailQuestionAxios(1);
+    // userDetailAnswerAxios(1);
   }, []);
 
   const QuestionAndAnswerData = [
@@ -178,9 +138,7 @@ export default function UserDetail({ prop }) {
     { id: 1, title: 'Questions' },
   ];
 
-  console.log(QuestionAndAnswerData);
   console.log('question');
-  console.log(userDetailQuestionData);
 
   const [focusIndex, setFocusIndex] = useState(1);
 
@@ -218,15 +176,12 @@ export default function UserDetail({ prop }) {
           <ul>
             <li className="menu">Profile</li>
             <li className="menu">Activity</li>
-            {/* <li className="menu">Saves</li>
-            <li className="menu">Setting</li> */}
           </ul>
         </CrossMenu>
         <MainContent>
           {' '}
           <Sidebar>
             <ul>
-              {/* <li className="menu2">Summary</li> */}
               {QuestionAndAnswerData.map((item) => (
                 <li
                   key={item.id}
@@ -249,16 +204,10 @@ export default function UserDetail({ prop }) {
                     {item.title === 'Questions' ? (
                       <div>
                         <QuestionforUserdetail propUserid={propUserid} />
-                        {/* {Array.isArray(userDetailQuestionData) &&
-                          userDetailQuestionData.map((el) => {
-                            <div>{el.body}</div>;
-                          })}{' '}
-                        <div>{userDetailQuestionData[0].title}</div> */}
                       </div>
                     ) : (
                       <div>
                         <AnswerforUserDetail propUserid={propUserid} />
-                        {/* <Answer data={userDetailAnswerData} /> */}
                       </div>
                     )}
                   </div>

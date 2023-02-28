@@ -14,21 +14,23 @@ import SignUp from './pages/SignUp';
 import Tags from './pages/Tags';
 import Users from './pages/Users';
 import UserDetail from './pages/UserDetail';
+import Aside from './components/Aside';
 
 const Sidebar = styled.div`
   position: relative;
   box-sizing: border-box;
   width: 164px;
-  height: calc(100% - 200px);
   min-height: 670px;
+  border-right: 1px solid #d4d4d4;
 `;
 const Content = styled.div`
   display: flex;
   justify-content: start;
   max-width: 1100px;
-  width: calc(100% - 164px);
+  width: calc(100% - 300px);
   min-height: calc(100vh - 200px);
-  background-color: antiquewhite;
+  margin-bottom: 50px;
+  padding: 24px 0;
 `;
 
 //TODO: header 삼항연산자로
@@ -66,6 +68,7 @@ export default function App() {
               render={(props) => <UserDetail {...props} />}
             ></Route> */}
           </Routes>
+          <Aside />
         </Content>
       </div>
       <Footer />

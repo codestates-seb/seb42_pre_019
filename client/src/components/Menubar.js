@@ -12,6 +12,7 @@ const Nav = styled.nav`
   padding-top: 24px;
   color: hsl(210, 8%, 25%);
   list-style: none;
+
   ol {
     list-style: none;
     padding-left: 20px;
@@ -33,6 +34,10 @@ const Nav = styled.nav`
     width: 152px;
     /* padding-inline-start: 20px; */
     padding: 4px 4px 4px 0px;
+  }
+  div > li {
+    position: relative;
+    right: 2px;
   }
 `;
 
