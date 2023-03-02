@@ -1,38 +1,81 @@
-.App {
-  text-align: center;
+@font-face {
+  font-family: 'Segoe UI';
+  src: local('system-ui'), local('Segoe UI'), local('-apple-system'),
+    local('BlinkMacSystemFont'), local('Inter'), local('Cantarell'),
+    local('Ubuntu'), local('Roboto'), local('Open Sans'), local('Noto Sans'),
+    local('Helvetica Neue'), local('sans-serif');
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+html {
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  /* display: block; */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'system-ui', 'Segoe UI',
+    Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 12px;
+  padding-top: 50px;
+  background-color: white;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.container {
+  position: relative;
+  max-width: 1264px;
+  width: 100%;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin: 0 auto;
+  margin-top: 0;
+  background-color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.btn {
+  position: relative;
+  align-items: center;
+  background-color: hsl(205, 46%, 92%);
+  border: 1px solid hsl(205, 47%, 42%);
+  border-color: hsl(205, 41%, 63%);
+  border-radius: 3px;
+  box-shadow: inset 0 1px 0 0 hsla(0, 0%, 100%, 0.7);
+  color: hsl(205, 47%, 42%);
+  padding: 0.8em;
+
+  line-height: 13px;
+  font-size: 13px;
+  margin-top: 1px;
+  text-decoration: none;
+  cursor: pointer;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+div {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+input {
+  margin: 0;
+  padding: 0.6em 0.7em;
+  border: 1px solid hsl(210, 8%, 75%);
+  border-radius: 3px;
+  background-color: white;
+  color: hsl(210, 8%, 5%);
+  font-size: 13px;
+}
+h1 {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
 }
