@@ -30,12 +30,12 @@ public class UserService {
     }
 
     public User createUser(User user) {
-        verifyExistsEmail(user.getEmail());
+        verifyExistsEmail(user.getUserEmail());
 
         String encryptedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encryptedPassword);
 
-        List<String> roles = authorityUtils.createRoles(user.getEmail());
+        List<String> roles = authorityUtils.createRoles(user.getUserEmail());
         user.setRoles(roles);
 
         User savedUser = userRepository.save(user);
@@ -82,8 +82,8 @@ public class UserService {
         return findUser;
     }
 
-    private void verifyExistsEmail(String email) {
-        Optional<User> user = userRepository.findByEmail(email);
+    private void verifyExistsEmail(String userEmail) {
+        Optional<User> user = userRepository.findByUserEmail(userEmail);
         if (user.isPresent())
             throw new BusinessLogicException(ExceptionCode.USER_EXISTS);
     }

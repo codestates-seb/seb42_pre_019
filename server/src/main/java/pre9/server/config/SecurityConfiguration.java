@@ -45,7 +45,7 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                //.headers()//.frameOptions().sameOrigin() h2 웹 콘솔 사용을 위해 추가
+                //.headers().frameOptions().sameOrigin() //h2 웹 콘솔 사용을 위해 추가
                 //.and()
                 .csrf().disable()
                 .cors(withDefaults())
@@ -65,6 +65,7 @@ public class SecurityConfiguration {
                     ///    .antMatchers(HttpMethod.GET, "/*/users/**").hasAnyRole("USER", "ADMIN")
                     //    .antMatchers(HttpMethod.DELETE, "/*/users/**").hasRole("USER")
                       //  .anyRequest().permitAll()
+       // .logoutRequestMatcher(new AntPathRequestMatcher("/user/logout"))
 
 
         return http.build();
@@ -94,7 +95,7 @@ public class SecurityConfiguration {
             AuthenticationManager authenticationManager = builder.getSharedObject(AuthenticationManager.class);
 
             JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter(authenticationManager, jwtTokenizer);
-            jwtAuthenticationFilter.setFilterProcessesUrl("/auth/login");
+            jwtAuthenticationFilter.setFilterProcessesUrl("/users/login");
             jwtAuthenticationFilter.setAuthenticationSuccessHandler(new UserAuthenticationSuccessHandler());
             jwtAuthenticationFilter.setAuthenticationFailureHandler(new UserAuthenticationFailureHandler());
 

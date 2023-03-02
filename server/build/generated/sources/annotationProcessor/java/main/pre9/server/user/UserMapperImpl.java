@@ -1,5 +1,7 @@
 package pre9.server.user;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.annotation.processing.Generated;
 import org.springframework.stereotype.Component;
 import pre9.server.user.User.UserStatus;
@@ -9,7 +11,7 @@ import pre9.server.user.UserDto.Response;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-02-28T13:22:01+0900",
+    date = "2023-03-01T17:15:50+0900",
     comments = "version: 1.4.2.Final, compiler: IncrementalProcessingEnvironment from gradle-language-java-7.6.jar, environment: Java 11.0.17 (Azul Systems, Inc.)"
 )
 @Component
@@ -24,7 +26,7 @@ public class UserMapperImpl implements UserMapper {
         User user = new User();
 
         user.setDisplayName( requestBody.getDisplayName() );
-        user.setEmail( requestBody.getEmail() );
+        user.setUserEmail( requestBody.getUserEmail() );
         user.setPassword( requestBody.getPassword() );
 
         return user;
@@ -52,19 +54,33 @@ public class UserMapperImpl implements UserMapper {
         }
 
         long userId = 0L;
-        String email = null;
+        String userEmail = null;
         String displayName = null;
         UserStatus userStatus = null;
 
         if ( user.getUserId() != null ) {
             userId = user.getUserId();
         }
-        email = user.getEmail();
+        userEmail = user.getUserEmail();
         displayName = user.getDisplayName();
         userStatus = user.getUserStatus();
 
-        Response response = new Response( userId, email, displayName, userStatus );
+        Response response = new Response( userId, userEmail, displayName, userStatus );
 
         return response;
+    }
+
+    @Override
+    public List<Response> usersToUserResponses(List<User> users) {
+        if ( users == null ) {
+            return null;
+        }
+
+        List<Response> list = new ArrayList<Response>( users.size() );
+        for ( User user : users ) {
+            list.add( userToUserResponse( user ) );
+        }
+
+        return list;
     }
 }

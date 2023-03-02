@@ -1,16 +1,19 @@
 package pre9.server.user;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import pre9.server.dto.MultiResponseDto;
 import pre9.server.dto.SingleResponseDto;
 import pre9.server.utils.UriCreator;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
 import java.net.URI;
+import java.util.List;
 
 
 //@CrossOrigin
@@ -29,8 +32,7 @@ public class UserController {
         this.mapper = mapper;
     }
 
-
-    @PostMapping
+    @PostMapping("/new-user")
     public ResponseEntity postUser(@Valid @RequestBody UserDto.Post requestBody) {
         User user = mapper.userPostToUser(requestBody);
 
@@ -40,9 +42,9 @@ public class UserController {
         return ResponseEntity.created(location).build();
 
     }
-    @PatchMapping("/{user-id}")
+    @PatchMapping("/{userId}")
     public ResponseEntity patchUser(
-        @PathVariable("user-id") @Positive long userId,
+        @PathVariable @Positive long userId,
         @Valid @RequestBody UserDto.Patch requestBody){
         requestBody.setUserId(userId);
 
@@ -54,17 +56,28 @@ public class UserController {
                 HttpStatus.OK);
     }
 
-    @GetMapping("/{user-id}")
-    public ResponseEntity getUser(@PathVariable("user-id") @Positive long userId) {
+    @GetMapping("/{userId}")
+    public ResponseEntity getUser(@PathVariable @Positive long userId) {
         User user = userService.findUser(userId);
         return new ResponseEntity<>(
                 new SingleResponseDto<>(mapper.userToUserResponse(user))
                 , HttpStatus.OK);
     }
 
-    @DeleteMapping("/{user-id}")
+    @GetMapping
+    public ResponseEntity getUsers(@Positive @RequestParam int page,
+                                   @Positive @RequestParam int size) {
+        Page<User> pageUsers = userService.findUsers(page-1, size);
+        List<User> users = pageUsers.getContent();
+        return new ResponseEntity<>(
+                new MultiResponseDto<>(mapper.usersToUserResponses(users),
+                        pageUsers),
+                HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{userId}")
     public ResponseEntity deleteUser(
-            @PathVariable("user-id") @Positive long userId) {
+            @PathVariable("userId") @Positive long userId) {
         userService.deleteUser(userId);
 
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);

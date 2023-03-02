@@ -16,7 +16,7 @@ public class UserDto {
 
         @NotBlank
         @Email
-        private String email;
+        private String userEmail;
 
         @NotBlank
         private String password;
@@ -43,7 +43,7 @@ public class UserDto {
     @Getter
     public static class Response {
         private long userId;
-        private String email;
+        private String userEmail;
         private String displayName;
         // 회원 등록 일자
         // 프로필 이미지

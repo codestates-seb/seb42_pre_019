@@ -23,7 +23,7 @@ public class User extends Auditable {
     @Column(length = 100, nullable = false)
     private String displayName; // 이름
     @Column(nullable = false, updatable = false, unique = true) // 빈 값 x, 수정 x, 중복값 x
-    private String email; // 이메일
+    private String userEmail; // 이메일
 
     @Column(length = 100, nullable = false)
     private String password; // 비밀번호
@@ -35,15 +35,16 @@ public class User extends Auditable {
     @Column(nullable = false)
     private UserStatus userStatus = UserStatus.USER_ACTIVE;
 
-    public User(String email) { this.email = email; }
+    public User(String userEmail) { this.userEmail = userEmail; }
 
-    public User(String email, String name) {
-        this.displayName = name;
-        this.email = email;
+    public User(String userEmail, String displayName) {
+        this.displayName = displayName;
+        this.userEmail = userEmail;
     }
 
+
     public String getDisplayName() {
-        return getEmail();
+        return getUserEmail();
     }
 
     public enum UserStatus {

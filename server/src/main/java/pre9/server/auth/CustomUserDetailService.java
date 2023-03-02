@@ -27,7 +27,7 @@ public class CustomUserDetailService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username2) throws UsernameNotFoundException {
-        Optional<User> optionalUser = userRepository.findByEmail(username2);
+        Optional<User> optionalUser = userRepository.findByUserEmail(username2);
         User findUser = optionalUser.orElseThrow(() -> new BusinessLogicException(ExceptionCode.USER_NOT_FOUND));
 
         return new CustomUserDetails(findUser);
@@ -36,7 +36,7 @@ public class CustomUserDetailService implements UserDetailsService {
     private final class CustomUserDetails extends User implements UserDetails {
         CustomUserDetails(User user) {
             setUserId(user.getUserId());
-            setEmail(user.getEmail());
+            setUserEmail(user.getUserEmail());
             setPassword(user.getPassword());
             setRoles(user.getRoles());
         }
@@ -48,7 +48,7 @@ public class CustomUserDetailService implements UserDetailsService {
 
         @Override
         public String getUsername() {
-            return getEmail();
+            return getUserEmail();
         }
 
         @Override
