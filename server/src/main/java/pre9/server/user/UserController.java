@@ -64,7 +64,7 @@ public class UserController {
                 , HttpStatus.OK);
     }
 
-    @GetMapping
+    @GetMapping("/list")
     public ResponseEntity getUsers(@Positive @RequestParam int page,
                                    @Positive @RequestParam int size) {
         Page<User> pageUsers = userService.findUsers(page-1, size);

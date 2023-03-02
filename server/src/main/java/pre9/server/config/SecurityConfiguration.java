@@ -65,7 +65,6 @@ public class SecurityConfiguration {
                     ///    .antMatchers(HttpMethod.GET, "/*/users/**").hasAnyRole("USER", "ADMIN")
                     //    .antMatchers(HttpMethod.DELETE, "/*/users/**").hasRole("USER")
                       //  .anyRequest().permitAll()
-       // .logoutRequestMatcher(new AntPathRequestMatcher("/user/logout"))
 
 
         return http.build();

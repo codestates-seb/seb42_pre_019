@@ -1,3 +1,4 @@
+/*
 package pre9.server.board;
 
 import org.springframework.boot.SpringApplication;
@@ -11,3 +12,4 @@ public class BoardApplication {
 }
 
 
+*/
