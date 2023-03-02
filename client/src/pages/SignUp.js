@@ -5,7 +5,7 @@ import '../App.css';
 import axios from 'axios';
 import Toast from '../components/Toast';
 import { useDispatch } from 'react-redux';
-import { signupAction } from '../reducers/actions';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const SignUpcss = styled.section`
   /* background-color: red; */
@@ -197,7 +197,7 @@ const SignUpcss = styled.section`
     }
   }
 `;
-
+axios.defaults.withCredentials = true;
 export default function SignUp() {
   const dispatch = useDispatch();
   // state 꺼내오기 hook
@@ -213,21 +213,21 @@ export default function SignUp() {
   const avataImg = `profileImg/${Math.floor(Math.random() * 10)}.png`;
 
   const data = {
-    id: Math.random().toString(36).substring(2, 11),
+    // id: Math.random().toString(36).substring(2, 11),
     displayName: displayName,
-    userEmail: userEmail,
+    email: userEmail,
     password: password,
-    signupAt: new Date().toLocaleDateString('en-US'),
-    profileImg: avataImg,
+    // signupAt: new Date().toLocaleDateString('en-US'),
+    // profileImg: avataImg,
   };
 
   //!toastMessage
   const [showToast, setShowToast] = useState(false);
-
+  const navigate = useNavigate();
   useEffect(() => {
     if (showToast) {
       const timeout = setTimeout(() => {
-        window.location.href = '/login';
+        navigate('/login');
         setShowToast(false);
       }, 6000);
       return () => clearTimeout(timeout);
@@ -239,10 +239,11 @@ export default function SignUp() {
     setPhrase(event.target.value);
   };
   //!toastMessage
-
+  // const headers = {
+  //   Authorization: Token,
+  // };
   //빈칸 에러메세지 표기 및 axios 요청
   const signupRequestHandler = (e) => {
-    console.log(displayName, userEmail, password);
     e.preventDefault();
     if (!displayName) {
       if (!userEmail) {
@@ -268,19 +269,22 @@ export default function SignUp() {
       setPasswordErrorMessage('');
     }
     return axios
-      .post(`${process.env.REACT_APP_API_KEY}/newusers`, JSON.stringify(data))
+      .post(
+        `http://ec2-43-201-18-196.ap-northeast-2.compute.amazonaws.com:8080/users`,
+        {
+          displayName: displayName,
+          email: userEmail,
+          password: password,
+        }
+      )
       .then((res) => {
-        //setUserInfo(res.data); //!응답오면 유저인포 담아주고 ->아직 선언 X
-        //todo: toast message
-        //todo: loginPage 이동
-        e.preventDefault();
+        setShowToast(true);
         dispatch(signupAction(res.data));
+        alert('hi');
+        console.log(res.data);
       })
-      .catch(() => {
-        console.log('error');
-        // if (err.response.status === 401) {
-        //   setErrorMessage("로그인에 실패했습니다.");
-        // }
+      .catch((err) => {
+        console.log(err);
       });
   };
 

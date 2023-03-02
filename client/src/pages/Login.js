@@ -162,36 +162,38 @@ export default function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   // state 꺼내오기 hook
-  const isLogin = useSelector((state) => state.user.isLogin);
+  // const isLogin = useSelector((state) => state.user.isLogin);
 
   const [userEmail, setUserEmail] = useState('');
   const [emailErrorMessage, setEmailErrorMessage] = useState('');
   const [password, setPassword] = useState('');
   const [passwordErrorMessage, setPasswordErrorMessage] = useState('');
 
-  const [showToast, setShowToast] = useState(false);
-  const [phrase, setPhrase] = useState(5);
+  // const [showToast, setShowToast] = useState(false);
+  // const [phrase, setPhrase] = useState(5);
 
   //!toastMsg
-  const handleInputChange = (event) => {
-    setPhrase(event.target.value);
-  };
-  useEffect(() => {
-    if (showToast) {
-      const timeout = setTimeout(() => {
-        setShowToast(false);
-      }, 6000);
-      return () => clearTimeout(timeout);
-    }
-  }, [showToast]);
+  // const handleInputChange = (event) => {
+  //   setPhrase(event.target.value);
+  // };
+  // useEffect(() => {
+  //   if (showToast) {
+  //     const timeout = setTimeout(() => {
+  //       setShowToast(false);
+  //     }, 6000);
+  //     return () => clearTimeout(timeout);
+  //   }
+  // }, [showToast]);
+  //!CORS headers
 
   //!login
   const loginData = {
-    isLogin: false,
-    id: Math.random().toString(36).substring(2, 11),
-    userEmail: userEmail,
+    username: userEmail,
     password: password,
   };
+  // const headers = {
+  //   Authorization: Token,
+  // };
 
   const loginRequestHandler = (e) => {
     e.preventDefault();
@@ -209,21 +211,27 @@ export default function Login() {
       setPasswordErrorMessage('');
     }
     return axios
-      .post(`${process.env.REACT_APP_API_KEY}/login`, JSON.stringify(loginData))
+      .post(
+        `http://ec2-43-201-18-196.ap-northeast-2.compute.amazonaws.com:8080/auth/login`,
+        { username: userEmail, password: password }
+        // { headers: headers }
+      )
       .then((res) => {
-        e.preventDefault();
-        console.log(isLogin);
+        // const accessToken = res.headers.authorization;
+        // localStorage.setItem(accessToken);
         dispatch(loginAction(res.data));
         navigate('/');
+        alert('hi');
       })
       .catch((err) => {
-        setShowToast(true);
+        // setShowToast(true);
+        console.log(err);
       });
   };
 
   return (
     <Logincss>
-      {showToast && (
+      {/* {showToast && (
         <Toast
           style={{ backgroundColor: 'hsl(210,8%,15%)', color: 'white' }}
           inputE={
@@ -238,7 +246,7 @@ export default function Login() {
           title={'로그인에 실패했습니다.'}
           secText={`초 뒤 다시 로그인을 시도 하세요`}
         />
-      )}
+      )} */}
       <div className="loginItemBox">
         <div className="imgbox">
           <img src="logo-stackoverflow.png" alt="miniLogo" />
@@ -258,7 +266,7 @@ export default function Login() {
           </div>
         </div>
         <div id="formContainer">
-          <form onSubmit={loginRequestHandler}>
+          <form onSubmit={(e) => loginRequestHandler(e)}>
             <div className="email">
               <span>Email</span>
               <input
