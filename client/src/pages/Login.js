@@ -155,7 +155,6 @@ const Logincss = styled.div`
 `;
 
 //! 모든 요청에 withCredentials가 true로 설정됩니다. ->쿠키첨부나 auth관련 정보 등 credential한 정보가 담겨있는가?
-axios.defaults.withCredentials = true;
 
 export default function Login() {
   //Redux test
@@ -169,13 +168,9 @@ export default function Login() {
   const [password, setPassword] = useState('');
   const [passwordErrorMessage, setPasswordErrorMessage] = useState('');
 
-  // const [showToast, setShowToast] = useState(false);
-  // const [phrase, setPhrase] = useState(5);
-
   //!toastMsg
-  // const handleInputChange = (event) => {
-  //   setPhrase(event.target.value);
-  // };
+  // const [showToast, setShowToast] = useState(false);
+
   // useEffect(() => {
   //   if (showToast) {
   //     const timeout = setTimeout(() => {
@@ -184,6 +179,11 @@ export default function Login() {
   //     return () => clearTimeout(timeout);
   //   }
   // }, [showToast]);
+
+  // const [phrase, setPhrase] = useState(5);
+  // const handleInputChange = (event) => {
+  //   setPhrase(event.target.value);
+  // };
   //!CORS headers
 
   //!login
@@ -191,11 +191,16 @@ export default function Login() {
     username: userEmail,
     password: password,
   };
-  // const headers = {
-  //   Authorization: Token,
-  // };
 
   const loginRequestHandler = (e) => {
+    const Token = 'Bearer';
+    const headers = {
+      'Access-Control-Allow-Origin': '*',
+      'Content-Type': 'application/json',
+      Authorization: Token,
+    };
+    axios.defaults.withCredentials = true;
+
     e.preventDefault();
     if (!userEmail) {
       if (!password) {
@@ -212,13 +217,17 @@ export default function Login() {
     }
     return axios
       .post(
-        `http://ec2-43-201-18-196.ap-northeast-2.compute.amazonaws.com:8080/auth/login`,
-        { username: userEmail, password: password }
-        // { headers: headers }
+        `http://ec2-15-164-97-51.ap-northeast-2.compute.amazonaws.com:8080/users/login`,
+        {
+          userEmail: userEmail,
+          password: password,
+        },
+        { headers }
       )
       .then((res) => {
-        // const accessToken = res.headers.authorization;
-        // localStorage.setItem(accessToken);
+        const accessToken = res.headers.get('Authorization');
+        // const userEmail = res.data.userEmail;
+        localStorage.setItem('user', accessToken);
         dispatch(loginAction(res.data));
         navigate('/');
         alert('hi');

@@ -153,7 +153,8 @@ const Quser = styled.a`
 `;
 
 export default function Questions() {
-  const state = useSelector((state) => state); //! state 꺼내오기 hook
+  const state = useSelector((state) => state.user.displayName); //! state 꺼내오기 hook
+  console.log(state);
   const parser = new DOMParser(); //! HTML 처리
 
   const [questionsData, setQuestionsData] = useState('1');

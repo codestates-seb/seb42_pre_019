@@ -50,6 +50,7 @@ export default function Logout() {
   const dispatch = useDispatch();
   const handleOut = () => {
     dispatch(logoutAction());
+    localStorage.removeItem('user');
     window.location.href = '/';
   };
   return (

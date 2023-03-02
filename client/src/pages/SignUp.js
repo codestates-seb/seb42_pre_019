@@ -198,8 +198,9 @@ const SignUpcss = styled.section`
   }
 `;
 axios.defaults.withCredentials = true;
+
 export default function SignUp() {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   // state 꺼내오기 hook
 
   //TODO: State space
@@ -224,6 +225,11 @@ export default function SignUp() {
   //!toastMessage
   const [showToast, setShowToast] = useState(false);
   const navigate = useNavigate();
+  const [phrase, setPhrase] = useState(5);
+  const handleInputChange = (event) => {
+    setPhrase(event.target.value);
+  };
+
   useEffect(() => {
     if (showToast) {
       const timeout = setTimeout(() => {
@@ -234,10 +240,6 @@ export default function SignUp() {
     }
   }, [showToast]);
 
-  const [phrase, setPhrase] = useState(5);
-  const handleInputChange = (event) => {
-    setPhrase(event.target.value);
-  };
   //!toastMessage
   // const headers = {
   //   Authorization: Token,
@@ -270,16 +272,15 @@ export default function SignUp() {
     }
     return axios
       .post(
-        `http://ec2-43-201-18-196.ap-northeast-2.compute.amazonaws.com:8080/users`,
+        `http://ec2-15-164-97-51.ap-northeast-2.compute.amazonaws.com:8080/users/new-user`,
         {
           displayName: displayName,
-          email: userEmail,
+          userEmail: userEmail,
           password: password,
         }
       )
       .then((res) => {
         setShowToast(true);
-        dispatch(signupAction(res.data));
         alert('hi');
         console.log(res.data);
       })

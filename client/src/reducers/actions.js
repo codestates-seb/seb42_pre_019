@@ -13,7 +13,7 @@ export const loginAction = (data) => {
 export const logoutAction = () => {
   return {
     type: LOG_OUT,
-    payload: { isLogin: true },
+    payload: { isLogin: false },
   };
 };
 
