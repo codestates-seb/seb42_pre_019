@@ -7,8 +7,7 @@ import { faCaretUp, faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import AnswerforQuestionDetail from '../components/AnswerforQuestionDetail';
 import axios from 'axios';
 import HTMLPrinter from '../components/HTMLprinter';
-
-import AnswerForm from '../components/Answerform';
+import Answerform from '../components/Answerform';
 /* eslint-disable */
 const Question = styled.div`
   display: flex;
@@ -78,7 +77,9 @@ const Question = styled.div`
   }
 `;
 
-export default function QuestionDetail() {
+export default function QuestionDetail(props) {
+  // const [questionData, setQuestionData] = useState('초기값');
+  const { questionId } = props;
   const [data, setData] = useState({});
   function questionAxios(questionid) {
     return axios
@@ -150,7 +151,7 @@ export default function QuestionDetail() {
         </div>
       </Question>
       <AnswerforQuestionDetail propQuesionid={propQuesionid} />
-      <AnswerForm />
+      <Answerform questionId={propQuesionid} />
     </div>
   );
 }

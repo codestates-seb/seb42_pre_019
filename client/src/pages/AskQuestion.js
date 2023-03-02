@@ -5,11 +5,10 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import styled from 'styled-components';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-// import Answerform from '../components/Answerform';
 
 const AskQuestioncss = styled.form`
   padding: 25px;
-  width: 60%;
+  width: 820.4px;
   h1 {
     font-size: 20px;
   }
@@ -54,8 +53,8 @@ export default function AskQuestion() {
   const [createdAt, setCreatedAt] = useState('');
   const [answerId, setAnswerId] = useState([]);
   const profilImage = 'stackoverflowSampleProfile.png'; //Redux
-  const displayName = 'asdfasdf'; //Redux
-  const userId = 'uadadfasdfasfd'; //Redux
+  const displayName = 'Jihyun KIm'; //Redux
+  const userId = 1; //Redux
   let score = 0;
 
   useEffect(() => {
@@ -97,15 +96,20 @@ export default function AskQuestion() {
     try {
       // const res = await axios.post('/board/write', questionData);
       const res = await axios.post(
-        `${process.env.REACT_APP_API_KEY}/test`,
+        `${process.env.REACT_APP_API_KEY}/questions`,
         questionData
       );
       console.log('Question submitted successfully:', res.data);
+      console.log(questionData);
     } catch (err) {
       console.error('Error submitting question:', err);
+      console.log(questionData);
     }
   };
 
+  // let a = useSelector((state) => {
+  //   return state;
+  // });
   return (
     <AskQuestioncss onSubmit={handleSubmit}>
       <h1>Ask a public question</h1>

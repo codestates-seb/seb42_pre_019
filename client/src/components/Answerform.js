@@ -32,12 +32,13 @@ const Answerformcss = styled.form`
     height: 4vh;
   }
 `;
-export default function Answerform() {
+
+export default function Answerform(questionId) {
   const [body, setBody] = useState('');
   const [createdAt, setCreatedAt] = useState('');
   const [answerId, setAnswerId] = useState('');
-  const profilImage = 'stackoverflowSampleProfile.png'; //Redux
-  const questionId = '1111'; //question detail page에서 prop으로 넘겨줘야함
+  const profileImg = 'stackoverflowSampleProfile.png'; //Redux
+  //question detail page에서 prop으로 넘겨줘야함
   const displayName = 'asdfasdf'; //Redux
   const userId = 'uadadfasdfasfd'; //Redux
   let score = 0;
@@ -57,27 +58,29 @@ export default function Answerform() {
     e.preventDefault();
 
     const answerData = {
-      questionId,
+      questionId: questionId.questionId,
       body,
       score,
       createdAt,
-      userId,
       answerId,
-      profilImage,
+      userId,
+      profileImg,
       displayName,
     };
 
     // const answerData = { body };
     try {
       const res = await axios.post(
-        `${process.env.REACT_APP_API_KEY}/test2`, //! 보내면 서버쪽에서 questionId 일치하는 data의 answerId 키의 배열에 넣어줘야함
+        `${process.env.REACT_APP_API_KEY}/answers`, //! 보내면 서버쪽에서 questionId 일치하는 data의 answerId 키의 배열에 넣어줘야함
         answerData
       );
       console.log('Answer submitted successfully:', res.data);
+      console.log(questionId);
     } catch (err) {
       console.error('Error submitting question:', err);
     }
   };
+
   return (
     <Answerformcss onSubmit={handleSubmitt}>
       <h2>Your Answer</h2>
